@@ -97,7 +97,7 @@ a.btn,button.btn{border:0;text-decoration:none;background:var(--accent-soft);col
 .done{background:var(--line)!important;color:var(--text)!important}
 .status{font-size:11px;background:var(--line);border-radius:7px;padding:3px 6px;display:inline-block;margin-top:6px}
 .status.ok{background:#dcfce7;color:#166534}
-[data-theme="dark"] .status.ok{background:#0f2a1a;color:#86efac}
+[data-theme="dark"] .status.ok{background:#0f2a1a!important;color:#86efac!important}
 .metro-scheme{margin-top:8px;background:var(--route-bg);border-radius:9px;padding:10px 12px}
 .metro-scheme .st{font-size:12.5px;font-weight:700;display:flex;align-items:center;gap:7px}
 .metro-scheme .st .dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
@@ -132,15 +132,15 @@ textarea{min-height:80px;resize:vertical}
 .exp{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--line);font-size:14px}
 .exp:last-child{border:0}
 .exp .x{border:0;background:transparent;color:#dc2626;cursor:pointer;font-size:16px;padding:4px 8px}
-.summary-box{background:var(--route-bg);padding:s10px;border-radius:10px;margin:8px 0}
-;font-weight:.s700}
-.barl{height:8px;background:idervar(--line);border:-radius:5px;overflow:hidden;margin-top:6px}
+.summary-box{background:var(--route-bg);padding:10px;border-radius:10px;margin:8px 0;font-weight:700}
+.bar{height:8px;background:var(--line);border-radius:5px;overflow:hidden;margin-top:6px}
 .bar i{display:block;height:100%;background:#22c55e;transition:width .3s}
 .bar i.warn{background:#f59e0b}
 .bar i.over{background:#dc2626}
 .switch{position:relative;display:inline-block;width:46px;height:26px;flex-shrink:0}
 .switch input{opacity:0;width:0;height:0}
-.slider{position:absolute;cursor:pointer;inset:0;background:#ccc;border-radius:26px;transition:.2before{content:"";position:absolute;height:20px;width:20px;left:3px;top:3px;background:white;border-radius:50%;transition:.2s}
+.slider{position:absolute;cursor:pointer;inset:0;background:#ccc;border-radius:26px;transition:.2s}
+.slider:before{content:"";position:absolute;height:20px;width:20px;left:3px;top:3px;background:white;border-radius:50%;transition:.2s}
 input:checked+.slider{background:var(--accent)}
 input:checked+.slider:before{transform:translateX(20px)}
 @media(min-width:700px){.tools{grid-template-columns:repeat(6,1fr)}.item{grid-template-columns:75px 1fr}}
@@ -228,7 +228,7 @@ const D = {
 {time:"08:30",title:"🥐 Завтрак + сдача номера",note:"Вещи оставить на стойке."},
 {time:"09:40",title:"❤️ Красная площадь",note:"Манежная → Красная площадь → ГУМ → Никольская.",dest:"Красная площадь, Москва",metro:"🚇 ≈20 мин: Сокольники (красная) → Охотный ряд (≈6 ост.), далее пешком.",walk:"🚶 ≈10 км, ≈2 ч — не рекомендуется.",map:"https://yandex.ru/maps/?text=Красная%20площадь%20Москва"},
 {time:"11:30",title:"🧸 ЦДМ",note:"Сувенир перед поездом.",addr:"Театральный пр., 5/1",dest:"Центральный детский магазин, Театральный проезд 5, Москва",metro:"🚇 Охотный ряд → Лубянка (1 ост.).",walk:"🚶 ≈1,5 км от Красной площади, ≈20 мин.",map:"https://yandex.ru/maps/?text=Центральный%20детский%20магазин%20Лубянка"},
-{time:"11:45",title:"🍲 Ресторан «Яуза»",note:"Сокольники, забрать вещи и пообедать.",addr:"ул. Стромынка, 22",phone:"+7 495 748 78 78",dest:"Ресторан Яуза, Стромынка 22, Москва",menu:"https://yandex.ru/maps/?text=Ресторан%20Яуза%20Стромынка%2022",metro:"🚇 Лубянка → Сокольники (красная, ≈4 ост.). ≈15 мин.",walk:"🚶 ≈9 км — не рекомендуется.",map:"https://yandex.ru/maps/?text=Ресторан%20Яуза%20Стромынка%2022"},
+{time:"11:45",title:"🍲 Кафе «Борго»",note:"Сокольники, забрать вещи и пообедать.",addr:"2-й Полевой переулок, 2",phone:"+7 495 728-08-82",dest:"Кафе Борго, 2-й Полевой переулок 2, Москва",menu:"https://borgocafe.ru/",metro:"🚇 Лубянка → Сокольники (красная, ≈4 ост.). ≈15 мин.",walk:"🚶 ≈9 км — не рекомендуется.",map:"https://yandex.ru/maps/?text=Борго%202-й%20Полевой%20переулок%202"},
 {time:"12:35",title:"🚇 Сокольники → Восточный вокзал",note:"Переезд к поезду.",dest:"Восточный вокзал, Окружной проезд 7с1, Москва",metroStops:[{n:"Сокольники",c:"#ef4444"},{n:"Черкизовская",c:"#ef4444"}],metro:"🚇 ≈15 мин: Сокольники (красная) → Черкизовская (2 ост.), далее пешком ≈700 м. Либо МЦК Сокольники → Локомотив (1 ост.) + ≈500 м.",walk:"🚶 ≈3,5 км, ≈45 мин.",map:"https://yandex.ru/maps/?rtext=Сокольники%20метро~Восточный%20вокзал%20Москва"},
 {time:"13:45",title:"🚆 Отправление поезда №704",note:"Восточный вокзал → Нижний Новгород. Прибытие 17:46, Московский вокзал, площадь Революции, 2А.",addr:"Окружной проезд, 7с1",map:"https://yandex.ru/maps/?text=Восточный%20вокзал%20Москва%20Окружной%20проезд%207с1"}
 ]};
@@ -752,7 +752,7 @@ function settings(){
       '<div><b>Сбросить всё</b><div class="muted">Заметки, фото, расходы, отметки</div></div>' +
       '<button class="btn" style="background:#fee2e2;color:#991b1b" onclick="if(confirm(\'Точно сбросить ВСЕ данные?\'))resetAll()">Сбросить</button>' +
     '</div>' +
-    '<p class="muted" style="margin-top:16px">Версия 2.5 · офлайн-режим включён</p>');
+    '<p class="muted" style="margin-top:16px">Версия 2.6 · офлайн-режим включён</p>');
 }
 function setTheme(v){ store.set("theme", v); applyTheme(); }
 async function refreshWeather(){
