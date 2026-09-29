@@ -46,7 +46,7 @@ main{padding:8px 14px 45px}
 .summary,.panel{background:var(--card);border-radius:17px;padding:15px;margin-bottom:11px;box-shadow:var(--shadow)}
 .summary h2{margin:0 0 3px;font-size:18px}
 .muted{color:var(--muted);font-size:13px}
-.weather{display:flex;align-items:center;gap:10px;margin-top:8px;background:var(--route-bg);padding:8px 10px;border-radius:10px;font-size:13px}
+.weather{display:flex;align-items:center;gap:10px;margin-top:8px;background:var(--route-bg);padding:8px 10px;border-radius:10px;font-size:13px;min-height:38px}
 .weather .wicon{font-size:22px}
 .weather b{font-weight:700}
 .progress{height:7px;background:var(--line);border-radius:8px;margin-top:9px;overflow:hidden}
@@ -60,16 +60,15 @@ main{padding:8px 14px 45px}
 .title{font-weight:850}
 .note{font-size:13px;color:var(--muted);margin-top:3px}
 .addr{font-size:12px;color:var(--muted);margin-top:2px}
-.route{font-size:13px;color:var(--text);margin-top:6px;background:var(--route-bg);border-left:3px solid var(--route-border);padding:7px 9px;border-radius:6px;line-height:1.45;white-space:pre-line;position:relative}
+.route{display:block;text-decoration:none;color:var(--text);font-size:13px;margin-top:6px;background:var(--route-bg);border-left:3px solid var(--route-border);padding:7px 9px;border-radius:6px;line-height:1.45;white-space:pre-line}
 .route.walk{border-left-color:var(--walk-border);background:var(--walk-bg)}
-.route.clickable{cursor:pointer;transition:transform .08s,box-shadow .15s}
-.route.clickable:active{transform:scale(.985)}
-.route.clickable:hover{box-shadow:0 0 0 2px var(--accent-soft)}
-.route-hint{display:block;margin-top:5px;font-size:11.5px;font-weight:700;opacity:.8;color:var(--accent)}
+.route.clickable{cursor:pointer;-webkit-tap-highlight-color:rgba(109,40,217,.15)}
+.route.clickable:active{opacity:.8}
+.route-hint{display:block;margin-top:5px;font-size:11.5px;font-weight:700;color:var(--accent)}
 .route.walk .route-hint{color:#15803d}
 [data-theme="dark"] .route.walk .route-hint{color:#86efac}
 .actions{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
-a.btn,button.btn{border:0;text-decoration:none;background:var(--accent-soft);color:var(--accent-text);border-radius:9px;padding:8px 10px;font-weight:750;font-size:13px;cursor:pointer;display:inline-flex;align-items:center;gap:4px;font-family:inherit}
+a.btn,button.btn{border:0;text-decoration:none;background:var(--accent-soft);color:var(--accent-text);border-radius:9px;padding:8px 10px;font-weight:750;font-size:13px;cursor:pointer;display:inline-flex;align-items:center;gap:4px;font-family:inherit;-webkit-tap-highlight-color:rgba(109,40,217,.15)}
 .map{background:#fff7ed!important;color:#c2410c!important}
 [data-theme="dark"] .map{background:#2a1e10!important;color:#fdba74!important}
 .buy{background:#dcfce7!important;color:#166534!important}
@@ -133,8 +132,6 @@ textarea{min-height:80px;resize:vertical}
 .slider:before{content:"";position:absolute;height:20px;width:20px;left:3px;top:3px;background:white;border-radius:50%;transition:.2s}
 input:checked+.slider{background:var(--accent)}
 input:checked+.slider:before{transform:translateX(20px)}
-.geo-hint{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--muted);margin-top:8px;padding:6px 8px;background:var(--route-bg);border-radius:8px}
-.geo-hint button{margin-left:auto;border:0;background:var(--accent-soft);color:var(--accent-text);border-radius:6px;padding:4px 8px;font-weight:700;font-size:11px;cursor:pointer}
 @media(min-width:700px){.tools{grid-template-columns:repeat(6,1fr)}.item{grid-template-columns:75px 1fr}}
 </style>
 </head>
@@ -153,18 +150,18 @@ input:checked+.slider:before{transform:translateX(20px)}
   <div id="install" class="install">
     <b>📲 Установить приложение</b>
     <div class="muted">Добавьте гид на экран iPhone/Android для быстрого запуска.</div>
-    <button id="installBtn">Установить</button>
+    <button id="installBtn">Установ <ить</button>
   </div>
   <nav>
-    <button class="tab active" onclick="day(1)">🎂 25 окт</button>
-    <button class="tab" onclick="day(2)">🏙️ 26 окт</button>
+button    <button class class="tab active" onclick="day(1)">🎂 25 окт</button=">
+    <button class="tab"tool onclick="day(2)">🏙️ "26 окт</button>
     <button class="tab" onclick="day(3)">⚛️ 27 окт</button>
     <button class="tab" onclick="day(4)">❤️ 28 окт</button>
   </nav>
   <main>
     <div class="tools">
       <button class="tool" onclick="tickets()">🎟️ Билеты<small id="tc">0/5</small></button>
-      <button class="tool" onclick="expenses()">💰 Расходы<small id="exc">0 ₽</small></button>
+      onclick="expenses()">💰 Расходы<small id="exc">0 ₽</small></button>
       <button class="tool" onclick="maps()">🗺️ Карты<small>маршрут дня</small></button>
       <button class="tool" onclick="now()">▶ Сейчас<small id="next">ближайший</small></button>
       <button class="tool" onclick="diary(cur)">📔 Дневник<small id="di">оценить день</small></button>
@@ -173,7 +170,7 @@ input:checked+.slider:before{transform:translateX(20px)}
     <div id="days"></div>
     <div class="panel">
       <b>💡 Как строить маршруты</b>
-      <p class="muted">Нажмите на блок <b>🚇</b> — откроются Яндекс Карты с маршрутом на транспорте от вас до места. Нажмите на блок <b>🚶</b> — пеший маршрут. Или используйте кнопки «🚶 Пешком», «🚇 Транспорт», «🧭 От пред. пункта».</p>
+      <p class="muted">Нажмите на блок <b>🚇</b> — откроются Яндекс Карты с маршрутом на транспорте от вас. Нажмите на блок <b>🚶</b> — пеший маршрут. Или используйте кнопки «🚶 Пешком», «🚇 Транспорт», «🧭 От пред. пункта».</p>
     </div>
   </main>
 </div>
@@ -182,7 +179,6 @@ input:checked+.slider:before{transform:translateX(20px)}
 <script>
 /* =========================================================
    ДАННЫЕ МАРШРУТА
-   Ключ dest — конечная точка для построения маршрута в Яндекс Картах.
    ========================================================= */
 const D = {
 1:[
@@ -214,8 +210,8 @@ const D = {
 {time:"14:45",title:"🚇 ВДНХ → Таганская",note:"Метро.",dest:"Бункер-42, 5-й Котельнический переулок 11, Москва",metro:"🚇 ≈30 мин: ВДНХ (Калужско-Рижская) → Китай-город → Таганская.",walk:"🚶 ≈12 км, ≈2 ч 30 мин — не рекомендуется.",map:"https://yandex.ru/maps/?rtext=ВДНХ%20метро~Таганская%20метро"},
 {time:"16:00",title:"🕵️ Бункер-42 — «Гриф снят»",note:"8+, 70 минут.",addr:"5-й Котельнический пер., 11",phone:"+7 495 500 05 54",dest:"Бункер-42, 5-й Котельнический переулок 11, Москва",menu:"https://bunker42.com/events/grif-snyat/",metro:"🚇 От Таганской — пешком ≈10 мин.",walk:"🚶 ≈700 м от метро.",map:"https://bunker42.com/events/grif-snyat/",buy:"https://bunker42.com/events/grif-snyat/"},
 {time:"17:45",title:"🚇 Таганская → Цветной бульвар",note:"Метро.",dest:"Цветной бульвар, Москва",metro:"🚇 ≈25 мин: Таганская (Кольцевая) → Курская → Чкаловская → Трубная → пешком до Цветного бульвара.",walk:"🚶 ≈4,5 км, ≈1 ч.",map:"https://yandex.ru/maps/?rtext=Таганская%20метро~Цветной%20бульвар%20метро"},
-{time:"18:15",title:"🍜 RA'MEN",note:"Аниме-ужин.",dest:"RAники'MEN, Москва",menu:"https://.www ≈.ramen.moscow/",metro:"30🚇 Метро не нужно — пешком от Цветного бульвара.",walk:"🚶 ≈500 м.",map:"https://www.ramen.moscow/",buy:"https://www.ramen.moscow/"},
-{time:"20:30",title:"🏨 Отель",note:"Собрать чемоданы.",dest:"Holiday Inn Сокольники, Русаковская 24, Москва",metro:"🚇 Трубная → Чкаловская → Курская → Комсомольская → Соколь мин.",walk:"🚶 ≈10 км — не рекомендуется.",map:"https://yandex.ru/maps/?rtext=Трубная%20метро~Holiday%20Inn%20Москва%20Сокольники"}
+{time:"18:15",title:"🍜 RA'MEN",note:"Аниме-ужин.",dest:"RA'MEN, Москва",menu:"https://www.ramen.moscow/",metro:"🚇 Метро не нужно — пешком от Цветного бульвара.",walk:"🚶 ≈500 м.",map:"https://www.ramen.moscow/",buy:"https://www.ramen.moscow/"},
+{time:"20:30",title:"🏨 Отель",note:"Собрать чемоданы.",dest:"Holiday Inn Сокольники, Русаковская 24, Москва",metro:"🚇 Трубная → Чкаловская → Курская → Комсомольская → Сокольники. ≈30 мин.",walk:"🚶 ≈10 км — не рекомендуется.",map:"https://yandex.ru/maps/?rtext=Трубная%20метро~Holiday%20Inn%20Москва%20Сокольники"}
 ],
 4:[
 {time:"08:30",title:"🥐 Завтрак + сдача номера",note:"Вещи оставить на стойке."},
@@ -237,7 +233,7 @@ const T=[
 const TRIP_START = new Date(2026,9,25);
 const TRIP_END = new Date(2026,9,28);
 
-let cur = 1, deferredInstall = null;
+let cur = 1, deferredInstall = null, WEATHER = null;
 
 const $ = (s,p=document)=>p.querySelector(s);
 const $$ = (s,p=document)=>[...p.querySelectorAll(s)];
@@ -249,26 +245,20 @@ const store = {
   del: k => localStorage.removeItem(k)
 };
 
-/* ========== ПОСТРОЕНИЕ МАРШРУТОВ В ЯНДЕКС КАРТАХ ==========
-   Формат: rtext=ОТКУДА~КУДА, rtt=pd (пешком) | mt (транспорт) | auto
-   Пустое ОТКУДА = текущее местоположение пользователя.
-   ========================================================= */
-function openRoute(to, mode){
-  const from = ""; // пустая строка → Яндекс использует геолокацию
-  const url = "https://yandex.ru/maps/?rtext=" + from + "~" + encodeURIComponent(to) + "&rtt=" + (mode||"pd");
-  window.open(url, "_blank");
+/* ========== МАРШРУТЫ В ЯНДЕКС КАРТАХ ==========
+   Пустая начальная точка = «Моё местоположение».
+   rtt=pd → пешком, rtt=mt → транспорт. */
+function routeUrl(to, mode){
+  return "https://yandex.ru/maps/?rtext=" + "~" + encodeURIComponent(to) + "&rtt=" + (mode||"pd");
 }
-function openRouteFromPrev(d, i){
-  const to = D[d][i].dest;
-  if(!to) return;
+function routeUrlFrom(from, to, mode){
+  return "https://yandex.ru/maps/?rtext=" + encodeURIComponent(from) + "~" + encodeURIComponent(to) + "&rtt=" + (mode||"mt");
+}
+function prevDestFor(d,i){
   for(let j=i-1; j>=0; j--){
-    if(D[d][j].dest){
-      const url = "https://yandex.ru/maps/?rtext=" + encodeURIComponent(D[d][j].dest) + "~" + encodeURIComponent(to) + "&rtt=mt";
-      window.open(url, "_blank");
-      return;
-    }
+    if(D[d][j].dest) return D[d][j].dest;
   }
-  openRoute(to, "mt");
+  return null;
 }
 
 /* ====== IndexedDB для фото ====== */
@@ -304,7 +294,6 @@ applyTheme();
 matchMedia("(prefers-color-scheme:dark)").addEventListener("change", applyTheme);
 
 /* ====== ПОГОДА ====== */
-let WEATHER = null;
 const WCODE = {
   0:["☀️","Ясно"],1:["🌤","Преим. ясно"],2:["⛅","Переменно"],3:["☁️","Пасмурно"],
   45:["🌫","Туман"],48:["🌫","Изморозь"],
@@ -314,29 +303,86 @@ const WCODE = {
   80:["🌧","Ливни"],81:["🌧","Ливни"],82:["⛈","Сильные ливни"],
   95:["⛈","Гроза"],96:["⛈","Гроза с градом"],99:["⛈","Гроза с градом"]
 };
+function weatherPlaceholder(text, icon){
+  for(let d=1; d<=4; d++){
+    const el = document.getElementById("w-day-"+d);
+    if(el) el.innerHTML = `<span class="wicon">${icon||"⏳"}</span><div class="muted">${text}</div>`;
+  }
+}
+function normFallback(){
+  WEATHER = { kind:"norm", data:{ daily:{
+    weather_code:[3,3,3,3],
+    temperature_2m_max:[6,6,6,6],
+    temperature_2m_min:[1,1,1,1],
+    precipitation_probability_max:[40,40,40,40]
+  }}};
+  paintWeather();
+}
+async function loadClimate(){
+  const years = [2022,2023,2024,2025];
+  const results = await Promise.all(years.map(y=>
+    fetch(`https://archive-api.open-meteo.com/v1/archive?latitude=55.7558&longitude=37.6173&start_date=${y}-10-25&end_date=${y}-10-28&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=Europe/Moscow`)
+      .then(r=>{ if(!r.ok) throw new Error("HTTP "+r.status); return r.json(); })
+  ));
+  const valid = results.filter(r=>r.daily && r.daily.temperature_2m_max);
+  if(!valid.length) throw new Error("no data");
+  const avg = a => a.reduce((s,x)=>s+x,0)/a.length;
+  const daily = { weather_code:[], temperature_2m_max:[], temperature_2m_min:[], precipitation_probability_max:[] };
+  for(let i=0;i<4;i++){
+    const codes = valid.map(r=>r.daily.weather_code[i]).filter(x=>x!=null);
+    const mode = codes.sort((a,b)=>codes.filter(v=>v===a).length - codes.filter(v=>v===b).length).pop() ?? 3;
+    daily.weather_code.push(mode);
+    daily.temperature_2m_max.push(Math.round(avg(valid.map(r=>r.daily.temperature_2m_max[i]).filter(x=>x!=null))));
+    daily.temperature_2m_min.push(Math.round(avg(valid.map(r=>r.daily.temperature_2m_min[i]).filter(x=>x!=null))));
+    daily.precipitation_probability_max.push(Math.round(avg(valid.map(r=>r.daily.precipitation_probability_max[i]||0).filter(x=>x!=null))));
+  }
+  WEATHER = { kind:"climate", data:{ daily } };
+  store.set("weather", JSON.stringify({ts:Date.now(), data:WEATHER}));
+  paintWeather();
+}
 async function loadWeather(){
   const c = JSON.parse(store.get("weather")||"null");
   if(c && Date.now()-c.ts < 3*3600*1000){ WEATHER = c.data; paintWeather(); return; }
+
+  const daysUntil = Math.ceil((new Date(2026,9,25) - new Date())/86400000);
+
+  // Если до поездки больше 16 дней — точный прогноз недоступен
+  if(daysUntil > 16){
+    try{ await loadClimate(); }
+    catch(e){ normFallback(); }
+    return;
+  }
+
   try{
     const r = await fetch("https://api.open-meteo.com/v1/forecast?latitude=55.7558&longitude=37.6173&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=Europe/Moscow&start_date=2026-10-25&end_date=2026-10-28");
+    if(!r.ok) throw new Error("HTTP "+r.status);
     const j = await r.json();
-    WEATHER = j;
-    store.set("weather", JSON.stringify({ts:Date.now(), data:j}));
+    if(!j.daily || !j.daily.weather_code) throw new Error("empty");
+    WEATHER = { kind:"forecast", data:j };
+    store.set("weather", JSON.stringify({ts:Date.now(), data:WEATHER}));
     paintWeather();
-  }catch(e){}
+  }catch(e){
+    try{ await loadClimate(); }
+    catch(e2){ normFallback(); }
+  }
 }
 function paintWeather(){
-  if(!WEATHER) return;
+  if(!WEATHER || !WEATHER.data || !WEATHER.data.daily){ weatherPlaceholder("Нет данных о погоде","🌡"); return; }
+  const label = WEATHER.kind==="forecast"
+    ? ""
+    : (WEATHER.kind==="climate"
+        ? ' <span style="opacity:.7;font-weight:400">· климат. норма</span>'
+        : ' <span style="opacity:.7;font-weight:400">· ориентировочно</span>');
   for(let d=1; d<=4; d++){
     const el = document.getElementById("w-day-"+d);
     if(!el) continue;
     const idx = d-1;
-    const code = WEATHER.daily.weather_code[idx];
+    const code = WEATHER.data.daily.weather_code[idx];
     const [icon, desc] = WCODE[code] || ["🌡","—"];
-    const tmax = Math.round(WEATHER.daily.temperature_2m_max[idx]);
-    const tmin = Math.round(WEATHER.daily.temperature_2m_min[idx]);
-    const rain = WEATHER.daily.precipitation_probability_max[idx] ?? "—";
-    el.innerHTML = `<span class="wicon">${icon}</span><div><b>${desc}</b> · ${tmin}…${tmax}°C · 💧 ${rain}%</div>`;
+    const tmax = WEATHER.data.daily.temperature_2m_max[idx];
+    const tmin = WEATHER.data.daily.temperature_2m_min[idx];
+    const rain = WEATHER.data.daily.precipitation_probability_max[idx] ?? "—";
+    el.innerHTML = `<span class="wicon">${icon}</span><div><b>${desc}</b> · ${tmin}…${tmax}°C · 💧 ${rain}%${label}</div>`;
   }
 }
 
@@ -373,6 +419,9 @@ function render(){
       </div>${items}</section>`;
   }
   $("#days").innerHTML = out;
+  // Сразу рисуем что-нибудь в блоке погоды
+  if(!WEATHER || !WEATHER.data) weatherPlaceholder("Загрузка прогноза…");
+  else paintWeather();
   progress(); ticketsInfo(); expensesInfo(); diaryInfo();
 }
 
@@ -392,24 +441,26 @@ function renderItem(d,i,x){
     return html;
   }).join("")}</div>` : "";
 
-  // Кликабельный блок 🚇 — маршрут на транспорте от текущего местоположения
+  // 🚇 — реальная <a> ссылка на маршрут транспортом от текущего местоположения
   const metroBlock = x.metro
     ? (x.dest
-        ? `<div class="route clickable" data-dest="${esc(x.dest)}" onclick="openRoute(this.dataset.dest,'mt')" title="Построить маршрут на транспорте">${esc(x.metro)}<span class="route-hint">🚇 Нажми — маршрут на транспорте от меня →</span></div>`
+        ? `<a class="route clickable" href="${routeUrl(x.dest,'mt')}" target="_blank" rel="noopener">${esc(x.metro)}<span class="route-hint">🚇 Нажми — маршрут на транспорте от меня →</span></a>`
         : `<div class="route">${esc(x.metro)}</div>`)
     : "";
 
-  // Кликабельный блок 🚶 — пеший маршрут от текущего местоположения
+  // 🚶 — реальная <a> ссылка на пеший маршрут от текущего местоположения
   const walkBlock = x.walk
     ? (x.dest
-        ? `<div class="route walk clickable" data-dest="${esc(x.dest)}" onclick="openRoute(this.dataset.dest,'pd')" title="Построить пеший маршрут">${esc(x.walk)}<span class="route-hint">🚶 Нажми — пешком от меня →</span></div>`
+        ? `<a class="route walk clickable" href="${routeUrl(x.dest,'pd')}" target="_blank" rel="noopener">${esc(x.walk)}<span class="route-hint">🚶 Нажми — пешком от меня →</span></a>`
         : `<div class="route walk">${esc(x.walk)}</div>`)
     : "";
 
+  // Кнопки маршрутов — тоже реальные <a>
+  const prevDest = prevDestFor(d,i);
   const routeButtons = x.dest ? `
-    <button class="btn walk-btn" onclick="openRoute('${esc(x.dest)}','pd')">🚶 Пешком</button>
-    <button class="btn transit-btn" onclick="openRoute('${esc(x.dest)}','mt')">🚇 Транспорт</button>
-    <button class="btn prev-btn" onclick="openRouteFromPrev(${d},${i})">🧭 От пред. пункта</button>
+    <a class="btn walk-btn" target="_blank" rel="noopener" href="${routeUrl(x.dest,'pd')}">🚶 Пешком</a>
+    <a class="btn transit-btn" target="_blank" rel="noopener" href="${routeUrl(x.dest,'mt')}">🚇 Транспорт</a>
+    ${prevDest ? `<a class="btn prev-btn" target="_blank" rel="noopener" href="${routeUrlFrom(prevDest, x.dest, 'mt')}">🧭 От пред. пункта</a>` : ""}
   ` : "";
 
   return `<div class="item" id="i-${k}">
@@ -426,10 +477,10 @@ function renderItem(d,i,x){
       <div class="photos" id="ph-${k}"></div>
       <span class="status ${done?'ok':''}" id="s-${k}">${done?'✓ выполнено':'запланировано'}</span>
       <div class="actions">
-        ${x.map?`<a class="btn map" target="_blank" href="${x.map}">🗺️ Открыть</a>`:""}
+        ${x.map?`<a class="btn map" target="_blank" rel="noopener" href="${x.map}">🗺️ Открыть</a>`:""}
         ${routeButtons}
-        ${x.buy?`<a class="btn buy" target="_blank" href="${x.buy}">🎟️ Билеты</a>`:""}
-        ${x.menu?`<a class="btn menu-btn" target="_blank" href="${x.menu}">📖 Меню</a>`:""}
+        ${x.buy?`<a class="btn buy" target="_blank" rel="noopener" href="${x.buy}">🎟️ Билеты</a>`:""}
+        ${x.menu?`<a class="btn menu-btn" target="_blank" rel="noopener" href="${x.menu}">📖 Меню</a>`:""}
         ${x.phone?`<a class="btn call" href="tel:${x.phone.replace(/\s/g,'')}">📞 ${esc(x.phone)}</a>`:""}
         <button class="btn" onclick="editNote(${d},${i})">📝 Заметка</button>
         <button class="btn" onclick="addPhoto(${d},${i})">📷 Фото</button>
@@ -476,7 +527,6 @@ function progress(){
     if(p) p.style.width = (doneN/D[d].length*100)+"%";
   }
 }
-
 async function editNote(d,i){
   const k = key(d,i);
   const current = store.get("note-"+k) || "";
@@ -550,7 +600,7 @@ function tickets(){
           <input type="checkbox" ${on} onchange="store.set('t-${t.k}',this.checked?'1':'');ticketsInfo()">
           <b>${t.name}</b><br><span class="muted">${t.when}</span>
         </label>
-        <a class="btn buy" target="_blank" href="${t.url}">Открыть</a>
+        <a class="btn buy" target="_blank" rel="noopener" href="${t.url}">Открыть</a>
       </div>
       <div class="booking-row">
         <input type="text" placeholder="Номер брони / QR" value="${esc(bk)}" onchange="store.set('booking-${t.k}',this.value);renderBookings()">
@@ -682,11 +732,14 @@ function settings(){
       <div><b>Сбросить всё</b><div class="muted">Заметки, фото, расходы, отметки</div></div>
       <button class="btn" style="background:#fee2e2;color:#991b1b" onclick="if(confirm('Точно сбросить ВСЕ данные?'))resetAll()">Сбросить</button>
     </div>
-    <p class="muted" style="margin-top:16px">Версия 2.1 · офлайн-режим включён</p>`);
+    <p class="muted" style="margin-top:16px">Версия 2.2 · офлайн-режим включён</p>`);
 }
 function setTheme(v){ store.set("theme", v); applyTheme(); }
 async function refreshWeather(){
-  store.del("weather"); await loadWeather(); alert("Погода обновлена"); closeM();
+  store.del("weather");
+  weatherPlaceholder("Загрузка прогноза…");
+  await loadWeather();
+  closeM();
 }
 function resetAll(){
   Object.keys(localStorage).forEach(k=>{ if(k.startsWith("done-")||k.startsWith("note-")||k.startsWith("photos-")||k.startsWith("expenses")||k.startsWith("diary-")||k.startsWith("t-")||k.startsWith("budget")||k.startsWith("notified-")) localStorage.removeItem(k); });
@@ -735,9 +788,9 @@ function maps(){
       <div style="margin:10px 0;padding:10px;background:var(--route-bg);border-radius:10px">
         <div style="font-weight:700;margin-bottom:6px">${x.time} — ${esc(x.title)}</div>
         <div style="display:flex;gap:6px;flex-wrap:wrap">
-          <button class="btn walk-btn" onclick="openRoute('${esc(x.dest)}','pd')">🚶 Пешком от меня</button>
-          <button class="btn transit-btn" onclick="openRoute('${esc(x.dest)}','mt')">🚇 Транспорт от меня</button>
-          ${x.map?`<a class="btn map" target="_blank" href="${x.map}">🗺️ Открыть место</a>`:""}
+          <a class="btn walk-btn" target="_blank" rel="noopener" href="${routeUrl(x.dest,'pd')}">🚶 Пешком от меня</a>
+          <a class="btn transit-btn" target="_blank" rel="noopener" href="${routeUrl(x.dest,'mt')}">🚇 Транспорт от меня</a>
+          ${x.map?`<a class="btn map" target="_blank" rel="noopener" href="${x.map}">🗺️ Открыть место</a>`:""}
         </div>
       </div>`).join("")}`);
 }
@@ -788,6 +841,14 @@ document.getElementById("installBtn").onclick = async ()=>{
 
 /* ====== СТАРТ ====== */
 render();
+// Мгновенно показываем кэш, если есть
+(function initWeather(){
+  const c = JSON.parse(store.get("weather")||"null");
+  if(c && Date.now()-c.ts < 6*3600*1000){
+    WEATHER = c.data;
+    paintWeather();
+  }
+})();
 loadWeather();
 paintPhotos();
 tick();
@@ -795,7 +856,7 @@ setInterval(tick, 30000);
 setInterval(checkNotifications, 60000);
 checkNotifications();
 
-/* Учёт query-параметра ?d=N (shortcuts из manifest) */
+/* Shortcuts: ?d=1..4 */
 const params = new URLSearchParams(location.search);
 const dd = +params.get("d");
 if(dd >= 1 && dd <= 4) day(dd);
