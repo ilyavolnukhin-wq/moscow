@@ -62,13 +62,13 @@ main{padding:8px 14px 45px}
 .addr{font-size:12px;color:var(--muted);margin-top:2px}
 .route{display:block;text-decoration:none;color:var(--text);font-size:13px;margin-top:6px;background:var(--route-bg);border-left:3px solid var(--route-border);padding:7px 9px;border-radius:6px;line-height:1.45;white-space:pre-line}
 .route.walk{border-left-color:var(--walk-border);background:var(--walk-bg)}
-.route.clickable{cursor:pointer;-webkit-tap-highlight-color:rgba(109,40,217,.15)}
+.route.clickable{cursor:pointer}
 .route.clickable:active{opacity:.8}
 .route-hint{display:block;margin-top:5px;font-size:11.5px;font-weight:700;color:var(--accent)}
 .route.walk .route-hint{color:#15803d}
 [data-theme="dark"] .route.walk .route-hint{color:#86efac}
 .actions{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
-a.btn,button.btn{border:0;text-decoration:none;background:var(--accent-soft);color:var(--accent-text);border-radius:9px;padding:8px 10px;font-weight:750;font-size:13px;cursor:pointer;display:inline-flex;align-items:center;gap:4px;font-family:inherit;-webkit-tap-highlight-color:rgba(109,40,217,.15)}
+a.btn,button.btn{border:0;text-decoration:none;background:var(--accent-soft);color:var(--accent-text);border-radius:9px;padding:8px 10px;font-weight:750;font-size:13px;cursor:pointer;display:inline-flex;align-items:center;gap:4px;font-family:inherit}
 .map{background:#fff7ed!important;color:#c2410c!important}
 [data-theme="dark"] .map{background:#2a1e10!important;color:#fdba74!important}
 .buy{background:#dcfce7!important;color:#166534!important}
@@ -77,9 +77,9 @@ a.btn,button.btn{border:0;text-decoration:none;background:var(--accent-soft);col
 [data-theme="dark"] .call{background:#1e293b!important;color:#93c5fd!important}
 .menu-btn{background:#fef3c7!important;color:#92400e!important}
 [data-theme="dark"] .menu-btn{background:#3f2d0a!important;color:#fcd34d!important}
-.walk-btn{background:#dcfce7!important;color:#166534!important}
-[data-theme="dark"] .walk-btn{background:#0f2a1a!important;color:#86efac!important}
-.transit-btn{background:#e0e7ff!important;color:#3730a3!important}
+.walk-btn{background;:#dcfce7align!important;-itemscolor:#166534:!important}
+[data-thecenterme="dark"] .;walk-btnpadding{background:#0f2:a1a!important;color:#868efpxac!important}
+.transit-btn{background:#e 0e7ff!important;color0:#3730a3!important}
 [data-theme="dark"] .transit-btn{background:#1e1b4b!important;color:#a5b4fc!important}
 .prev-btn{background:#f3e8ff!important;color:#6b21a8!important}
 [data-theme="dark"] .prev-btn{background:#2e1065!important;color:#d8b4fe!important}
@@ -118,7 +118,7 @@ textarea{min-height:80px;resize:vertical}
 .stars{display:inline-flex;gap:3px;font-size:20px;cursor:pointer;user-select:none}
 .star{color:#d1d5db}
 .star.on{color:#f59e0b}
-.exp{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--line);font-size:14px}
+.exp{display:flex;justify-content:space-between;border-bottom:1px solid var(--line);font-size:14px}
 .exp:last-child{border:0}
 .exp .x{border:0;background:transparent;color:#dc2626;cursor:pointer;font-size:16px;padding:4px 8px}
 .summary-box{background:var(--route-bg);padding:10px;border-radius:10px;margin:8px 0;font-weight:700}
@@ -150,18 +150,18 @@ input:checked+.slider:before{transform:translateX(20px)}
   <div id="install" class="install">
     <b>📲 Установить приложение</b>
     <div class="muted">Добавьте гид на экран iPhone/Android для быстрого запуска.</div>
-    <button id="installBtn">Установ <ить</button>
+    <button id="installBtn">Установить</button>
   </div>
   <nav>
-button    <button class class="tab active" onclick="day(1)">🎂 25 окт</button=">
-    <button class="tab"tool onclick="day(2)">🏙️ "26 окт</button>
+    <button class="tab active" onclick="day(1)">🎂 25 окт</button>
+    <button class="tab" onclick="day(2)">🏙️ 26 окт</button>
     <button class="tab" onclick="day(3)">⚛️ 27 окт</button>
     <button class="tab" onclick="day(4)">❤️ 28 окт</button>
   </nav>
   <main>
     <div class="tools">
       <button class="tool" onclick="tickets()">🎟️ Билеты<small id="tc">0/5</small></button>
-      onclick="expenses()">💰 Расходы<small id="exc">0 ₽</small></button>
+      <button class="tool" onclick="expenses()">💰 Расходы<small id="exc">0 ₽</small></button>
       <button class="tool" onclick="maps()">🗺️ Карты<small>маршрут дня</small></button>
       <button class="tool" onclick="now()">▶ Сейчас<small id="next">ближайший</small></button>
       <button class="tool" onclick="diary(cur)">📔 Дневник<small id="di">оценить день</small></button>
@@ -184,13 +184,13 @@ const D = {
 1:[
 {time:"07:20",title:"🚆 Отправление из Нижнего Новгорода",note:"Поезд №706. Московский вокзал.",addr:"площадь Революции, 2А",map:"https://yandex.ru/maps/?text=Московский%20вокзал%20Нижний%20Новгород%20площадь%20Революции%202А"},
 {time:"11:34",title:"🚆 Восточный вокзал, Москва",note:"Прибытие поезда №706. Рядом МЦК Локомотив / метро Черкизовская.",addr:"Окружной проезд, 7с1",dest:"Holiday Inn Сокольники, Русаковская 24, Москва",metroStops:[{n:"МЦК Локомотив",c:"#ef4444"},{n:"МЦК Сокольники",c:"#ef4444"}],metro:"🚇 МЦК Локомотив → МЦК Сокольники (1 остановка, ≈5 мин), далее пешком ≈1,2 км.",walk:"🚶 ≈5,5 км, ≈1 ч 10 мин от Восточного вокзала.",map:"https://yandex.ru/maps/?text=Восточный%20вокзал%20Москва%20Окружной%20проезд%207с1"},
-{time:"12:00",title:"🏨 Holiday Inn Сокольники",note:"Оставить вещи / заселиться. Вечером — бассейн.",addr:"ул. Русаковская, 24",phone:"+7 495 786 33 33",booking:"hotel",dest:"Holiday Inn Сокольники, Русаковская 24, Москва",map:"https://yandex.ru/maps/?rtext=Восточный%20вокзал%20Москва~Holiday%20Inn%20Москва%20Сокольники"},
+{time:"12:00",title:"🏨 Holiday Inn Сокольники",note:"Оставить вещи / заселиться. Вечером — бассейн.",addr:"ул. Русаковская, 24",phone:"+7 495 786 33 33",booking:"hotel",dest:"Holiday Inn Сокольники, Русаковская 24, Москва",map:"https://yandex.ru/maps/org/holiday_inn_moscow_sokolniki/1747106447/"},
 {time:"12:30",title:"🍕 Forneria by Casa di famiglia",note:"Праздничный обед рядом с отелем.",dest:"Forneria by Casa di famiglia, Стромынка, Москва",menu:"https://yandex.ru/maps/?text=Forneria%20by%20Casa%20di%20famiglia%20Стромынка",metro:"🚇 Метро не нужно — точка рядом с отелем.",walk:"🚶 ≈400 м от отеля, ≈6 мин.",map:"https://yandex.ru/maps/?text=Forneria%20by%20Casa%20di%20famiglia%20Стромынка"},
 {time:"13:50",title:"🚇 Сокольники → Октябрьская",note:"Переезд к РГДБ.",dest:"метро Октябрьская, Москва",metroStops:[{n:"Сокольники",c:"#ef4444"},{n:"Комсомольская",c:"#ef4444"},{n:"Октябрьская",c:"#a16207",transfer:true}],metro:"🚇 ≈30 мин: Сокольники (красная, 2 ост.) → Комсомольская → пересадка на Кольцевую → Октябрьская (5 ост.).",walk:"🚶 ≈9 км, ≈2 ч — не рекомендуется.",map:"https://yandex.ru/maps/?rtext=Сокольники%20метро~Октябрьская%20метро"},
 {time:"14:30",title:"📚 РГДБ",note:"Интерактивные пространства и детские зоны.",addr:"Калужская пл., 1",phone:"+7 499 230 00 87",dest:"Российская государственная детская библиотека, Калужская площадь 1, Москва",metro:"🚇 От метро Октябрьская — пешком.",walk:"🚶 ≈400 м от метро, ≈5 мин.",map:"https://yandex.ru/maps/?text=Российская%20государственная%20детская%20библиотека"},
 {time:"16:00",title:"🌳 Парк Горького",note:"Площадка «Салют», прогулка, Крымская набережная.",dest:"Парк Горького, Москва",metro:"🚇 От РГДБ — пешком через Крымский мост (метро не требуется).",walk:"🚶 ≈1,5 км от РГДБ, ≈20 мин.",map:"https://yandex.ru/maps/?text=Парк%20Горького%20Москва"},
 {time:"19:00",title:"🎉 The Бык",note:"Праздничный ужин. Арбат, 44с1. Метро Смоленская.",addr:"ул. Арбат, 44с1",dest:"The Бык, Арбат 44с1, Москва",menu:"https://yandex.ru/maps/?text=The%20Бык%20Арбат%2044с1",metro:"🚇 Октябрьская → (Кольцевая, 2 ост.) Киевская → (Филевская, 1 ост.) Смоленская. ≈20 мин.",walk:"🚶 ≈4,5 км от Парка Горького, ≈1 ч.",map:"https://yandex.ru/maps/?text=The%20Бык%20Арбат%2044с1"},
-{time:"21:00",title:"🏊 Отель / бассейн",note:"Отдых после дня рождения.",dest:"Holiday Inn Сокольники, Русаковская 24, Москва",metro:"🚇 Смоленская → Киевская → Комсомольская → Сокольники. ≈30 мин.",walk:"🚶 ≈13 км — не рекомендуется.",map:"https://yandex.ru/maps/?rtext=Смоленская%20метро~Holiday%20Inn%20Москва%20Сокольники"}
+{time:"21:00",title:"🏊 Отель / бассейн",note:"Отдых после дня рождения.",dest:"Holiday Inn Сокольники, Русаковская 24, Москва",metro:"🚇 Смоленская → Киевская → Комсомольская → Сокольники. ≈30 мин.",walk:"🚶 ≈13 км — не рекомендуется.",map:"https://yandex.ru/maps/org/holiday_inn_moscow_sokolniki/1747106447/"}
 ],
 2:[
 {time:"09:00",title:"🥐 Завтрак",note:"Включён в отеле."},
@@ -200,7 +200,7 @@ const D = {
 {time:"14:40",title:"🚇 Выставочная → Баррикадная",note:"Метро.",dest:"Московский Планетарий, Садовая-Кудринская 5с1, Москва",metro:"🚇 Выставочная → (Филевская, 2 ост.) Киевская → (Кольцевая, 3 ост.) Краснопресненская, далее пешком. ≈25 мин.",walk:"🚶 ≈4 км, ≈55 мин.",map:"https://yandex.ru/maps/?rtext=Выставочная%20метро~Баррикадная%20метро"},
 {time:"15:00",title:"🌌 Московский Планетарий — Лунариум",note:"Интерактивный музей. Купить онлайн.",addr:"Садовая-Кудринская, 5с1",phone:"+7 495 221 76 90",dest:"Московский Планетарий, Садовая-Кудринская 5с1, Москва",menu:"https://planetarium-moscow.ru/",metro:"🚇 От Баррикадной — пешком ≈5 мин.",walk:"🚶 ≈400 м от метро.",map:"https://planetarium-moscow.ru/",buy:"https://planetarium-moscow.ru/"},
 {time:"18:30",title:"🍝 Bella Pasta",note:"Ужин рядом с Планетарием.",addr:"Красная Пресня, 6",dest:"Bella Pasta, Красная Пресня 6, Москва",menu:"https://yandex.ru/maps/?text=Bella%20Pasta%20Красная%20Пресня%206",metro:"🚇 Метро не нужно — пешком от Планетария.",walk:"🚶 ≈500 м, ≈7 мин.",map:"https://yandex.ru/maps/?text=Bella%20Pasta%20Красная%20Пресня%206"},
-{time:"20:00",title:"🏊 Отель / бассейн",note:"Разгрузка после насыщенного дня.",dest:"Holiday Inn Сокольники, Русаковская 24, Москва",metro:"🚇 Баррикадная → Краснопресненская → Комсомольская → Сокольники. ≈30 мин.",walk:"🚶 ≈12 км — не рекомендуется.",map:"https://yandex.ru/maps/?rtext=Баррикадная%20метро~Holiday%20Inn%20Москва%20Сокольники"}
+{time:"20:00",title:"🏊 Отель / бассейн",note:"Разгрузка после насыщенного дня.",dest:"Holiday Inn Сокольники, Русаковская 24, Москва",metro:"🚇 Баррикадная → Краснопресненская → Комсомольская → Сокольники. ≈30 мин.",walk:"🚶 ≈12 км — не рекомендуется.",map:"https://yandex.ru/maps/org/holiday_inn_moscow_sokolniki/1747106447/"}
 ],
 3:[
 {time:"09:00",title:"🥐 Завтрак",note:"В отеле."},
@@ -211,7 +211,7 @@ const D = {
 {time:"16:00",title:"🕵️ Бункер-42 — «Гриф снят»",note:"8+, 70 минут.",addr:"5-й Котельнический пер., 11",phone:"+7 495 500 05 54",dest:"Бункер-42, 5-й Котельнический переулок 11, Москва",menu:"https://bunker42.com/events/grif-snyat/",metro:"🚇 От Таганской — пешком ≈10 мин.",walk:"🚶 ≈700 м от метро.",map:"https://bunker42.com/events/grif-snyat/",buy:"https://bunker42.com/events/grif-snyat/"},
 {time:"17:45",title:"🚇 Таганская → Цветной бульвар",note:"Метро.",dest:"Цветной бульвар, Москва",metro:"🚇 ≈25 мин: Таганская (Кольцевая) → Курская → Чкаловская → Трубная → пешком до Цветного бульвара.",walk:"🚶 ≈4,5 км, ≈1 ч.",map:"https://yandex.ru/maps/?rtext=Таганская%20метро~Цветной%20бульвар%20метро"},
 {time:"18:15",title:"🍜 RA'MEN",note:"Аниме-ужин.",dest:"RA'MEN, Москва",menu:"https://www.ramen.moscow/",metro:"🚇 Метро не нужно — пешком от Цветного бульвара.",walk:"🚶 ≈500 м.",map:"https://www.ramen.moscow/",buy:"https://www.ramen.moscow/"},
-{time:"20:30",title:"🏨 Отель",note:"Собрать чемоданы.",dest:"Holiday Inn Сокольники, Русаковская 24, Москва",metro:"🚇 Трубная → Чкаловская → Курская → Комсомольская → Сокольники. ≈30 мин.",walk:"🚶 ≈10 км — не рекомендуется.",map:"https://yandex.ru/maps/?rtext=Трубная%20метро~Holiday%20Inn%20Москва%20Сокольники"}
+{time:"20:30",title:"🏨 Отель",note:"Собрать чемоданы.",dest:"Holiday Inn Сокольники, Русаковская 24, Москва",metro:"🚇 Трубная → Чкаловская → Курская → Комсомольская → Сокольники. ≈30 мин.",walk:"🚶 ≈10 км — не рекомендуется.",map:"https://yandex.ru/maps/org/holiday_inn_moscow_sokolniki/1747106447/"}
 ],
 4:[
 {time:"08:30",title:"🥐 Завтрак + сдача номера",note:"Вещи оставить на стойке."},
@@ -245,9 +245,6 @@ const store = {
   del: k => localStorage.removeItem(k)
 };
 
-/* ========== МАРШРУТЫ В ЯНДЕКС КАРТАХ ==========
-   Пустая начальная точка = «Моё местоположение».
-   rtt=pd → пешком, rtt=mt → транспорт. */
 function routeUrl(to, mode){
   return "https://yandex.ru/maps/?rtext=" + "~" + encodeURIComponent(to) + "&rtt=" + (mode||"pd");
 }
@@ -261,7 +258,6 @@ function prevDestFor(d,i){
   return null;
 }
 
-/* ====== IndexedDB для фото ====== */
 const photos = {
   _db:null,
   open(){
@@ -284,7 +280,6 @@ const photos = {
     tx.oncomplete=res; tx.onerror=rej; }); }
 };
 
-/* ====== ТЕМА ====== */
 function applyTheme(){
   const t = store.get("theme") || "auto";
   const dark = t==="dark" || (t==="auto" && matchMedia("(prefers-color-scheme:dark)").matches);
@@ -320,11 +315,11 @@ function normFallback(){
 }
 async function loadClimate(){
   const years = [2022,2023,2024,2025];
-  const results = await Promise.all(years.map(y=>
+  const results = await Promise.allSettled(years.map(y=>
     fetch(`https://archive-api.open-meteo.com/v1/archive?latitude=55.7558&longitude=37.6173&start_date=${y}-10-25&end_date=${y}-10-28&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=Europe/Moscow`)
       .then(r=>{ if(!r.ok) throw new Error("HTTP "+r.status); return r.json(); })
   ));
-  const valid = results.filter(r=>r.daily && r.daily.temperature_2m_max);
+  const valid = results.filter(r=>r.status==="fulfilled" && r.value && r.value.daily && r.value.daily.temperature_2m_max).map(r=>r.value);
   if(!valid.length) throw new Error("no data");
   const avg = a => a.reduce((s,x)=>s+x,0)/a.length;
   const daily = { weather_code:[], temperature_2m_max:[], temperature_2m_min:[], precipitation_probability_max:[] };
@@ -332,38 +327,42 @@ async function loadClimate(){
     const codes = valid.map(r=>r.daily.weather_code[i]).filter(x=>x!=null);
     const mode = codes.sort((a,b)=>codes.filter(v=>v===a).length - codes.filter(v=>v===b).length).pop() ?? 3;
     daily.weather_code.push(mode);
-    daily.temperature_2m_max.push(Math.round(avg(valid.map(r=>r.daily.temperature_2m_max[i]).filter(x=>x!=null))));
-    daily.temperature_2m_min.push(Math.round(avg(valid.map(r=>r.daily.temperature_2m_min[i]).filter(x=>x!=null))));
-    daily.precipitation_probability_max.push(Math.round(avg(valid.map(r=>r.daily.precipitation_probability_max[i]||0).filter(x=>x!=null))));
+    const tmaxArr = valid.map(r=>r.daily.temperature_2m_max[i]).filter(x=>x!=null);
+    const tminArr = valid.map(r=>r.daily.temperature_2m_min[i]).filter(x=>x!=null);
+    const prArr = valid.map(r=>r.daily.precipitation_probability_max[i]||0).filter(x=>x!=null);
+    daily.temperature_2m_max.push(tmaxArr.length?Math.round(avg(tmaxArr)):6);
+    daily.temperature_2m_min.push(tminArr.length?Math.round(avg(tminArr)):1);
+    daily.precipitation_probability_max.push(prArr.length?Math.round(avg(prArr)):40);
   }
   WEATHER = { kind:"climate", data:{ daily } };
   store.set("weather", JSON.stringify({ts:Date.now(), data:WEATHER}));
   paintWeather();
 }
 async function loadWeather(){
-  const c = JSON.parse(store.get("weather")||"null");
-  if(c && Date.now()-c.ts < 3*3600*1000){ WEATHER = c.data; paintWeather(); return; }
-
-  const daysUntil = Math.ceil((new Date(2026,9,25) - new Date())/86400000);
-
-  // Если до поездки больше 16 дней — точный прогноз недоступен
-  if(daysUntil > 16){
-    try{ await loadClimate(); }
-    catch(e){ normFallback(); }
-    return;
-  }
-
   try{
-    const r = await fetch("https://api.open-meteo.com/v1/forecast?latitude=55.7558&longitude=37.6173&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=Europe/Moscow&start_date=2026-10-25&end_date=2026-10-28");
-    if(!r.ok) throw new Error("HTTP "+r.status);
-    const j = await r.json();
-    if(!j.daily || !j.daily.weather_code) throw new Error("empty");
-    WEATHER = { kind:"forecast", data:j };
-    store.set("weather", JSON.stringify({ts:Date.now(), data:WEATHER}));
-    paintWeather();
+    const c = JSON.parse(store.get("weather")||"null");
+    if(c && Date.now()-c.ts < 3*3600*1000){ WEATHER = c.data; paintWeather(); return; }
+
+    const daysUntil = Math.ceil((new Date(2026,9,25) - new Date())/86400000);
+
+    if(daysUntil > 16){
+      try{ await loadClimate(); }catch(e){ normFallback(); }
+      return;
+    }
+
+    try{
+      const r = await fetch("https://api.open-meteo.com/v1/forecast?latitude=55.7558&longitude=37.6173&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=Europe/Moscow&start_date=2026-10-25&end_date=2026-10-28");
+      if(!r.ok) throw new Error("HTTP "+r.status);
+      const j = await r.json();
+      if(!j.daily || !j.daily.weather_code) throw new Error("empty");
+      WEATHER = { kind:"forecast", data:j };
+      store.set("weather", JSON.stringify({ts:Date.now(), data:WEATHER}));
+      paintWeather();
+    }catch(e){
+      try{ await loadClimate(); }catch(e2){ normFallback(); }
+    }
   }catch(e){
-    try{ await loadClimate(); }
-    catch(e2){ normFallback(); }
+    normFallback();
   }
 }
 function paintWeather(){
@@ -410,16 +409,15 @@ function render(){
     let items = D[d].map((x,i)=>renderItem(d,i,x)).join("");
     const title = d===1?'🎂 День рождения':d===2?'🏙️ Москва-Сити + Планетарий':d===3?'⚛️ АТОМ + Бункер-42 + RA’MEN':'❤️ Красная площадь + ЦДМ';
     const sub = d===1?'Прибытие → отель → РГДБ → Парк Горького → ужин':d===2?'Высота → Лунариум → ужин → бассейн':d===3?'Наука → секретная миссия → аниме-ужин':'Москва → покупки → поезд';
-    out += `<section class="day ${d===1?'active':''}" id="d${d}">
-      <div class="summary">
-        <h2>${title}</h2>
-        <div class="muted">${sub}</div>
-        <div class="weather" id="w-day-${d}"></div>
-        <div class="progress"><i id="p${d}"></i></div>
-      </div>${items}</section>`;
+    out += '<section class="day' + (d===1?' active':'') + '" id="d'+d+'">' +
+      '<div class="summary">' +
+        '<h2>' + title + '</h2>' +
+        '<div class="muted">' + sub + '</div>' +
+        '<div class="weather" id="w-day-'+d+'"></div>' +
+        '<div class="progress"><i id="p'+d+'"></i></div>' +
+      '</div>' + items + '</section>';
   }
   $("#days").innerHTML = out;
-  // Сразу рисуем что-нибудь в блоке погоды
   if(!WEATHER || !WEATHER.data) weatherPlaceholder("Загрузка прогноза…");
   else paintWeather();
   progress(); ticketsInfo(); expensesInfo(); diaryInfo();
@@ -431,63 +429,72 @@ function renderItem(d,i,x){
   const note = store.get("note-"+k);
   const booking = x.booking ? store.get("booking-"+x.booking) : null;
 
-  const metroScheme = x.metroStops ? `<div class="metro-scheme">${x.metroStops.map((s,idx,arr)=>{
-    let html = `<div class="st"><span class="dot" style="background:${s.c}"></span>${esc(s.n)}</div>`;
-    if(idx < arr.length-1){
-      const next = arr[idx+1];
-      const transfer = next.transfer;
-      html += `<div class="ln ${transfer?'transfer':''}" style="border-left-color:${s.c}">${transfer?"🚶 пересадка":"→"}</div>`;
+  let metroScheme = "";
+  if(x.metroStops){
+    metroScheme = '<div class="metro-scheme">';
+    x.metroStops.forEach((s,idx,arr)=>{
+      metroScheme += '<div class="st"><span class="dot" style="background:'+s.c+'"></span>'+esc(s.n)+'</div>';
+      if(idx < arr.length-1){
+        const next = arr[idx+1];
+        const transfer = next.transfer;
+        metroScheme += '<div class="ln '+(transfer?'transfer':'')+'" style="border-left-color:'+s.c+'">'+(transfer?'🚶 пересадка':'→')+'</div>';
+      }
+    });
+    metroScheme += '</div>';
+  }
+
+  let metroBlock = "";
+  if(x.metro){
+    if(x.dest){
+      metroBlock = '<a class="route clickable" href="'+routeUrl(x.dest,'mt')+'" target="_blank" rel="noopener">'+esc(x.metro)+'<span class="route-hint">🚇 Нажми — маршрут на транспорте от меня →</span></a>';
+    } else {
+      metroBlock = '<div class="route">'+esc(x.metro)+'</div>';
     }
-    return html;
-  }).join("")}</div>` : "";
+  }
 
-  // 🚇 — реальная <a> ссылка на маршрут транспортом от текущего местоположения
-  const metroBlock = x.metro
-    ? (x.dest
-        ? `<a class="route clickable" href="${routeUrl(x.dest,'mt')}" target="_blank" rel="noopener">${esc(x.metro)}<span class="route-hint">🚇 Нажми — маршрут на транспорте от меня →</span></a>`
-        : `<div class="route">${esc(x.metro)}</div>`)
-    : "";
+  let walkBlock = "";
+  if(x.walk){
+    if(x.dest){
+      walkBlock = '<a class="route walk clickable" href="'+routeUrl(x.dest,'pd')+'" target="_blank" rel="noopener">'+esc(x.walk)+'<span class="route-hint">🚶 Нажми — пешком от меня →</span></a>';
+    } else {
+      walkBlock = '<div class="route walk">'+esc(x.walk)+'</div>';
+    }
+  }
 
-  // 🚶 — реальная <a> ссылка на пеший маршрут от текущего местоположения
-  const walkBlock = x.walk
-    ? (x.dest
-        ? `<a class="route walk clickable" href="${routeUrl(x.dest,'pd')}" target="_blank" rel="noopener">${esc(x.walk)}<span class="route-hint">🚶 Нажми — пешком от меня →</span></a>`
-        : `<div class="route walk">${esc(x.walk)}</div>`)
-    : "";
-
-  // Кнопки маршрутов — тоже реальные <a>
   const prevDest = prevDestFor(d,i);
-  const routeButtons = x.dest ? `
-    <a class="btn walk-btn" target="_blank" rel="noopener" href="${routeUrl(x.dest,'pd')}">🚶 Пешком</a>
-    <a class="btn transit-btn" target="_blank" rel="noopener" href="${routeUrl(x.dest,'mt')}">🚇 Транспорт</a>
-    ${prevDest ? `<a class="btn prev-btn" target="_blank" rel="noopener" href="${routeUrlFrom(prevDest, x.dest, 'mt')}">🧭 От пред. пункта</a>` : ""}
-  ` : "";
+  let routeButtons = "";
+  if(x.dest){
+    routeButtons = '<a class="btn walk-btn" target="_blank" rel="noopener" href="'+routeUrl(x.dest,'pd')+'">🚶 Пешком</a>';
+    routeButtons += '<a class="btn transit-btn" target="_blank" rel="noopener" href="'+routeUrl(x.dest,'mt')+'">🚇 Транспорт</a>';
+    if(prevDest){
+      routeButtons += '<a class="btn prev-btn" target="_blank" rel="noopener" href="'+routeUrlFrom(prevDest, x.dest, 'mt')+'">🧭 От пред. пункта</a>';
+    }
+  }
 
-  return `<div class="item" id="i-${k}">
-    <div class="time">${x.time}</div>
-    <div class="card">
-      <div class="title">${x.title}</div>
-      <div class="note">${x.note}</div>
-      ${x.addr?`<div class="addr">📍 ${esc(x.addr)}</div>`:""}
-      ${booking?`<div class="booking">Бронь: ${esc(booking)}</div>`:""}
-      ${metroBlock}
-      ${walkBlock}
-      ${metroScheme}
-      ${note?`<div class="note-text" id="nt-${k}">📝 ${esc(note)}</div>`:""}
-      <div class="photos" id="ph-${k}"></div>
-      <span class="status ${done?'ok':''}" id="s-${k}">${done?'✓ выполнено':'запланировано'}</span>
-      <div class="actions">
-        ${x.map?`<a class="btn map" target="_blank" rel="noopener" href="${x.map}">🗺️ Открыть</a>`:""}
-        ${routeButtons}
-        ${x.buy?`<a class="btn buy" target="_blank" rel="noopener" href="${x.buy}">🎟️ Билеты</a>`:""}
-        ${x.menu?`<a class="btn menu-btn" target="_blank" rel="noopener" href="${x.menu}">📖 Меню</a>`:""}
-        ${x.phone?`<a class="btn call" href="tel:${x.phone.replace(/\s/g,'')}">📞 ${esc(x.phone)}</a>`:""}
-        <button class="btn" onclick="editNote(${d},${i})">📝 Заметка</button>
-        <button class="btn" onclick="addPhoto(${d},${i})">📷 Фото</button>
-        <button class="btn done" onclick="complete(${d},${i})">☑️ Выполнено</button>
-      </div>
-    </div>
-  </div>`;
+  let html = '<div class="item" id="i-'+k+'">';
+  html += '<div class="time">'+x.time+'</div>';
+  html += '<div class="card">';
+  html += '<div class="title">'+x.title+'</div>';
+  html += '<div class="note">'+x.note+'</div>';
+  if(x.addr) html += '<div class="addr">📍 '+esc(x.addr)+'</div>';
+  if(booking) html += '<div class="booking">Бронь: '+esc(booking)+'</div>';
+  html += metroBlock;
+  html += walkBlock;
+  html += metroScheme;
+  if(note) html += '<div class="note-text" id="nt-'+k+'">📝 '+esc(note)+'</div>';
+  html += '<div class="photos" id="ph-'+k+'"></div>';
+  html += '<span class="status '+(done?'ok':'')+'" id="s-'+k+'">'+(done?'✓ выполнено':'запланировано')+'</span>';
+  html += '<div class="actions">';
+  if(x.map) html += '<a class="btn map" target="_blank" rel="noopener" href="'+x.map+'">🗺️ Открыть</a>';
+  html += routeButtons;
+  if(x.buy) html += '<a class="btn buy" target="_blank" rel="noopener" href="'+x.buy+'">🎟️ Билеты</a>';
+  if(x.menu) html += '<a class="btn menu-btn" target="_blank" rel="noopener" href="'+x.menu+'">📖 Меню</a>';
+  if(x.phone) html += '<a class="btn call" href="tel:'+x.phone.replace(/\s/g,'')+'">📞 '+esc(x.phone)+'</a>';
+  html += '<button class="btn" onclick="editNote('+d+','+i+')">📝 Заметка</button>';
+  html += '<button class="btn" onclick="addPhoto('+d+','+i+')">📷 Фото</button>';
+  html += '<button class="btn done" onclick="complete('+d+','+i+')">☑️ Выполнено</button>';
+  html += '</div></div></div>';
+  return html;
 }
 
 async function paintPhotos(){
@@ -512,7 +519,6 @@ async function paintPhotos(){
   }
 }
 
-/* ====== ДЕЙСТВИЯ ====== */
 function complete(d,i){
   const k = key(d,i);
   store.set("done-"+k, "1");
@@ -530,12 +536,12 @@ function progress(){
 async function editNote(d,i){
   const k = key(d,i);
   const current = store.get("note-"+k) || "";
-  open(`<h2>📝 Заметка</h2><p class="muted">${esc(D[d][i].title)}</p>
-    <textarea id="noteArea" placeholder="Например: понравилось, купили магнитик...">${esc(current)}</textarea>
-    <div class="actions" style="margin-top:12px">
-      <button class="btn buy" onclick="saveNote(${d},${i})">Сохранить</button>
-      <button class="btn" onclick="delNote(${d},${i})">Удалить</button>
-    </div>`);
+  open('<h2>📝 Заметка</h2><p class="muted">'+esc(D[d][i].title)+'</p>' +
+    '<textarea id="noteArea" placeholder="Например: понравилось, купили магнитик...">'+esc(current)+'</textarea>' +
+    '<div class="actions" style="margin-top:12px">' +
+      '<button class="btn buy" onclick="saveNote('+d+','+i+')">Сохранить</button>' +
+      '<button class="btn" onclick="delNote('+d+','+i+')">Удалить</button>' +
+    '</div>');
 }
 function saveNote(d,i){
   const k = key(d,i);
@@ -568,10 +574,10 @@ function removePhoto(d,i,id){
   closeM();
 }
 function openPhoto(url, onDelete){
-  open(`<img src="${url}" style="width:100%;border-radius:12px">
-    <div class="actions" style="margin-top:12px">
-      <button class="btn" style="background:#fee2e2;color:#991b1b" id="delPhoto">🗑 Удалить</button>
-    </div>`);
+  open('<img src="'+url+'" style="width:100%;border-radius:12px">' +
+    '<div class="actions" style="margin-top:12px">' +
+      '<button class="btn" style="background:#fee2e2;color:#991b1b" id="delPhoto">🗑 Удалить</button>' +
+    '</div>');
   document.getElementById("delPhoto").onclick = onDelete;
 }
 function resize(file, maxSide){
@@ -588,41 +594,40 @@ function resize(file, maxSide){
   });
 }
 
-/* ====== БИЛЕТЫ ====== */
 function tickets(){
-  open(`<h2>🎟️ Билеты и брони</h2>
-    <p class="muted">Отметьте галочкой, когда билет на руках, и впишите номер брони — он появится в QR-виде.</p>
-    ${T.map(t=>{
-      const on = store.get("t-"+t.k) ? "checked" : "";
-      const bk = store.get("booking-"+t.k) || "";
-      return `<div class="ticket">
-        <label style="flex:1">
-          <input type="checkbox" ${on} onchange="store.set('t-${t.k}',this.checked?'1':'');ticketsInfo()">
-          <b>${t.name}</b><br><span class="muted">${t.when}</span>
-        </label>
-        <a class="btn buy" target="_blank" rel="noopener" href="${t.url}">Открыть</a>
-      </div>
-      <div class="booking-row">
-        <input type="text" placeholder="Номер брони / QR" value="${esc(bk)}" onchange="store.set('booking-${t.k}',this.value);renderBookings()">
-        ${bk?`<button class="btn" onclick="showQR('${esc(bk)}','${esc(t.name)}')">🔳 QR</button>`:""}
-      </div>`;
-    }).join("")}`);
+  let html = '<h2>🎟️ Билеты и брони</h2>' +
+    '<p class="muted">Отметьте галочкой, когда билет на руках, и впишите номер брони — он появится в QR-виде.</p>';
+  T.forEach(t=>{
+    const on = store.get("t-"+t.k) ? "checked" : "";
+    const bk = store.get("booking-"+t.k) || "";
+    html += '<div class="ticket">' +
+      '<label style="flex:1">' +
+        '<input type="checkbox" '+on+' onchange="store.set(\'t-'+t.k+'\',this.checked?\'1\':\'\');ticketsInfo()">' +
+        '<b>'+t.name+'</b><br><span class="muted">'+t.when+'</span>' +
+      '</label>' +
+      '<a class="btn buy" target="_blank" rel="noopener" href="'+t.url+'">Открыть</a>' +
+    '</div>' +
+    '<div class="booking-row">' +
+      '<input type="text" placeholder="Номер брони / QR" value="'+esc(bk)+'" onchange="store.set(\'booking-'+t.k+'\',this.value);renderBookings()">' +
+      (bk ? '<button class="btn" onclick="showQR(\''+esc(bk)+'\',\''+esc(t.name)+'\')">🔳 QR</button>' : '') +
+    '</div>';
+  });
+  open(html);
 }
 function renderBookings(){ render(); paintPhotos(); tickets(); }
 function showQR(data, title){
   const url = "https://api.qrserver.com/v1/create-qr-code/?size=280x280&data="+encodeURIComponent(data);
-  open(`<h2>🔳 ${esc(title)}</h2>
-    <p class="muted">Покажите QR на входе или назовите номер.</p>
-    <div style="text-align:center;margin:14px 0"><img src="${url}" style="max-width:280px;width:100%;border-radius:12px;background:#fff;padding:10px"></div>
-    <div style="text-align:center;font-family:monospace;font-size:16px;font-weight:700;word-break:break-all">${esc(data)}</div>
-    <p class="muted" style="text-align:center;margin-top:10px">⚠ QR требует интернет. Номер — всегда виден.</p>`);
+  open('<h2>🔳 '+esc(title)+'</h2>' +
+    '<p class="muted">Покажите QR на входе или назовите номер.</p>' +
+    '<div style="text-align:center;margin:14px 0"><img src="'+url+'" style="max-width:280px;width:100%;border-radius:12px;background:#fff;padding:10px"></div>' +
+    '<div style="text-align:center;font-family:monospace;font-size:16px;font-weight:700;word-break:break-all">'+esc(data)+'</div>' +
+    '<p class="muted" style="text-align:center;margin-top:10px">⚠ QR требует интернет. Номер — всегда виден.</p>');
 }
 function ticketsInfo(){
   const n = T.filter(t=>store.get("t-"+t.k)).length;
   const el = document.getElementById("tc"); if(el) el.textContent = n+"/5";
 }
 
-/* ====== РАСХОДЫ ====== */
 function expenses(){
   const total = parseInt(store.get("budget")||"0",10) || 0;
   const list = JSON.parse(store.get("expenses")||"[]");
@@ -630,26 +635,31 @@ function expenses(){
   const left = total - spent;
   const pct = total>0 ? Math.min(100, spent/total*100) : 0;
   const cls = left<0 ? "over" : (pct>80 ? "warn" : "");
-  open(`<h2>💰 Расходы</h2>
-    <div class="field"><label>Общий бюджет, ₽</label>
-      <input type="number" id="budgetInp" value="${total||""}" placeholder="например 35000" onchange="saveBudget(this.value)">
-    </div>
-    <div class="summary-box">
-      Потрачено: <span style="color:var(--accent)">${spent.toLocaleString("ru-RU")} ₽</span><br>
-      Осталось: <b>${left.toLocaleString("ru-RU")} ₽</b>
-      <div class="bar"><i class="${cls}" style="width:${pct}%"></i></div>
-    </div>
-    <div class="field"><label>Добавить расход</label>
-      <input type="text" id="expName" placeholder="Название (такси, обед...)">
-      <input type="number" id="expAmt" placeholder="Сумма, ₽" style="margin-top:6px">
-      <button class="btn buy" style="margin-top:8px" onclick="addExpense()">➕ Добавить</button>
-    </div>
-    <div style="margin-top:12px">
-      ${list.length===0 ? '<p class="muted">Пока пусто.</p>' :
-        list.map((x,i)=>`<div class="exp"><span>${esc(x.name)}</span>
-          <span><b>${Number(x.amount).toLocaleString("ru-RU")} ₽</b>
-          <button class="x" onclick="delExpense(${i})">✕</button></span></div>`).join("")}
-    </div>`);
+  let html = '<h2>💰 Расходы</h2>' +
+    '<div class="field"><label>Общий бюджет, ₽</label>' +
+      '<input type="number" id="budgetInp" value="'+(total||"")+'" placeholder="например 35000" onchange="saveBudget(this.value)">' +
+    '</div>' +
+    '<div class="summary-box">' +
+      'Потрачено: <span style="color:var(--accent)">'+spent.toLocaleString("ru-RU")+' ₽</span><br>' +
+      'Осталось: <b>'+left.toLocaleString("ru-RU")+' ₽</b>' +
+      '<div class="bar"><i class="'+cls+'" style="width:'+pct+'%"></i></div>' +
+    '</div>' +
+    '<div class="field"><label>Добавить расход</label>' +
+      '<input type="text" id="expName" placeholder="Название (такси, обед...)">' +
+      '<input type="number" id="expAmt" placeholder="Сумма, ₽" style="margin-top:6px">' +
+      '<button class="btn buy" style="margin-top:8px" onclick="addExpense()">➕ Добавить</button>' +
+    '</div>' +
+    '<div style="margin-top:12px">';
+  if(list.length===0){ html += '<p class="muted">Пока пусто.</p>'; }
+  else {
+    list.forEach((x,i)=>{
+      html += '<div class="exp"><span>'+esc(x.name)+'</span>' +
+        '<span><b>'+Number(x.amount).toLocaleString("ru-RU")+' ₽</b>' +
+        '<button class="x" onclick="delExpense('+i+')">✕</button></span></div>';
+    });
+  }
+  html += '</div>';
+  open(html);
 }
 function saveBudget(v){ store.set("budget", v||""); expensesInfo(); expenses(); }
 function addExpense(){
@@ -673,19 +683,20 @@ function expensesInfo(){
   if(el) el.textContent = spent ? spent.toLocaleString("ru-RU")+" ₽" : "0 ₽";
 }
 
-/* ====== ДНЕВНИК ====== */
 function diary(d){
   const k = "diary-"+d;
   const data = JSON.parse(store.get(k)||'{"rating":0,"text":""}');
-  open(`<h2>📔 Дневник дня ${d}</h2>
-    <p class="muted">Как прошёл день? Что запомнилось больше всего?</p>
-    <div class="field"><label>Оценка дня</label>
-      <div class="stars" id="stars">${[1,2,3,4,5].map(n=>`<span class="star ${n<=data.rating?'on':''}" data-n="${n}">★</span>`).join("")}</div>
-    </div>
-    <div class="field"><label>Впечатления</label>
-      <textarea id="diaryText" placeholder="Что понравилось? Что удивило?">${esc(data.text)}</textarea>
-    </div>
-    <div class="actions"><button class="btn buy" onclick="saveDiary(${d})">Сохранить</button></div>`);
+  let stars = "";
+  for(let n=1;n<=5;n++) stars += '<span class="star '+(n<=data.rating?'on':'')+'" data-n="'+n+'">★</span>';
+  open('<h2>📔 Дневник дня '+d+'</h2>' +
+    '<p class="muted">Как прошёл день? Что запомнилось больше всего?</p>' +
+    '<div class="field"><label>Оценка дня</label>' +
+      '<div class="stars" id="stars">'+stars+'</div>' +
+    '</div>' +
+    '<div class="field"><label>Впечатления</label>' +
+      '<textarea id="diaryText" placeholder="Что понравилось? Что удивило?">'+esc(data.text)+'</textarea>' +
+    '</div>' +
+    '<div class="actions"><button class="btn buy" onclick="saveDiary('+d+')">Сохранить</button></div>');
   $$("#stars .star").forEach(s=>s.onclick=()=>{
     const n = +s.dataset.n;
     $$("#stars .star").forEach(x=>x.classList.toggle("on", +x.dataset.n <= n));
@@ -704,35 +715,34 @@ function diaryInfo(){
   if(el) el.textContent = done ? `заполнено ${done}/4` : "оценить день";
 }
 
-/* ====== НАСТРОЙКИ ====== */
 function settings(){
   const theme = store.get("theme") || "auto";
   const bk = store.get("booking-hotel") || "";
   const notif = store.get("notif") === "1";
   const notifPerm = ("Notification" in window) ? Notification.permission : "unsupported";
-  open(`<h2>⚙️ Настройки</h2>
-    <div class="row"><div><b>Тёмная тема</b><div class="muted">Авто / светлая / тёмная</div></div>
-      <select onchange="setTheme(this.value)" style="padding:8px;border-radius:8px;border:1px solid var(--input-border);background:var(--input-bg);color:var(--text)">
-        <option value="auto" ${theme==="auto"?"selected":""}>Авто</option>
-        <option value="light" ${theme==="light"?"selected":""}>Светлая</option>
-        <option value="dark" ${theme==="dark"?"selected":""}>Тёмная</option>
-      </select>
-    </div>
-    <div class="row"><div><b>Номер брони отеля</b><div class="muted">Holiday Inn Сокольники</div></div></div>
-    <input type="text" value="${esc(bk)}" placeholder="например 12345678" onchange="store.set('booking-hotel',this.value);renderBookings()">
-    <div class="row" style="margin-top:14px">
-      <div><b>Уведомления</b><div class="muted">${notifPerm==="denied"?"Разрешение отклонено в браузере":notifPerm==="unsupported"?"Не поддерживается устройством":"Напомним за 20 минут до события"}</div></div>
-      <label class="switch"><input type="checkbox" ${notif?"checked":""} onchange="toggleNotif(this.checked)"><span class="slider"></span></label>
-    </div>
-    <div class="row">
-      <div><b>Погода</b><div class="muted">Обновляется каждые 3 часа</div></div>
-      <button class="btn" onclick="refreshWeather()">🔄 Обновить</button>
-    </div>
-    <div class="row">
-      <div><b>Сбросить всё</b><div class="muted">Заметки, фото, расходы, отметки</div></div>
-      <button class="btn" style="background:#fee2e2;color:#991b1b" onclick="if(confirm('Точно сбросить ВСЕ данные?'))resetAll()">Сбросить</button>
-    </div>
-    <p class="muted" style="margin-top:16px">Версия 2.2 · офлайн-режим включён</p>`);
+  open('<h2>⚙️ Настройки</h2>' +
+    '<div class="row"><div><b>Тёмная тема</b><div class="muted">Авто / светлая / тёмная</div></div>' +
+      '<select onchange="setTheme(this.value)" style="padding:8px;border-radius:8px;border:1px solid var(--input-border);background:var(--input-bg);color:var(--text)">' +
+        '<option value="auto" '+(theme==="auto"?"selected":"")+'>Авто</option>' +
+        '<option value="light" '+(theme==="light"?"selected":"")+'>Светлая</option>' +
+        '<option value="dark" '+(theme==="dark"?"selected":"")+'>Тёмная</option>' +
+      '</select>' +
+    '</div>' +
+    '<div class="row"><div><b>Номер брони отеля</b><div class="muted">Holiday Inn Сокольники</div></div></div>' +
+    '<input type="text" value="'+esc(bk)+'" placeholder="например 12345678" onchange="store.set(\'booking-hotel\',this.value);renderBookings()">' +
+    '<div class="row" style="margin-top:14px">' +
+      '<div><b>Уведомления</b><div class="muted">'+(notifPerm==="denied"?"Разрешение отклонено в браузере":notifPerm==="unsupported"?"Не поддерживается устройством":"Напомним за 20 минут до события")+'</div></div>' +
+      '<label class="switch"><input type="checkbox" '+(notif?"checked":"")+' onchange="toggleNotif(this.checked)"><span class="slider"></span></label>' +
+    '</div>' +
+    '<div class="row">' +
+      '<div><b>Погода</b><div class="muted">Обновляется каждые 3 часа</div></div>' +
+      '<button class="btn" onclick="refreshWeather()">🔄 Обновить</button>' +
+    '</div>' +
+    '<div class="row">' +
+      '<div><b>Сбросить всё</b><div class="muted">Заметки, фото, расходы, отметки</div></div>' +
+      '<button class="btn" style="background:#fee2e2;color:#991b1b" onclick="if(confirm(\'Точно сбросить ВСЕ данные?\'))resetAll()">Сбросить</button>' +
+    '</div>' +
+    '<p class="muted" style="margin-top:16px">Версия 2.3 · офлайн-режим включён</p>');
 }
 function setTheme(v){ store.set("theme", v); applyTheme(); }
 async function refreshWeather(){
@@ -747,7 +757,6 @@ function resetAll(){
   location.reload();
 }
 
-/* ====== УВЕДОМЛЕНИЯ ====== */
 function toggleNotif(on){
   if(on && !("Notification" in window)){ alert("Уведомления не поддерживаются"); return; }
   if(on){
@@ -773,39 +782,38 @@ function checkNotifications(){
     const k = `notified-${dayN}-${i}`;
     if(diff > 0 && diff <= 20*60*1000 && !store.get(k)){
       try{
-        new Notification("Скоро: "+item.title, { body: `${item.time} — пора выезжать`, tag: k });
+        new Notification("Скоро: "+item.title, { body: item.time+" — пора выезжать", tag: k });
         store.set(k, "1");
       }catch(e){}
     }
   });
 }
 
-/* ====== КАРТЫ (обзор дня) ====== */
 function maps(){
-  open(`<h2>🗺️ Маршруты дня ${cur}</h2>
-    <p class="muted">Нажми — построить маршрут от своего местоположения. Или открой карточку места.</p>
-    ${D[cur].filter(x=>x.dest).map(x=>`
-      <div style="margin:10px 0;padding:10px;background:var(--route-bg);border-radius:10px">
-        <div style="font-weight:700;margin-bottom:6px">${x.time} — ${esc(x.title)}</div>
-        <div style="display:flex;gap:6px;flex-wrap:wrap">
-          <a class="btn walk-btn" target="_blank" rel="noopener" href="${routeUrl(x.dest,'pd')}">🚶 Пешком от меня</a>
-          <a class="btn transit-btn" target="_blank" rel="noopener" href="${routeUrl(x.dest,'mt')}">🚇 Транспорт от меня</a>
-          ${x.map?`<a class="btn map" target="_blank" rel="noopener" href="${x.map}">🗺️ Открыть место</a>`:""}
-        </div>
-      </div>`).join("")}`);
+  let html = '<h2>🗺️ Маршруты дня '+cur+'</h2>' +
+    '<p class="muted">Нажми — построить маршрут от своего местоположения. Или открой карточку места.</p>';
+  D[cur].filter(x=>x.dest).forEach(x=>{
+    html += '<div style="margin:10px 0;padding:10px;background:var(--route-bg);border-radius:10px">' +
+      '<div style="font-weight:700;margin-bottom:6px">'+x.time+' — '+esc(x.title)+'</div>' +
+      '<div style="display:flex;gap:6px;flex-wrap:wrap">' +
+        '<a class="btn walk-btn" target="_blank" rel="noopener" href="'+routeUrl(x.dest,'pd')+'">🚶 Пешком от меня</a>' +
+        '<a class="btn transit-btn" target="_blank" rel="noopener" href="'+routeUrl(x.dest,'mt')+'">🚇 Транспорт от меня</a>' +
+        (x.map ? '<a class="btn map" target="_blank" rel="noopener" href="'+x.map+'">🗺️ Открыть место</a>' : '') +
+      '</div></div>';
+  });
+  open(html);
 }
 
-/* ====== МОДАЛКА ====== */
 function open(s){ document.getElementById("mb").innerHTML = s; document.getElementById("modal").classList.add("show"); }
 function closeM(){ document.getElementById("modal").classList.remove("show"); }
 
-/* ====== ДНИ / СЕЙЧАС / ЧАСЫ ====== */
 function day(n){
   cur = n;
   $$(".day").forEach(x=>x.classList.remove("active"));
-  document.getElementById("d"+n).classList.add("active");
+  const sec = document.getElementById("d"+n);
+  if(sec) sec.classList.add("active");
   $$(".tab").forEach(x=>x.classList.remove("active"));
-  $$(".tab")[n-1].classList.add("active");
+  if($$(".tab")[n-1]) $$(".tab")[n-1].classList.add("active");
   window.scrollTo({top:0, behavior:"smooth"});
   nextLabel(); diaryInfo();
 }
@@ -814,7 +822,7 @@ function now(){
   const mins = new Date().getHours()*60 + new Date().getMinutes();
   let idx = arr.findIndex(x=>{ const [h,m] = x.time.split(":").map(Number); return h*60+m > mins; });
   if(idx < 0) idx = arr.length-1;
-  const el = document.getElementById(`i-${cur}-${idx}`);
+  const el = document.getElementById("i-"+cur+"-"+idx);
   if(el){ el.scrollIntoView({behavior:"smooth", block:"center"}); el.querySelector(".card").style.boxShadow = "0 0 0 3px var(--accent)"; setTimeout(()=>el.querySelector(".card").style.boxShadow="", 2000); }
 }
 function nextLabel(){
@@ -825,11 +833,11 @@ function nextLabel(){
 }
 function tick(){
   const n = new Date();
-  document.getElementById("clock").textContent = n.toLocaleTimeString("ru-RU",{hour:"2-digit",minute:"2-digit"});
+  const c = document.getElementById("clock");
+  if(c) c.textContent = n.toLocaleTimeString("ru-RU",{hour:"2-digit",minute:"2-digit"});
   nextLabel(); updateCountdown();
 }
 
-/* ====== PWA ====== */
 if("serviceWorker" in navigator) navigator.serviceWorker.register("sw.js");
 window.addEventListener("beforeinstallprompt", e=>{
   e.preventDefault(); deferredInstall = e;
@@ -839,9 +847,7 @@ document.getElementById("installBtn").onclick = async ()=>{
   if(deferredInstall){ deferredInstall.prompt(); deferredInstall = null; }
 };
 
-/* ====== СТАРТ ====== */
 render();
-// Мгновенно показываем кэш, если есть
 (function initWeather(){
   const c = JSON.parse(store.get("weather")||"null");
   if(c && Date.now()-c.ts < 6*3600*1000){
@@ -856,7 +862,6 @@ setInterval(tick, 30000);
 setInterval(checkNotifications, 60000);
 checkNotifications();
 
-/* Shortcuts: ?d=1..4 */
 const params = new URLSearchParams(location.search);
 const dd = +params.get("d");
 if(dd >= 1 && dd <= 4) day(dd);
