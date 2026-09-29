@@ -18,8 +18,11 @@ nav{display:flex;gap:7px;overflow:auto;padding:9px 2px}.tab{border:0;background:
 main{padding:8px 14px 45px}.day{display:none}.day.active{display:block}.summary,.panel{background:white;border-radius:17px;padding:15px;margin-bottom:11px;box-shadow:0 2px 9px #0000000b}.summary h2{margin:0 0 3px}.muted{color:var(--muted);font-size:13px}
 .progress{height:7px;background:#eee;border-radius:8px;margin-top:9px;overflow:hidden}.progress i{display:block;height:100%;width:0;background:var(--accent)}
 .tools{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:11px}.tool{border:0;background:white;border-radius:14px;padding:12px;text-align:left;font-weight:800;box-shadow:0 2px 8px #0001}.tool small{display:block;color:var(--muted);font-weight:500;margin-top:2px}
-.item{display:grid;grid-template-columns:58px 1fr;gap:9px;margin:9px 0}.time{font-weight:900;color:var(--accent);text-align:right;padding-top:14px}.card{background:white;border:1px solid var(--line);border-radius:15px;padding:13px}.title{font-weight:850}.note{font-size:13px;color:var(--muted);margin-top:3px}.actions{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}a.btn,button.btn{border:0;text-decoration:none;background:#ede9fe;color:#5b21b6;border-radius:9px;padding:8px 10px;font-weight:750;font-size:13px}.map{background:#fff7ed!important;color:#c2410c!important}.buy{background:#dcfce7!important;color:#166534!important}.done{background:#eef2f7!important;color:#344054!important}.status{font-size:11px;background:#f2f4f7;border-radius:7px;padding:3px 6px;display:inline-block;margin-top:6px}.status.ok{background:#dcfce7;color:#166534}
-.ticket{display:flex;justify-content:space-between;gap:8px;align-items:center;border-bottom:1px solid var(--line);padding:10px 0}.ticket:last-child{border:0}.ticket input{width:20px;height:20px}.modal{display:none;position:fixed;inset:0;background:#0007;z-index:30;padding:12px}.modal.show{display:flex;align-items:flex-end}.sheet{background:white;border-radius:21px 21px 0 0;width:100%;max-width:700px;margin:auto;padding:18px;max-height:82vh;overflow:auto}.close{float:right;border:0;border-radius:50%;width:34px;height:34px}.install{background:#fff;border-radius:14px;padding:11px;margin-bottom:11px;display:none}.install.show{display:block}.install button{border:0;background:var(--accent);color:#fff;border-radius:9px;padding:9px 12px;font-weight:800}
+.item{display:grid;grid-template-columns:58px 1fr;gap:9px;margin:9px 0}.time{font-weight:900;color:var(--accent);text-align:right;padding-top:14px}.card{background:white;border:1px solid var(--line);border-radius:15px;padding:13px}.title{font-weight:850}.note{font-size:13px;color:var(--muted);margin-top:3px}.actions{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}a.btn,button.btn{border:0;text-decoration:none;background:#ede9fe;color:#5b21b6;border-radius:9px;padding:8px 10px;font-weight:750;font-size:13px;cursor:pointer}.map{background:#fff7ed!important;color:#c2410c!important}.buy{background:#dcfce7!important;color:#166534!important}.done{background:#eef2f7!important;color:#344054!important}
+.route{font-size:13px;color:#374151;margin-top:6px;background:#f8fafc;border-left:3px solid #a78bfa;padding:6px 8px;border-radius:6px;line-height:1.4}
+.route.walk{border-left-color:#86efac;background:#f0fdf4}
+.status{font-size:11px;background:#f2f4f7;border-radius:7px;padding:3px 6px;display:inline-block;margin-top:6px}.status.ok{background:#dcfce7;color:#166534}
+.ticket{display:flex;justify-content:space-between;gap:8px;align-items:center;border-bottom:1px solid var(--line);padding:10px 0}.ticket:last-child{border:0}.ticket input{width:20px;height:20px}.modal{display:none;position:fixed;inset:0;background:#0007;z-index:30;padding:12px}.modal.show{display:flex;align-items:flex-end}.sheet{background:white;border-radius:21px 21px 0 0;width:100%;max-width:700px;margin:auto;padding:18px;max-height:82vh;overflow:auto}.close{float:right;border:0;border-radius:50%;width:34px;height:34px;cursor:pointer}.install{background:#fff;border-radius:14px;padding:11px;margin-bottom:11px;display:none}.install.show{display:block}.install button{border:0;background:var(--accent);color:#fff;border-radius:9px;padding:9px 12px;font-weight:800}
 @media(min-width:700px){.tools{grid-template-columns:repeat(4,1fr)}.item{grid-template-columns:75px 1fr}}
 </style>
 </head>
@@ -40,36 +43,160 @@ main{padding:8px 14px 45px}.day{display:none}.day.active{display:block}.summary,
 </main></div>
 <div id="modal" class="modal"><div class="sheet"><button class="close" onclick="closeM()">×</button><div id="mb"></div></div></div>
 <script>
-const D={
-1:[["11:30","🚆 Восточный вокзал","Прибытие из Нижнего Новгорода.","https://yandex.ru/maps/?rtext=Восточный%20вокзал%20Москва~Holiday%20Inn%20Москва%20Сокольники"],
-["12:00","🏨 Holiday Inn Сокольники","Оставить вещи / заселиться. Вечером — бассейн.","https://holidayinnsokolniki.ru/en/"],
-["12:30","🍕 Forneria by Casa di famiglia","Праздничный обед рядом с отелем.","https://yandex.ru/maps/?text=Forneria%20by%20Casa%20di%20famiglia%20Стромынка"],
-["13:50","🚇 Сокольники → Октябрьская","Метро.","https://yandex.ru/maps/?rtext=Сокольники%20метро~Октябрьская%20метро"],
-["14:30","📚 РГДБ","Интерактивные пространства и детские зоны.","https://yandex.ru/maps/?text=Российская%20государственная%20детская%20библиотека"],
-["16:00","🌳 Парк Горького","Площадка «Салют», прогулка, Крымская набережная.","https://yandex.ru/maps/?text=Парк%20Горького%20Москва"],
-["19:00","🎉 The Бык","Праздничный ужин. Проверить филиал на Крымском Валу.","https://yandex.ru/maps/?text=The%20Бык%20Крымский%20Вал%209"],
-["21:00","🏊 Отель / бассейн","Отдых после дня рождения.","https://holidayinnsokolniki.ru/en/"]],
-2:[["09:00","🥐 Завтрак","Включён в отеле.",""],["10:15","🚇 Переезд в Москва-Сити","Сокольники → Деловой центр.","https://yandex.ru/maps/?rtext=Сокольники%20метро~Деловой%20центр%20Москва"],["11:00","🌆 PANORAMA360","89 этаж. Купить билет заранее.","https://pnr360.ru/","buy"],["13:30","🍽️ Афимолл Сити","Обед.","https://yandex.ru/maps/?text=Афимолл%20Сити"],["14:40","🚇 Выставочная → Баррикадная","Метро.","https://yandex.ru/maps/?rtext=Выставочная%20метро~Баррикадная%20метро"],["15:00","🌌 Московский Планетарий — Лунариум","Интерактивный музей. Купить онлайн.","https://planetarium-moscow.ru/","buy"],["18:30","🍝 Bella Pasta","Ужин рядом с Планетарием.","https://yandex.ru/maps/?text=Bella%20Pasta%20Красная%20Пресня%206"],["20:00","🏊 Отель / бассейн","Разгрузка после насыщенного дня.","https://holidayinnsokolniki.ru/en/"]],
-3:[["09:00","🥐 Завтрак","В отеле.",""],["10:00","🚋 Переезд на ВДНХ","Отель → ВДНХ.","https://yandex.ru/maps/?rtext=Holiday%20Inn%20Москва%20Сокольники~ВДНХ%20Москва"],["10:30","⚛️ Павильон «АТОМ»","Главный интерактивный объект дня.","https://atom.museum/","buy"],["13:30","🍖 Ресторан «Арарат»","Обед на ВДНХ.","https://yandex.ru/maps/?text=Ресторан%20Арарат%20ВДНХ"],["14:45","🚇 ВДНХ → Таганская","Метро.","https://yandex.ru/maps/?rtext=ВДНХ%20метро~Таганская%20метро"],["16:00","🕵️ Бункер-42 — «Гриф снят»","8+, 70 минут.","https://bunker42.com/events/grif-snyat/","buy"],["17:45","🚇 Таганская → Цветной бульвар","Метро.","https://yandex.ru/maps/?rtext=Таганская%20метро~Цветной%20бульвар%20метро"],["18:15","🍜 RA'MEN","Аниме-ужин.","https://www.ramen.moscow/","buy"],["20:30","🏨 Отель","Собрать чемоданы.","https://holidayinnsokolniki.ru/en/"]],
-4:[["08:30","🥐 Завтрак + сдача номера","Вещи оставить на стойке.",""],["09:40","❤️ Красная площадь","Манежная → Красная площадь → ГУМ → Никольская.","https://yandex.ru/maps/?text=Красная%20площадь%20Москва"],["11:30","🧸 ЦДМ","Сувенир перед поездом.","https://yandex.ru/maps/?text=Центральный%20детский%20магазин%20Лубянка"],["11:45","🍲 Ресторан «Яуза»","Сокольники, забрать вещи и пообедать.","https://yandex.ru/maps/?text=Ресторан%20Яуза%20Стромынка%2022"],["12:35","🚇 Сокольники → Восточный вокзал","Переезд к поезду.","https://yandex.ru/maps/?rtext=Сокольники%20метро~Восточный%20вокзал%20Москва"],["13:00","🚆 Поезд в Нижний Новгород","Счастливого пути!",""]]};
-const T=[["The Бык","25.10 • 19:00","https://yandex.ru/maps/?text=The%20Бык%20Крымский%20Вал%209"],["PANORAMA360","26.10 • около 11:00","https://pnr360.ru/"],["Планетарий / Лунариум","26.10 • около 15:00","https://planetarium-moscow.ru/"],["Бункер-42 / Гриф снят","27.10 • около 16:00","https://bunker42.com/events/grif-snyat/"],["RA'MEN","27.10 • около 18:15","https://www.ramen.moscow/"]];
+const D = {
+1:[
+{time:"07:20",title:"🚆 Отправление из Нижнего Новгорода",note:"Поезд №706. Московский вокзал, площадь Революции, 2А.",map:"https://yandex.ru/maps/?text=Московский%20вокзал%20Нижний%20Новгород%20площадь%20Революции%202А"},
+{time:"11:34",title:"🚆 Восточный вокзал, Москва",note:"Прибытие поезда №706. Окружной проезд, 7с1. Рядом МЦК Локомотив / метро Черкизовская.",map:"https://yandex.ru/maps/?text=Восточный%20вокзал%20Москва%20Окружной%20проезд%207с1"},
+{time:"12:00",title:"🏨 Holiday Inn Сокольники",note:"Оставить вещи / заселиться. Вечером — бассейн.",metro:"🚇 МЦК Локомотив → МЦК Сокольники (1 остановка, ≈5 мин), далее пешком ≈1,2 км.",walk:"🚶 ≈5,5 км, ≈1 ч 10 мин от Восточного вокзала.",map:"https://yandex.ru/maps/?rtext=Восточный%20вокзал%20Москва~Holiday%20Inn%20Москва%20Сокольники"},
+{time:"12:30",title:"🍕 Forneria by Casa di famiglia",note:"Праздничный обед рядом с отелем.",metro:"🚇 Метро не нужно — точка рядом с отелем.",walk:"🚶 ≈400 м от отеля, ≈6 мин.",map:"https://yandex.ru/maps/?text=Forneria%20by%20Casa%20di%20famiglia%20Стромынка"},
+{time:"13:50",title:"🚇 Сокольники → Октябрьская",note:"Переезд к РГДБ.",metro:"🚇 Сокольники (красная) → Комсомольская (2 ост.) → пересадка на Кольцевую → Октябрьская (5 ост.). ≈30 мин.",walk:"🚶 ≈9 км, ≈2 ч — не рекомендуется.",map:"https://yandex.ru/maps/?rtext=Сокольники%20метро~Октябрьская%20метро"},
+{time:"14:30",title:"📚 РГДБ",note:"Интерактивные пространства и детские зоны.",metro:"🚇 От метро Октябрьская — пешком (Калужская пл., 1).",walk:"🚶 ≈400 м от метро, ≈5 мин.",map:"https://yandex.ru/maps/?text=Российская%20государственная%20детская%20библиотека"},
+{time:"16:00",title:"🌳 Парк Горького",note:"Площадка «Салют», прогулка, Крымская набережная.",metro:"🚇 От РГДБ — пешком через Крымский мост (метро не требуется).",walk:"🚶 ≈1,5 км от РГДБ, ≈20 мин.",map:"https://yandex.ru/maps/?text=Парк%20Горького%20Москва"},
+{time:"19:00",title:"🎉 The Бык",note:"Праздничный ужин. Арбат, 44с1. Метро Смоленская.",metro:"🚇 Октябрьская → (Кольцевая, 2 ост.) Киевская → (Филевская, 1 ост.) Смоленская. ≈20 мин.",walk:"🚶 ≈4,5 км от Парка Горького, ≈1 ч.",map:"https://yandex.ru/maps/?text=The%20Бык%20Арбат%2044с1"},
+{time:"21:00",title:"🏊 Отель / бассейн",note:"Отдых после дня рождения.",metro:"🚇 Смоленская → Киевская → (Кольцевая) → Комсомольская → Сокольники. ≈30 мин.",walk:"🚶 ≈13 км — не рекомендуется.",map:"https://yandex.ru/maps/?rtext=Смоленская%20метро~Holiday%20Inn%20Москва%20Сокольники"}
+],
+2:[
+{time:"09:00",title:"🥐 Завтрак",note:"Включён в отеле."},
+{time:"10:15",title:"🚇 Переезд в Москва-Сити",note:"Сокольники → Деловой центр.",metro:"🚇 Сокольники (красная) → Библиотека им. Ленина (≈7 ост.) → пересадка на Арбатскую → (Филевская) Выставочная → Деловой центр. ≈40 мин.",walk:"🚶 ≈11 км, ≈2 ч 20 мин — не рекомендуется.",map:"https://yandex.ru/maps/?rtext=Сокольники%20метро~Деловой%20центр%20Москва"},
+{time:"11:00",title:"🌆 PANORAMA360",note:"89 этаж. Купить билет заранее.",metro:"🚇 От Делового центра — пешком внутри Сити.",walk:"🚶 ≈400 м внутри Сити.",map:"https://pnr360.ru/",buy:"https://pnr360.ru/"},
+{time:"13:30",title:"🍽️ Афимолл Сити",note:"Обед.",metro:"🚇 Пешком внутри Сити.",walk:"🚶 ≈200 м от PANORAMA360.",map:"https://yandex.ru/maps/?text=Афимолл%20Сити"},
+{time:"14:40",title:"🚇 Выставочная → Баррикадная",note:"Метро.",metro:"🚇 Выставочная → (Филевская, 2 ост.) Киевская → (Кольцевая, 3 ост.) Краснопресненская, далее пешком до Баррикадной. ≈25 мин.",walk:"🚶 ≈4 км, ≈55 мин.",map:"https://yandex.ru/maps/?rtext=Выставочная%20метро~Баррикадная%20метро"},
+{time:"15:00",title:"🌌 Московский Планетарий — Лунариум",note:"Интерактивный музей. Купить онлайн.",metro:"🚇 От Баррикадной — пешком ≈5 мин.",walk:"🚶 ≈400 м от метро.",map:"https://planetarium-moscow.ru/",buy:"https://planetarium-moscow.ru/"},
+{time:"18:30",title:"🍝 Bella Pasta",note:"Ужин рядом с Планетарием.",metro:"🚇 Метро не нужно — пешком от Планетария.",walk:"🚶 ≈500 м, ≈7 мин.",map:"https://yandex.ru/maps/?text=Bella%20Pasta%20Красная%20Пресня%206"},
+{time:"20:00",title:"🏊 Отель / бассейн",note:"Разгрузка после насыщенного дня.",metro:"🚇 Баррикадная → Краснопресненская (Кольцевая) → Комсомольская → Сокольники. ≈30 мин.",walk:"🚶 ≈12 км — не рекомендуется.",map:"https://yandex.ru/maps/?rtext=Баррикадная%20метро~Holiday%20Inn%20Москва%20Сокольники"}
+],
+3:[
+{time:"09:00",title:"🥐 Завтрак",note:"В отеле."},
+{time:"10:00",title:"🚋 Переезд на ВДНХ",note:"Отель → ВДНХ.",metro:"🚇 Сокольники (красная) → Комсомольская (2 ост.) → (Кольцевая) Проспект Мира (1 ост.) → (Калужско-Рижская) ВДНХ (3 ост.). ≈30 мин.",walk:"🚶 ≈9 км, ≈2 ч — не рекомендуется.",map:"https://yandex.ru/maps/?rtext=Holiday%20Inn%20Москва%20Сокольники~ВДНХ%20Москва"},
+{time:"10:30",title:"⚛️ Павильон «АТОМ»",note:"Главный интерактивный объект дня.",metro:"🚇 От метро ВДНХ — пешком по территории ВДНХ.",walk:"🚶 ≈800 м по ВДНХ.",map:"https://atom.museum/",buy:"https://atom.museum/"},
+{time:"13:30",title:"🍖 Ресторан «Арарат»",note:"Обед на ВДНХ.",metro:"🚇 Метро не нужно — пешком по ВДНХ.",walk:"🚶 ≈500 м от павильона «АТОМ».",map:"https://yandex.ru/maps/?text=Ресторан%20Арарат%20ВДНХ"},
+{time:"14:45",title:"🚇 ВДНХ → Таганская",note:"Метро.",metro:"🚇 ВДНХ (Калужско-Рижская) → Китай-город → пересадка на Таганско-Краснопресненскую → Таганская. ≈30 мин.",walk:"🚶 ≈12 км, ≈2 ч 30 мин — не рекомендуется.",map:"https://yandex.ru/maps/?rtext=ВДНХ%20метро~Таганская%20метро"},
+{time:"16:00",title:"🕵️ Бункер-42 — «Гриф снят»",note:"8+, 70 минут.",metro:"🚇 От Таганской — пешком ≈10 мин.",walk:"🚶 ≈700 м от метро.",map:"https://bunker42.com/events/grif-snyat/",buy:"https://bunker42.com/events/grif-snyat/"},
+{time:"17:45",title:"🚇 Таганская → Цветной бульвар",note:"Метро.",metro:"🚇 Таганская (Кольцевая) → Курская (2 ост.) → пересадка на Чкаловскую → (Люблинско-Дмитровская) Трубная (2 ост.) → пешком до Цветного бульвара. ≈25 мин.",walk:"🚶 ≈4,5 км, ≈1 ч.",map:"https://yandex.ru/maps/?rtext=Таганская%20метро~Цветной%20бульвар%20метро"},
+{time:"18:15",title:"🍜 RA'MEN",note:"Аниме-ужин.",metro:"🚇 Метро не нужно — пешком от Цветного бульвара.",walk:"🚶 ≈500 м.",map:"https://www.ramen.moscow/",buy:"https://www.ramen.moscow/"},
+{time:"20:30",title:"🏨 Отель",note:"Собрать чемоданы.",metro:"🚇 Трубная → Чкаловская → Курская (Кольцевая) → Комсомольская → Сокольники. ≈30 мин.",walk:"🚶 ≈10 км — не рекомендуется.",map:"https://yandex.ru/maps/?rtext=Трубная%20метро~Holiday%20Inn%20Москва%20Сокольники"}
+],
+4:[
+{time:"08:30",title:"🥐 Завтрак + сдача номера",note:"Вещи оставить на стойке."},
+{time:"09:40",title:"❤️ Красная площадь",note:"Манежная → Красная площадь → ГУМ → Никольская.",metro:"🚇 Сокольники (красная) → Охотный ряд (≈6 ост.). ≈20 мин, далее пешком.",walk:"🚶 ≈10 км, ≈2 ч — не рекомендуется.",map:"https://yandex.ru/maps/?text=Красная%20площадь%20Москва"},
+{time:"11:30",title:"🧸 ЦДМ",note:"Сувенир перед поездом.",metro:"🚇 Охотный ряд → Лубянка (1 ост.).",walk:"🚶 ≈1,5 км от Красной площади, ≈20 мин.",map:"https://yandex.ru/maps/?text=Центральный%20детский%20магазин%20Лубянка"},
+{time:"11:45",title:"🍲 Ресторан «Яуза»",note:"Сокольники, забрать вещи и пообедать.",metro:"🚇 Лубянка → Сокольники (красная, ≈4 ост.). ≈15 мин.",walk:"🚶 ≈9 км — не рекомендуется.",map:"https://yandex.ru/maps/?text=Ресторан%20Яуза%20Стромынка%2022"},
+{time:"12:35",title:"🚇 Сокольники → Восточный вокзал",note:"Переезд к поезду.",metro:"🚇 Сокольники (красная) → Черкизовская (2 ост.), далее пешком ≈700 м. Или МЦК Сокольники → Локомотив (1 ост.), далее пешком ≈500 м. ≈15 мин.",walk:"🚶 ≈3,5 км, ≈45 мин.",map:"https://yandex.ru/maps/?rtext=Сокольники%20метро~Восточный%20вокзал%20Москва"},
+{time:"13:45",title:"🚆 Отправление поезда №704",note:"Восточный вокзал → Нижний Новгород. Прибытие 17:46, Московский вокзал, площадь Революции, 2А.",map:"https://yandex.ru/maps/?text=Восточный%20вокзал%20Москва%20Окружной%20проезд%207с1"}
+]};
+
+const T=[
+["The Бык","25.10 • 19:00","https://yandex.ru/maps/?text=The%20Бык%20Арбат%2044с1"],
+["PANORAMA360","26.10 • около 11:00","https://pnr360.ru/"],
+["Планетарий / Лунариум","26.10 • около 15:00","https://planetarium-moscow.ru/"],
+["Бункер-42 / Гриф снят","27.10 • около 16:00","https://bunker42.com/events/grif-snyat/"],
+["RA'MEN","27.10 • около 18:15","https://www.ramen.moscow/"]
+];
+
 let cur=1,deferred=null;
-function render(){let out="";for(let d=1;d<=4;d++){let items=D[d].map((x,i)=>`<div class="item" id="i-${d}-${i}"><div class="time">${x[0]}</div><div class="card"><div class="title">${x[1]}</div><div class="note">${x[2]}</div><span class="status ${localStorage.getItem(`done-${d}-${i}`)?'ok':''}" id="s-${d}-${i}">${localStorage.getItem(`done-${d}-${i}`)?'✓ выполнено':'запланировано'}</span><div class="actions">${x[3]?`<a class="btn map" target="_blank" href="${x[3]}">🗺️ Открыть</a>`:''}${x[4]?`<a class="btn buy" target="_blank" href="${x[3]}">🎟️ Билеты</a>`:''}<button class="btn done" onclick="complete(${d},${i})">☑️ Выполнено</button></div></div></div>`).join("");out+=`<section class="day ${d===1?'active':''}" id="d${d}"><div class="summary"><h2>${d===1?'🎂 День рождения':d===2?'🏙️ Москва-Сити + Планетарий':d===3?'⚛️ АТОМ + Бункер-42 + RA’MEN':'❤️ Красная площадь + ЦДМ'}</h2><div class="muted">${d===1?'Прибытие → отель → РГДБ → Парк Горького → ужин':d===2?'Высота → Лунариум → ужин → бассейн':d===3?'Наука → секретная миссия → аниме-ужин':'Москва → покупки → поезд'}</div><div class="progress"><i id="p${d}"></i></div></div>${items}</section>`}document.getElementById("days").innerHTML=out;progress();ticketsInfo()}
-function day(n){cur=n;document.querySelectorAll(".day").forEach(x=>x.classList.remove("active"));document.getElementById("d"+n).classList.add("active");document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));document.querySelectorAll(".tab")[n-1].classList.add("active");window.scrollTo({top:0,behavior:"smooth"});nextLabel()}
-function complete(d,i){localStorage.setItem(`done-${d}-${i}`,"1");progress()}
-function progress(){for(let d=1;d<=4;d++){let n=D[d].filter((_,i)=>localStorage.getItem(`done-${d}-${i}`)).length;document.getElementById("p"+d).style.width=(n/D[d].length*100)+"%";D[d].forEach((_,i)=>{let s=document.getElementById(`s-${d}-${i}`);if(localStorage.getItem(`done-${d}-${i}`)){s.textContent="✓ выполнено";s.className="status ok"}})}}
-function tickets(){open(`<h2>🎟️ Билеты и брони</h2>${T.map((x,i)=>`<div class="ticket"><label><input type="checkbox" ${localStorage.getItem("t"+i)?"checked":""} onchange="localStorage.setItem('t${i}',this.checked?'1':'')"> <b>${x[0]}</b><br><span class="muted">${x[1]}</span></label><a class="btn buy" target="_blank" href="${x[2]}">Открыть</a></div>`).join("")}`)}
-function ticketsInfo(){let n=T.filter((_,i)=>localStorage.getItem("t"+i)).length;document.getElementById("tc").textContent=n+"/5 отмечено"}
-function budget(){open(`<h2>💰 Бюджет</h2><p class="muted">Сохраняется на этом устройстве.</p><input id="bi" value="${localStorage.getItem("budget")||""}" placeholder="например 35000 ₽" style="width:100%;padding:12px;border:1px solid #ddd;border-radius:10px"><button class="btn" style="margin-top:10px" onclick="localStorage.setItem('budget',document.getElementById('bi').value);closeM();budgetInfo()">Сохранить</button>`)}
+
+function render(){
+  let out="";
+  for(let d=1;d<=4;d++){
+    let items=D[d].map((x,i)=>`<div class="item" id="i-${d}-${i}">
+      <div class="time">${x.time}</div>
+      <div class="card">
+        <div class="title">${x.title}</div>
+        <div class="note">${x.note}</div>
+        ${x.metro?`<div class="route">${x.metro}</div>`:''}
+        ${x.walk?`<div class="route walk">${x.walk}</div>`:''}
+        <span class="status ${localStorage.getItem(`done-${d}-${i}`)?'ok':''}" id="s-${d}-${i}">${localStorage.getItem(`done-${d}-${i}`)?'✓ выполнено':'запланировано'}</span>
+        <div class="actions">
+          ${x.map?`<a class="btn map" target="_blank" href="${x.map}">🗺️ Открыть</a>`:''}
+          ${x.buy?`<a class="btn buy" target="_blank" href="${x.buy}">🎟️ Билеты</a>`:''}
+          <button class="btn done" onclick="complete(${d},${i})">☑️ Выполнено</button>
+        </div>
+      </div>
+    </div>`).join("");
+    const title = d===1?'🎂 День рождения':d===2?'🏙️ Москва-Сити + Планетарий':d===3?'⚛️ АТОМ + Бункер-42 + RA’MEN':'❤️ Красная площадь + ЦДМ';
+    const sub = d===1?'Прибытие → отель → РГДБ → Парк Горького → ужин':d===2?'Высота → Лунариум → ужин → бассейн':d===3?'Наука → секретная миссия → аниме-ужин':'Москва → покупки → поезд';
+    out+=`<section class="day ${d===1?'active':''}" id="d${d}"><div class="summary"><h2>${title}</h2><div class="muted">${sub}</div><div class="progress"><i id="p${d}"></i></div></div>${items}</section>`;
+  }
+  document.getElementById("days").innerHTML=out;
+  progress();ticketsInfo();
+}
+
+function day(n){
+  cur=n;
+  document.querySelectorAll(".day").forEach(x=>x.classList.remove("active"));
+  document.getElementById("d"+n).classList.add("active");
+  document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));
+  document.querySelectorAll(".tab")[n-1].classList.add("active");
+  window.scrollTo({top:0,behavior:"smooth"});
+  nextLabel();
+}
+
+function complete(d,i){
+  localStorage.setItem(`done-${d}-${i}`,"1");
+  const s=document.getElementById(`s-${d}-${i}`);
+  if(s){s.textContent="✓ выполнено";s.className="status ok"}
+  progress();
+}
+
+function progress(){
+  for(let d=1;d<=4;d++){
+    let n=D[d].filter((_,i)=>localStorage.getItem(`done-${d}-${i}`)).length;
+    const p=document.getElementById("p"+d);
+    if(p)p.style.width=(n/D[d].length*100)+"%";
+    D[d].forEach((_,i)=>{
+      let s=document.getElementById(`s-${d}-${i}`);
+      if(s&&localStorage.getItem(`done-${d}-${i}`)){s.textContent="✓ выполнено";s.className="status ok"}
+    });
+  }
+}
+
+function tickets(){
+  open(`<h2>🎟️ Билеты и брони</h2>${T.map((x,i)=>`<div class="ticket"><label><input type="checkbox" ${localStorage.getItem("t"+i)?"checked":""} onchange="localStorage.setItem('t${i}',this.checked?'1':'');ticketsInfo()"> <b>${x[0]}</b><br><span class="muted">${x[1]}</span></label><a class="btn buy" target="_blank" href="${x[2]}">Открыть</a></div>`).join("")}`)
+}
+
+function ticketsInfo(){
+  let n=T.filter((_,i)=>localStorage.getItem("t"+i)).length;
+  document.getElementById("tc").textContent=n+"/5 отмечено";
+}
+
+function budget(){
+  open(`<h2>💰 Бюджет</h2><p class="muted">Сохраняется на этом устройстве.</p><input id="bi" value="${localStorage.getItem("budget")||""}" placeholder="например 35000 ₽" style="width:100%;padding:12px;border:1px solid #ddd;border-radius:10px"><button class="btn" style="margin-top:10px" onclick="localStorage.setItem('budget',document.getElementById('bi').value);closeM();budgetInfo()">Сохранить</button>`)
+}
+
 function budgetInfo(){document.getElementById("bc").textContent=localStorage.getItem("budget")||"не задан"}
-function maps(){open(`<h2>🗺️ Маршруты дня ${cur}</h2><p class="muted">Открывай точки по порядку.</p>${D[cur].filter(x=>x[3]).map(x=>`<p><a class="btn map" target="_blank" href="${x[3]}">${x[0]} — ${x[1]}</a></p>`).join("")}`)}
-function now(){let arr=D[cur],mins=new Date().getHours()*60+new Date().getMinutes(),idx=arr.findIndex(x=>{let [h,m]=x[0].split(":").map(Number);return h*60+m>mins});if(idx<0)idx=0;document.getElementById(`i-${cur}-${idx}`).scrollIntoView({behavior:"smooth",block:"center"})}
-function nextLabel(){let mins=new Date().getHours()*60+new Date().getMinutes(),x=D[cur].find(x=>{let [h,m]=x[0].split(":").map(Number);return h*60+m>mins});document.getElementById("next").textContent=x?"следующий: "+x[0]:"день завершён"}
-function open(s){document.getElementById("mb").innerHTML=s;document.getElementById("modal").classList.add("show")}function closeM(){document.getElementById("modal").classList.remove("show")}
-function tick(){let n=new Date();document.getElementById("clock").textContent=n.toLocaleTimeString("ru-RU",{hour:"2-digit",minute:"2-digit"});nextLabel()}setInterval(tick,30000);
+
+function maps(){
+  open(`<h2>🗺️ Маршруты дня ${cur}</h2><p class="muted">Открывай точки по порядку.</p>${D[cur].filter(x=>x.map).map(x=>`<p><a class="btn map" target="_blank" href="${x.map}">${x.time} — ${x.title}</a></p>`).join("")}`)
+}
+
+function now(){
+  let arr=D[cur],mins=new Date().getHours()*60+new Date().getMinutes(),
+  idx=arr.findIndex(x=>{let [h,m]=x.time.split(":").map(Number);return h*60+m>mins});
+  if(idx<0)idx=0;
+  const el=document.getElementById(`i-${cur}-${idx}`);
+  if(el)el.scrollIntoView({behavior:"smooth",block:"center"});
+}
+
+function nextLabel(){
+  let mins=new Date().getHours()*60+new Date().getMinutes(),
+  x=D[cur].find(x=>{let [h,m]=x.time.split(":").map(Number);return h*60+m>mins});
+  document.getElementById("next").textContent=x?"следующий: "+x.time:"день завершён";
+}
+
+function open(s){document.getElementById("mb").innerHTML=s;document.getElementById("modal").classList.add("show")}
+function closeM(){document.getElementById("modal").classList.remove("show")}
+
+function tick(){
+  let n=new Date();
+  document.getElementById("clock").textContent=n.toLocaleTimeString("ru-RU",{hour:"2-digit",minute:"2-digit"});
+  nextLabel();
+}
+setInterval(tick,30000);
+
 if("serviceWorker" in navigator)navigator.serviceWorker.register("sw.js");
 window.addEventListener("beforeinstallprompt",e=>{e.preventDefault();deferred=e;document.getElementById("install").classList.add("show")});
 document.getElementById("installBtn").onclick=async()=>{if(deferred){deferred.prompt();deferred=null}};
+
 render();budgetInfo();tick();
 </script>
 </body></html>
