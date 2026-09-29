@@ -27,8 +27,8 @@
   --input-bg:#1a1d24;--input-border:#2a2f3a;--shadow:0 2px 9px #00000040;
 }
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--text);font:16px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;padding-bottom:env(safe-area-inset-bottom);transition:background .2s,color .2s}
-header{color:white;background:var(--header-grad);padding:18px 16px 12px;position:sticky;top:0;z-index:10}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;padding-top:120px;padding-bottom:env(safe-area-inset-bottom);overflow-x:hidden;-webkit-overflow-scrolling:touch;transition:background .2s,color .2s}
+header{color:white;background:var(--header-grad);padding:18px 16px 12px;padding-top:calc(18px + env(safe-area-inset-top));position:fixed;top:0;left:0;right:0;z-index:10;will-change:transform}
 .wrap{max-width:900px;margin:auto}
 .head{display:flex;justify-content:space-between;align-items:center;gap:10px}
 h1{font-size:20px;margin:0;line-height:1.2}
@@ -77,9 +77,9 @@ a.btn,button.btn{border:0;text-decoration:none;background:var(--accent-soft);col
 [data-theme="dark"] .call{background:#1e293b!important;color:#93c5fd!important}
 .menu-btn{background:#fef3c7!important;color:#92400e!important}
 [data-theme="dark"] .menu-btn{background:#3f2d0a!important;color:#fcd34d!important}
-.walk-btn{background;:#dcfce7align!important;-itemscolor:#166534:!important}
-[data-thecenterme="dark"] .;walk-btnpadding{background:#0f2:a1a!important;color:#868efpxac!important}
-.transit-btn{background:#e 0e7ff!important;color0:#3730a3!important}
+.walk-btn{background:#dcfce7!important;color:#166534!important}
+[data-theme="dark"] .walk-btn{background:#0f2a1a!important;color:#86efac!important}
+.transit-btn{background:#e0e7ff!important;color:#3730a3!important}
 [data-theme="dark"] .transit-btn{background:#1e1b4b!important;color:#a5b4fc!important}
 .prev-btn{background:#f3e8ff!important;color:#6b21a8!important}
 [data-theme="dark"] .prev-btn{background:#2e1065!important;color:#d8b4fe!important}
@@ -118,7 +118,7 @@ textarea{min-height:80px;resize:vertical}
 .stars{display:inline-flex;gap:3px;font-size:20px;cursor:pointer;user-select:none}
 .star{color:#d1d5db}
 .star.on{color:#f59e0b}
-.exp{display:flex;justify-content:space-between;border-bottom:1px solid var(--line);font-size:14px}
+.exp{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--line);font-size:14px}
 .exp:last-child{border:0}
 .exp .x{border:0;background:transparent;color:#dc2626;cursor:pointer;font-size:16px;padding:4px 8px}
 .summary-box{background:var(--route-bg);padding:10px;border-radius:10px;margin:8px 0;font-weight:700}
@@ -183,10 +183,10 @@ input:checked+.slider:before{transform:translateX(20px)}
 const D = {
 1:[
 {time:"07:20",title:"🚆 Отправление из Нижнего Новгорода",note:"Поезд №706. Московский вокзал.",addr:"площадь Революции, 2А",map:"https://yandex.ru/maps/?text=Московский%20вокзал%20Нижний%20Новгород%20площадь%20Революции%202А"},
-{time:"11:34",title:"🚆 Восточный вокзал, Москва",note:"Прибытие поезда №706. Рядом МЦК Локомотив / метро Черкизовская.",addr:"Окружной проезд, 7с1",dest:"Holiday Inn Сокольники, Русаковская 24, Москва",metroStops:[{n:"МЦК Локомотив",c:"#ef4444"},{n:"МЦК Сокольники",c:"#ef4444"}],metro:"🚇 МЦК Локомотив → МЦК Сокольники (1 остановка, ≈5 мин), далее пешком ≈1,2 км.",walk:"🚶 ≈5,5 км, ≈1 ч 10 мин от Восточного вокзала.",map:"https://yandex.ru/maps/?text=Восточный%20вокзал%20Москва%20Окружной%20проезд%207с1"},
+{time:"11:34",title:"🚆 Восточный вокзал, Москва",note:"Прибытие поезда №706. Рядом МЦК Локомотив / метро Черкизовская.",addr:"Окружной проезд, 7с1",dest:"Holiday Inn Сокольники, Русаковская 24, Москва",metroStops:[{n:"МЦК Локомотив",c:"#ef4444"},{n:"МЦК Сокольники",c:"#ef4444"}],metro:"🚇тя МЦК Локомотивбрь → МскаяЦ%К С20окольники (1 остановка, ≈5 мин), далее пешком ≈1,2 км.",walk:"🚶 ≈5,5 км, ≈1 ч 10 мин от Восточного вокзала.",map:"https://yandex.ru/maps/?text=Восточный%20вокзал%20Москва%20Окружной%20проезд%207с1"},
 {time:"12:00",title:"🏨 Holiday Inn Сокольники",note:"Оставить вещи / заселиться. Вечером — бассейн.",addr:"ул. Русаковская, 24",phone:"+7 495 786 33 33",booking:"hotel",dest:"Holiday Inn Сокольники, Русаковская 24, Москва",map:"https://yandex.ru/maps/org/holiday_inn_moscow_sokolniki/1747106447/"},
 {time:"12:30",title:"🍕 Forneria by Casa di famiglia",note:"Праздничный обед рядом с отелем.",dest:"Forneria by Casa di famiglia, Стромынка, Москва",menu:"https://yandex.ru/maps/?text=Forneria%20by%20Casa%20di%20famiglia%20Стромынка",metro:"🚇 Метро не нужно — точка рядом с отелем.",walk:"🚶 ≈400 м от отеля, ≈6 мин.",map:"https://yandex.ru/maps/?text=Forneria%20by%20Casa%20di%20famiglia%20Стромынка"},
-{time:"13:50",title:"🚇 Сокольники → Октябрьская",note:"Переезд к РГДБ.",dest:"метро Октябрьская, Москва",metroStops:[{n:"Сокольники",c:"#ef4444"},{n:"Комсомольская",c:"#ef4444"},{n:"Октябрьская",c:"#a16207",transfer:true}],metro:"🚇 ≈30 мин: Сокольники (красная, 2 ост.) → Комсомольская → пересадка на Кольцевую → Октябрьская (5 ост.).",walk:"🚶 ≈9 км, ≈2 ч — не рекомендуется.",map:"https://yandex.ru/maps/?rtext=Сокольники%20метро~Октябрьская%20метро"},
+{time:"13:50",title:"🚇 Сокольники → Октябрьская",note:"Переезд к РГДБ.",dest:"метро Октябрьская, Москва",metroStops:[{n:"Сокольники",c:"#ef4444"},{n:"Комсомольская",c:"#ef4444"},{n:"Октябрьская",c:"#a16207",transfer:true}],metro:"🚇 ≈30 мин: Сокольники (красная, 2 ост.) → Комсомольская → пересадка на Кольцевую → Октябрьская (5 ост.).",walk:"🚶 ≈9 км, ≈2 ч — не рекомендуется.",map:"https://yandex.ru/maps/?rtext=Сокольники%20метро~Окметро"},
 {time:"14:30",title:"📚 РГДБ",note:"Интерактивные пространства и детские зоны.",addr:"Калужская пл., 1",phone:"+7 499 230 00 87",dest:"Российская государственная детская библиотека, Калужская площадь 1, Москва",metro:"🚇 От метро Октябрьская — пешком.",walk:"🚶 ≈400 м от метро, ≈5 мин.",map:"https://yandex.ru/maps/?text=Российская%20государственная%20детская%20библиотека"},
 {time:"16:00",title:"🌳 Парк Горького",note:"Площадка «Салют», прогулка, Крымская набережная.",dest:"Парк Горького, Москва",metro:"🚇 От РГДБ — пешком через Крымский мост (метро не требуется).",walk:"🚶 ≈1,5 км от РГДБ, ≈20 мин.",map:"https://yandex.ru/maps/?text=Парк%20Горького%20Москва"},
 {time:"19:00",title:"🎉 The Бык",note:"Праздничный ужин. Арбат, 44с1. Метро Смоленская.",addr:"ул. Арбат, 44с1",dest:"The Бык, Арбат 44с1, Москва",menu:"https://yandex.ru/maps/?text=The%20Бык%20Арбат%2044с1",metro:"🚇 Октябрьская → (Кольцевая, 2 ост.) Киевская → (Филевская, 1 ост.) Смоленская. ≈20 мин.",walk:"🚶 ≈4,5 км от Парка Горького, ≈1 ч.",map:"https://yandex.ru/maps/?text=The%20Бык%20Арбат%2044с1"},
@@ -270,7 +270,7 @@ const photos = {
     });
   },
   async set(k, v){ const db = await this.open(); return new Promise((res,rej)=>{
-    const tx = db.transaction("p","readwrite"); tx.objectStore("p").put(v,k);
+    const tx = db.transaction("p","readwrite"); tx.object["Store("p").put(v,k);
     tx.oncomplete=res; tx.onerror=rej; }); },
   async get(k){ const db = await this.open(); return new Promise((res,rej)=>{
     const r = db.transaction("p").objectStore("p").get(k);
@@ -293,7 +293,7 @@ const WCODE = {
   0:["☀️","Ясно"],1:["🌤","Преим. ясно"],2:["⛅","Переменно"],3:["☁️","Пасмурно"],
   45:["🌫","Туман"],48:["🌫","Изморозь"],
   51:["🌦","Морось"],53:["🌦","Морось"],55:["🌦","Морось"],
-  61:["🌧","Дождь"],63:["🌧","Дождь"],65:["🌧","Сильный дождь"],
+  61:["🌧","Дождь"],63:["🌧","Дождь"],65:🌧","Сильный дождь"],
   71:["🌨","Снег"],73:["🌨","Снег"],75:["❄️","Снегопад"],
   80:["🌧","Ливни"],81:["🌧","Ливни"],82:["⛈","Сильные ливни"],
   95:["⛈","Гроза"],96:["⛈","Гроза с градом"],99:["⛈","Гроза с градом"]
@@ -402,6 +402,20 @@ function updateCountdown(){
   }
 }
 
+/* ====== ШАПКА: подгонка отступа body ====== */
+function adjustHeader(){
+  const h = document.querySelector("header");
+  if(!h) return;
+  const pad = h.offsetHeight + 6;
+  document.body.style.paddingTop = pad + "px";
+}
+window.addEventListener("resize", adjustHeader);
+window.addEventListener("orientationchange", adjustHeader);
+window.addEventListener("load", adjustHeader);
+if(window.visualViewport){
+  window.visualViewport.addEventListener("resize", adjustHeader);
+}
+
 /* ====== РЕНДЕР ====== */
 function render(){
   let out = "";
@@ -421,6 +435,7 @@ function render(){
   if(!WEATHER || !WEATHER.data) weatherPlaceholder("Загрузка прогноза…");
   else paintWeather();
   progress(); ticketsInfo(); expensesInfo(); diaryInfo();
+  adjustHeader();
 }
 
 function renderItem(d,i,x){
@@ -742,7 +757,7 @@ function settings(){
       '<div><b>Сбросить всё</b><div class="muted">Заметки, фото, расходы, отметки</div></div>' +
       '<button class="btn" style="background:#fee2e2;color:#991b1b" onclick="if(confirm(\'Точно сбросить ВСЕ данные?\'))resetAll()">Сбросить</button>' +
     '</div>' +
-    '<p class="muted" style="margin-top:16px">Версия 2.3 · офлайн-режим включён</p>');
+    '<p class="muted" style="margin-top:16px">Версия 2.4 · офлайн-режим включён</p>');
 }
 function setTheme(v){ store.set("theme", v); applyTheme(); }
 async function refreshWeather(){
@@ -848,6 +863,7 @@ document.getElementById("installBtn").onclick = async ()=>{
 };
 
 render();
+adjustHeader();
 (function initWeather(){
   const c = JSON.parse(store.get("weather")||"null");
   if(c && Date.now()-c.ts < 6*3600*1000){
