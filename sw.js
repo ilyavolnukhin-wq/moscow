@@ -1,4 +1,4 @@
-const CACHE = "moscow-guide-v3";
+const CACHE = "moscow-guide-v5";
 const ASSETS = [
   "./",
   "./index.html",
