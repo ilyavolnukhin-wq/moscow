@@ -71,13 +71,21 @@ main{padding:8px 14px 45px}
 .title{font-weight:850}
 .note{font-size:13px;color:var(--muted);margin-top:3px}
 .addr{font-size:12px;color:var(--muted);margin-top:2px}
-.route{display:block;text-decoration:none;color:var(--text);font-size:13px;margin-top:6px;background:var(--route-bg);border-left:3px solid var(--route-border);padding:7px 9px;border-radius:6px;line-height:1.45;white-space:pre-line}
-.route.walk{border-left-color:var(--walk-border);background:var(--walk-bg)}
-.route.clickable{cursor:pointer}
-.route.clickable:active{opacity:.8}
-.route-hint{display:block;margin-top:5px;font-size:11.5px;font-weight:700;color:var(--accent)}
-.route.walk .route-hint{color:#15803d}
-[data-theme="dark"] .route.walk .route-hint{color:#86efac}
+.route-box{margin-top:9px;background:var(--route-bg);border-radius:11px;overflow:hidden;border:1px solid var(--line)}
+.route-line{display:block;text-decoration:none;color:var(--text);padding:10px 11px;font-size:13px;line-height:1.45;cursor:pointer;position:relative;border-left:4px solid var(--route-border)}
+.route-line + .route-line{border-top:1px solid var(--line)}
+.route-line.walk{border-left-color:var(--walk-border);background:var(--walk-bg)}
+.route-line:active{opacity:.75}
+.route-line .head{display:flex;align-items:center;gap:6px;font-weight:800;font-size:12.5px;margin-bottom:3px;color:var(--accent)}
+.route-line.walk .head{color:#15803d}
+[data-theme="dark"] .route-line.walk .head{color:#86efac}
+.route-line .arrow{position:absolute;right:10px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:14px;opacity:.6}
+.route-line .text{padding-right:16px}
+.metro-scheme{margin-top:8px;background:var(--route-bg);border-radius:9px;padding:10px 12px}
+.metro-scheme .st{font-size:12.5px;font-weight:700;display:flex;align-items:center;gap:7px}
+.metro-scheme .st .dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.metro-scheme .ln{font-size:11px;color:var(--muted);margin-left:5px;padding:2px 0 2px 14px;border-left:3px solid #ccc;line-height:1.3}
+.metro-scheme .ln.transfer{border-left-style:dashed}
 .actions{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
 a.btn,button.btn{border:0;text-decoration:none;background:var(--accent-soft);color:var(--accent-text);border-radius:9px;padding:8px 10px;font-weight:750;font-size:13px;cursor:pointer;display:inline-flex;align-items:center;gap:4px;font-family:inherit}
 .map{background:#fff7ed!important;color:#c2410c!important}
@@ -88,21 +96,10 @@ a.btn,button.btn{border:0;text-decoration:none;background:var(--accent-soft);col
 [data-theme="dark"] .call{background:#1e293b!important;color:#93c5fd!important}
 .menu-btn{background:#fef3c7!important;color:#92400e!important}
 [data-theme="dark"] .menu-btn{background:#3f2d0a!important;color:#fcd34d!important}
-.walk-btn{background:#dcfce7!important;color:#166534!important}
-[data-theme="dark"] .walk-btn{background:#0f2a1a!important;color:#86efac!important}
-.transit-btn{background:#e0e7ff!important;color:#3730a3!important}
-[data-theme="dark"] .transit-btn{background:#1e1b4b!important;color:#a5b4fc!important}
-.prev-btn{background:#f3e8ff!important;color:#6b21a8!important}
-[data-theme="dark"] .prev-btn{background:#2e1065!important;color:#d8b4fe!important}
 .done{background:var(--line)!important;color:var(--text)!important}
 .status{font-size:11px;background:var(--line);border-radius:7px;padding:3px 6px;display:inline-block;margin-top:6px}
 .status.ok{background:#dcfce7;color:#166534}
 [data-theme="dark"] .status.ok{background:#0f2a1a!important;color:#86efac!important}
-.metro-scheme{margin-top:8px;background:var(--route-bg);border-radius:9px;padding:10px 12px}
-.metro-scheme .st{font-size:12.5px;font-weight:700;display:flex;align-items:center;gap:7px}
-.metro-scheme .st .dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
-.metro-scheme .ln{font-size:11px;color:var(--muted);margin-left:5px;padding:2px 0 2px 14px;border-left:3px solid #ccc;line-height:1.3}
-.metro-scheme .ln.transfer{border-left-style:dashed}
 .photos{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
 .photos img{width:60px;height:60px;object-fit:cover;border-radius:8px;cursor:pointer}
 .note-text{margin-top:8px;background:#fffbeb;border-left:3px solid #f59e0b;padding:6px 9px;border-radius:6px;font-size:13px;white-space:pre-wrap;word-break:break-word}
@@ -180,8 +177,8 @@ input:checked+.slider:before{transform:translateX(20px)}
     </div>
     <div id="days"></div>
     <div class="panel">
-      <b>💡 Как строить маршруты</b>
-      <p class="muted">Нажмите на блок <b>🚇</b> — откроются Яндекс Карты с маршрутом на транспорте от вас. Нажмите на блок <b>🚶</b> — пеший маршрут. Или используйте кнопки «🚶 Пешком», «🚇 Транспорт», «🧭 От пред. пункта».</p>
+      <b>💡 Маршруты</b>
+      <p class="muted">В каждой карточке — блок с двумя строками: <b>🚇 транспорт</b> (станции, пересадки, время) и <b>🚶 пешком</b> (расстояние, время). Нажмите на любую — откроются Яндекс Карты с маршрутом от вас.</p>
     </div>
   </main>
 </div>
@@ -194,42 +191,42 @@ input:checked+.slider:before{transform:translateX(20px)}
 const D = {
 1:[
 {time:"07:20",title:"🚆 Отправление из Нижнего Новгорода",note:"Поезд №706. Московский вокзал.",addr:"площадь Революции, 2А",map:"https://yandex.ru/maps/?text=Московский%20вокзал%20Нижний%20Новгород%20площадь%20Революции%202А"},
-{time:"11:34",title:"🚆 Восточный вокзал, Москва",note:"Прибытие поезда №706. Рядом МЦК Локомотив / метро Черкизовская.",addr:"Окружной проезд, 7с1",dest:"Holiday Inn Сокольники, Русаковская 24, Москва",metroStops:[{n:"МЦК Локомотив",c:"#ef4444"},{n:"МЦК Сокольники",c:"#ef4444"}],metro:"🚇 МЦК Локомотив → МЦК Сокольники (1 остановка, ≈5 мин), далее пешком ≈1,2 км.",walk:"🚶 ≈5,5 км, ≈1 ч 10 мин от Восточного вокзала.",map:"https://yandex.ru/maps/?text=Восточный%20вокзал%20Москва%20Окружной%20проезд%207с1"},
+{time:"11:34",title:"🚆 Восточный вокзал, Москва",note:"Прибытие поезда №706. Рядом МЦК Локомотив / метро Черкизовская.",addr:"Окружной проезд, 7с1",dest:"Holiday Inn Сокольники, Русаковская 24, Москва",metroStops:[{n:"МЦК Локомотив",c:"#ef4444"},{n:"МЦК Сокольники",c:"#ef4444"}],metro:"МЦК Локомотив → МЦК Сокольники (1 ост., ≈5 мин) + пешком ≈1,2 км. Итого ≈25 мин.",walk:"≈5,5 км от Восточного вокзала, ≈1 ч 10 мин.",map:"https://yandex.ru/maps/?text=Восточный%20вокзал%20Москва%20Окружной%20проезд%207с1"},
 {time:"12:00",title:"🏨 Holiday Inn Сокольники",note:"Оставить вещи / заселиться. Вечером — бассейн.",addr:"ул. Русаковская, 24",phone:"+7 495 786 33 33",booking:"hotel",dest:"Holiday Inn Сокольники, Русаковская 24, Москва",map:"https://yandex.ru/maps/org/holiday_inn_moscow_sokolniki/1747106447/"},
-{time:"12:30",title:"🍕 Forneria by Casa di famiglia",note:"Праздничный обед рядом с отелем.",dest:"Forneria by Casa di famiglia, Стромынка, Москва",menu:"https://yandex.ru/maps/?text=Forneria%20by%20Casa%20di%20famiglia%20Стромынка",metro:"🚇 Метро не нужно — точка рядом с отелем.",walk:"🚶 ≈400 м от отеля, ≈6 мин.",map:"https://yandex.ru/maps/?text=Forneria%20by%20Casa%20di%20famiglia%20Стромынка"},
-{time:"13:50",title:"🚇 Сокольники → Октябрьская",note:"Переезд к РГДБ.",dest:"метро Октябрьская, Москва",metroStops:[{n:"Сокольники",c:"#ef4444"},{n:"Комсомольская",c:"#ef4444"},{n:"Октябрьская",c:"#a16207",transfer:true}],metro:"🚇 ≈30 мин: Сокольники (красная, 2 ост.) → Комсомольская → пересадка на Кольцевую → Октябрьская (5 ост.).",walk:"🚶 ≈9 км, ≈2 ч — не рекомендуется.",map:"https://yandex.ru/maps/?rtext=Сокольники%20метро~Октябрьская%20метро"},
-{time:"14:30",title:"📚 РГДБ",note:"Интерактивные пространства и детские зоны.",addr:"Калужская пл., 1",phone:"+7 499 230 00 87",dest:"Российская государственная детская библиотека, Калужская площадь 1, Москва",metro:"🚇 От метро Октябрьская — пешком.",walk:"🚶 ≈400 м от метро, ≈5 мин.",map:"https://yandex.ru/maps/?text=Российская%20государственная%20детская%20библиотека"},
-{time:"16:00",title:"🌳 Парк Горького",note:"Площадка «Салют», прогулка, Крымская набережная.",dest:"Парк Горького, Москва",metro:"🚇 От РГДБ — пешком через Крымский мост (метро не требуется).",walk:"🚶 ≈1,5 км от РГДБ, ≈20 мин.",map:"https://yandex.ru/maps/?text=Парк%20Горького%20Москва"},
-{time:"19:00",title:"🎉 The Бык",note:"Праздничный ужин. Арбат, 44с1. Метро Смоленская.",addr:"ул. Арбат, 44с1",dest:"The Бык, Арбат 44с1, Москва",menu:"https://yandex.ru/maps/?text=The%20Бык%20Арбат%2044с1",metro:"🚇 Октябрьская → (Кольцевая, 2 ост.) Киевская → (Филевская, 1 ост.) Смоленская. ≈20 мин.",walk:"🚶 ≈4,5 км от Парка Горького, ≈1 ч.",map:"https://yandex.ru/maps/?text=The%20Бык%20Арбат%2044с1"},
-{time:"21:00",title:"🏊 Отель / бассейн",note:"Отдых после дня рождения.",dest:"Holiday Inn Сокольники, Русаковская 24, Москва",metro:"🚇 Смоленская → Киевская → Комсомольская → Сокольники. ≈30 мин.",walk:"🚶 ≈13 км — не рекомендуется.",map:"https://yandex.ru/maps/org/holiday_inn_moscow_sokolniki/1747106447/"}
+{time:"12:30",title:"🍕 Forneria by Casa di famiglia",note:"Праздничный обед рядом с отелем.",dest:"Forneria by Casa di famiglia, Стромынка, Москва",menu:"https://yandex.ru/maps/?text=Forneria%20by%20Casa%20di%20famiglia%20Стромынка",metro:"Метро не нужно — точка рядом с отелем, ≈10 мин на транспорте или пешком.",walk:"≈400 м от отеля, ≈6 мин.",map:"https://yandex.ru/maps/?text=Forneria%20by%20Casa%20di%20famiglia%20Стромынка"},
+{time:"13:50",title:"🚇 Сокольники → Октябрьская",note:"Переезд к РГДБ.",dest:"метро Октябрьская, Москва",metroStops:[{n:"Сокольники",c:"#ef4444"},{n:"Комсомольская",c:"#ef4444"},{n:"Октябрьская",c:"#a16207",transfer:true}],metro:"Сокольники (красная) → Комсомольская (2 ост.) → пересадка на Кольцевую → Октябрьская (5 ост.). ≈30 мин.",walk:"≈9 км, ≈2 ч — не рекомендуется.",map:"https://yandex.ru/maps/?rtext=Сокольники%20метро~Октябрьская%20метро"},
+{time:"14:30",title:"📚 РГДБ",note:"Интерактивные пространства и детские зоны.",addr:"Калужская пл., 1",phone:"+7 499 230 00 87",dest:"Российская государственная детская библиотека, Калужская площадь 1, Москва",metro:"От метро Октябрьская — пешком.",walk:"≈400 м от метро, ≈5 мин.",map:"https://yandex.ru/maps/?text=Российская%20государственная%20детская%20библиотека"},
+{time:"16:00",title:"🌳 Парк Горького",note:"Площадка «Салют», прогулка, Крымская набережная.",dest:"Парк Горького, Москва",metro:"От РГДБ — пешком через Крымский мост, метро не нужно.",walk:"≈1,5 км от РГДБ, ≈20 мин.",map:"https://yandex.ru/maps/?text=Парк%20Горького%20Москва"},
+{time:"19:00",title:"🎉 The Бык",note:"Праздничный ужин. Арбат, 44с1. Метро Смоленская.",addr:"ул. Арбат, 44с1",dest:"The Бык, Арбат 44с1, Москва",menu:"https://yandex.ru/maps/?text=The%20Бык%20Арбат%2044с1",metro:"Октябрьская → Киевская (Кольцевая, 2 ост.) → Смоленская (Филевская, 1 ост.). ≈20 мин.",walk:"≈4,5 км от Парка Горького, ≈1 ч.",map:"https://yandex.ru/maps/?text=The%20Бык%20Арбат%2044с1"},
+{time:"21:00",title:"🏊 Отель / бассейн",note:"Отдых после дня рождения.",dest:"Holiday Inn Сокольники, Русаковская 24, Москва",metro:"Смоленская → Киевская → Комсомольская → Сокольники. ≈30 мин.",walk:"≈13 км — не рекомендуется.",map:"https://yandex.ru/maps/org/holiday_inn_moscow_sokolniki/1747106447/"}
 ],
 2:[
 {time:"09:00",title:"🥐 Завтрак",note:"Включён в отеле."},
-{time:"10:15",title:"🚇 Переезд в Москва-Сити",note:"Сокольники → Деловой центр.",dest:"Москва-Сити, Пресненская набережная, Москва",metroStops:[{n:"Сокольники",c:"#ef4444"},{n:"Библиотека им. Ленина",c:"#ef4444"},{n:"Арбатская",c:"#1e40af",transfer:true},{n:"Выставочная",c:"#22c55e"},{n:"Деловой центр",c:"#22c55e"}],metro:"🚇 ≈40 мин: Сокольники (красная, 7 ост.) → Библиотека им. Ленина → пересадка на Арбатскую → (Филевская) Выставочная → Деловой центр.",walk:"🚶 ≈11 км, ≈2 ч 20 мин — не рекомендуется.",map:"https://yandex.ru/maps/?rtext=Сокольники%20метро~Деловой%20центр%20Москва"},
-{time:"11:00",title:"🌆 PANORAMA360",note:"89 этаж. Купить билет заранее.",addr:"Пресненская наб., 8с1",dest:"PANORAMA360, Пресненская набережная 8с1, Москва",menu:"https://pnr360.ru/",metro:"🚇 От Делового центра — пешком внутри Сити.",walk:"🚶 ≈400 м внутри Сити.",map:"https://pnr360.ru/",buy:"https://pnr360.ru/"},
-{time:"13:30",title:"🍽️ Афимолл Сити",note:"Обед.",dest:"Афимолл Сити, Пресненская набережная, Москва",menu:"https://yandex.ru/maps/?text=Афимолл%20Сити",metro:"🚇 Пешком внутри Сити.",walk:"🚶 ≈200 м от PANORAMA360.",map:"https://yandex.ru/maps/?text=Афимолл%20Сити"},
-{time:"14:40",title:"🚇 Выставочная → Баррикадная",note:"Метро.",dest:"Московский Планетарий, Садовая-Кудринская 5с1, Москва",metro:"🚇 Выставочная → (Филевская, 2 ост.) Киевская → (Кольцевая, 3 ост.) Краснопресненская, далее пешком. ≈25 мин.",walk:"🚶 ≈4 км, ≈55 мин.",map:"https://yandex.ru/maps/?rtext=Выставочная%20метро~Баррикадная%20метро"},
-{time:"15:00",title:"🌌 Московский Планетарий — Лунариум",note:"Интерактивный музей. Купить онлайн.",addr:"Садовая-Кудринская, 5с1",phone:"+7 495 221 76 90",dest:"Московский Планетарий, Садовая-Кудринская 5с1, Москва",menu:"https://planetarium-moscow.ru/",metro:"🚇 От Баррикадной — пешком ≈5 мин.",walk:"🚶 ≈400 м от метро.",map:"https://planetarium-moscow.ru/",buy:"https://planetarium-moscow.ru/"},
-{time:"18:30",title:"🍝 Bella Pasta",note:"Ужин рядом с Планетарием.",addr:"Красная Пресня, 6",dest:"Bella Pasta, Красная Пресня 6, Москва",menu:"https://yandex.ru/maps/?text=Bella%20Pasta%20Красная%20Пресня%206",metro:"🚇 Метро не нужно — пешком от Планетария.",walk:"🚶 ≈500 м, ≈7 мин.",map:"https://yandex.ru/maps/?text=Bella%20Pasta%20Красная%20Пресня%206"},
-{time:"20:00",title:"🏊 Отель / бассейн",note:"Разгрузка после насыщенного дня.",dest:"Holiday Inn Сокольники, Русаковская 24, Москва",metro:"🚇 Баррикадная → Краснопресненская → Комсомольская → Сокольники. ≈30 мин.",walk:"🚶 ≈12 км — не рекомендуется.",map:"https://yandex.ru/maps/org/holiday_inn_moscow_sokolniki/1747106447/"}
+{time:"10:15",title:"🚇 Переезд в Москва-Сити",note:"Сокольники → Деловой центр.",dest:"Москва-Сити, Пресненская набережная, Москва",metroStops:[{n:"Сокольники",c:"#ef4444"},{n:"Библиотека им. Ленина",c:"#ef4444"},{n:"Арбатская",c:"#1e40af",transfer:true},{n:"Выставочная",c:"#22c55e"},{n:"Деловой центр",c:"#22c55e"}],metro:"Сокольники → Библиотека им. Ленина (7 ост.) → Арбатская → Выставочная → Деловой центр. ≈40 мин.",walk:"≈11 км, ≈2 ч 20 мин — не рекомендуется.",map:"https://yandex.ru/maps/?rtext=Сокольники%20метро~Деловой%20центр%20Москва"},
+{time:"11:00",title:"🌆 PANORAMA360",note:"89 этаж. Купить билет заранее.",addr:"Пресненская наб., 8с1",dest:"PANORAMA360, Пресненская набережная 8с1, Москва",menu:"https://pnr360.ru/",metro:"От Делового центра — пешком внутри Сити.",walk:"≈400 м внутри Сити, ≈5 мин.",map:"https://pnr360.ru/",buy:"https://pnr360.ru/"},
+{time:"13:30",title:"🍽️ Афимолл Сити",note:"Обед.",dest:"Афимолл Сити, Пресненская набережная, Москва",menu:"https://yandex.ru/maps/?text=Афимолл%20Сити",metro:"Пешком внутри Сити.",walk:"≈200 м от PANORAMA360, ≈3 мин.",map:"https://yandex.ru/maps/?text=Афимолл%20Сити"},
+{time:"14:40",title:"🚇 Выставочная → Баррикадная",note:"Метро.",dest:"Московский Планетарий, Садовая-Кудринская 5с1, Москва",metro:"Выставочная → Киевская (Филевская, 2 ост.) → Краснопресненская (Кольцевая, 3 ост.) → пешком до Баррикадной. ≈25 мин.",walk:"≈4 км, ≈55 мин.",map:"https://yandex.ru/maps/?rtext=Выставочная%20метро~Баррикадная%20метро"},
+{time:"15:00",title:"🌌 Московский Планетарий — Лунариум",note:"Интерактивный музей. Купить онлайн.",addr:"Садовая-Кудринская, 5с1",phone:"+7 495 221 76 90",dest:"Московский Планетарий, Садовая-Кудринская 5с1, Москва",menu:"https://planetarium-moscow.ru/",metro:"От Баррикадной — пешком.",walk:"≈400 м от метро, ≈5 мин.",map:"https://planetarium-moscow.ru/",buy:"https://planetarium-moscow.ru/"},
+{time:"18:30",title:"🍝 Bella Pasta",note:"Ужин рядом с Планетарием.",addr:"Красная Пресня, 6",dest:"Bella Pasta, Красная Пресня 6, Москва",menu:"https://yandex.ru/maps/?text=Bella%20Pasta%20Красная%20Пресня%206",metro:"Метро не нужно — пешком от Планетария.",walk:"≈500 м, ≈7 мин.",map:"https://yandex.ru/maps/?text=Bella%20Pasta%20Красная%20Пресня%206"},
+{time:"20:00",title:"🏊 Отель / бассейн",note:"Разгрузка после насыщенного дня.",dest:"Holiday Inn Сокольники, Русаковская 24, Москва",metro:"Баррикадная → Краснопресненская → Комсомольская → Сокольники. ≈30 мин.",walk:"≈12 км — не рекомендуется.",map:"https://yandex.ru/maps/org/holiday_inn_moscow_sokolniki/1747106447/"}
 ],
 3:[
 {time:"09:00",title:"🥐 Завтрак",note:"В отеле."},
-{time:"10:00",title:"🚋 Переезд на ВДНХ",note:"Отель → ВДНХ.",dest:"ВДНХ, Москва",metro:"🚇 ≈30 мин: Сокольники (красная) → Комсомольская → (Кольцевая) Проспект Мира → (Калужско-Рижская) ВДНХ.",walk:"🚶 ≈9 км, ≈2 ч — не рекомендуется.",map:"https://yandex.ru/maps/?rtext=Holiday%20Inn%20Москва%20Сокольники~ВДНХ%20Москва"},
-{time:"10:30",title:"⚛️ Павильон «АТОМ»",note:"Главный интерактивный объект дня.",addr:"проспект Мира, 119, павильон 19",dest:"Павильон АТОМ, ВДНХ, Москва",menu:"https://atom.museum/",metro:"🚇 От метро ВДНХ — пешком по территории ВДНХ.",walk:"🚶 ≈800 м по ВДНХ.",map:"https://atom.museum/",buy:"https://atom.museum/"},
-{time:"13:30",title:"🍖 Ресторан «Арарат»",note:"Обед на ВДНХ.",dest:"Ресторан Арарат, ВДНХ, Москва",menu:"https://yandex.ru/maps/?text=Ресторан%20Арарат%20ВДНХ",metro:"🚇 Метро не нужно — пешком по ВДНХ.",walk:"🚶 ≈500 м от павильона «АТОМ».",map:"https://yandex.ru/maps/?text=Ресторан%20Арарат%20ВДНХ"},
-{time:"14:45",title:"🚇 ВДНХ → Таганская",note:"Метро.",dest:"Бункер-42, 5-й Котельнический переулок 11, Москва",metro:"🚇 ≈30 мин: ВДНХ (Калужско-Рижская) → Китай-город → Таганская.",walk:"🚶 ≈12 км, ≈2 ч 30 мин — не рекомендуется.",map:"https://yandex.ru/maps/?rtext=ВДНХ%20метро~Таганская%20метро"},
-{time:"16:00",title:"🕵️ Бункер-42 — «Гриф снят»",note:"8+, 70 минут.",addr:"5-й Котельнический пер., 11",phone:"+7 495 500 05 54",dest:"Бункер-42, 5-й Котельнический переулок 11, Москва",menu:"https://bunker42.com/events/grif-snyat/",metro:"🚇 От Таганской — пешком ≈10 мин.",walk:"🚶 ≈700 м от метро.",map:"https://bunker42.com/events/grif-snyat/",buy:"https://bunker42.com/events/grif-snyat/"},
-{time:"17:45",title:"🚇 Таганская → Цветной бульвар",note:"Метро.",dest:"Цветной бульвар, Москва",metro:"🚇 ≈25 мин: Таганская (Кольцевая) → Курская → Чкаловская → Трубная → пешком до Цветного бульвара.",walk:"🚶 ≈4,5 км, ≈1 ч.",map:"https://yandex.ru/maps/?rtext=Таганская%20метро~Цветной%20бульвар%20метро"},
-{time:"18:15",title:"🍜 RA'MEN",note:"Аниме-ужин.",dest:"RA'MEN, Москва",menu:"https://www.ramen.moscow/",metro:"🚇 Метро не нужно — пешком от Цветного бульвара.",walk:"🚶 ≈500 м.",map:"https://www.ramen.moscow/",buy:"https://www.ramen.moscow/"},
-{time:"20:30",title:"🏨 Отель",note:"Собрать чемоданы.",dest:"Holiday Inn Сокольники, Русаковская 24, Москва",metro:"🚇 Трубная → Чкаловская → Курская → Комсомольская → Сокольники. ≈30 мин.",walk:"🚶 ≈10 км — не рекомендуется.",map:"https://yandex.ru/maps/org/holiday_inn_moscow_sokolniki/1747106447/"}
+{time:"10:00",title:"🚋 Переезд на ВДНХ",note:"Отель → ВДНХ.",dest:"ВДНХ, Москва",metro:"Сокольники → Комсомольская → Проспект Мира (Кольцевая) → ВДНХ (Калужско-Рижская). ≈30 мин.",walk:"≈9 км, ≈2 ч — не рекомендуется.",map:"https://yandex.ru/maps/?rtext=Holiday%20Inn%20Москва%20Сокольники~ВДНХ%20Москва"},
+{time:"10:30",title:"⚛️ Павильон «АТОМ»",note:"Главный интерактивный объект дня.",addr:"проспект Мира, 119, павильон 19",dest:"Павильон АТОМ, ВДНХ, Москва",menu:"https://atom.museum/",metro:"От метро ВДНХ — пешком по территории ВДНХ.",walk:"≈800 м по ВДНХ, ≈12 мин.",map:"https://atom.museum/",buy:"https://atom.museum/"},
+{time:"13:30",title:"🍖 Ресторан «Арарат»",note:"Обед на ВДНХ.",dest:"Ресторан Арарат, ВДНХ, Москва",menu:"https://yandex.ru/maps/?text=Ресторан%20Арарат%20ВДНХ",metro:"Метро не нужно — пешком по ВДНХ.",walk:"≈500 м от павильона «АТОМ», ≈7 мин.",map:"https://yandex.ru/maps/?text=Ресторан%20Арарат%20ВДНХ"},
+{time:"14:45",title:"🚇 ВДНХ → Таганская",note:"Метро.",dest:"Бункер-42, 5-й Котельнический переулок 11, Москва",metro:"ВДНХ (Калужско-Рижская) → Китай-город → Таганская. ≈30 мин.",walk:"≈12 км, ≈2 ч 30 мин — не рекомендуется.",map:"https://yandex.ru/maps/?rtext=ВДНХ%20метро~Таганская%20метро"},
+{time:"16:00",title:"🕵️ Бункер-42 — «Гриф снят»",note:"8+, 70 минут.",addr:"5-й Котельнический пер., 11",phone:"+7 495 500 05 54",dest:"Бункер-42, 5-й Котельнический переулок 11, Москва",menu:"https://bunker42.com/events/grif-snyat/",metro:"От Таганской — пешком.",walk:"≈700 м от метро, ≈10 мин.",map:"https://bunker42.com/events/grif-snyat/",buy:"https://bunker42.com/events/grif-snyat/"},
+{time:"17:45",title:"🚇 Таганская → Цветной бульвар",note:"Метро.",dest:"Цветной бульвар, Москва",metro:"Таганская (Кольцевая) → Курская → Чкаловская → Трубная → пешком. ≈25 мин.",walk:"≈4,5 км, ≈1 ч.",map:"https://yandex.ru/maps/?rtext=Таганская%20метро~Цветной%20бульвар%20метро"},
+{time:"18:15",title:"🍜 RA'MEN",note:"Аниме-ужин.",dest:"RA'MEN, Москва",menu:"https://www.ramen.moscow/",metro:"Метро не нужно — пешком от Цветного бульвара.",walk:"≈500 м, ≈7 мин.",map:"https://www.ramen.moscow/",buy:"https://www.ramen.moscow/"},
+{time:"20:30",title:"🏨 Отель",note:"Собрать чемоданы.",dest:"Holiday Inn Сокольники, Русаковская 24, Москва",metro:"Трубная → Чкаловская → Курская → Комсомольская → Сокольники. ≈30 мин.",walk:"≈10 км — не рекомендуется.",map:"https://yandex.ru/maps/org/holiday_inn_moscow_sokolniki/1747106447/"}
 ],
 4:[
 {time:"08:30",title:"🥐 Завтрак + сдача номера",note:"Вещи оставить на стойке."},
-{time:"09:40",title:"❤️ Красная площадь",note:"Манежная → Красная площадь → ГУМ → Никольская.",dest:"Красная площадь, Москва",metro:"🚇 ≈20 мин: Сокольники (красная) → Охотный ряд (≈6 ост.), далее пешком.",walk:"🚶 ≈10 км, ≈2 ч — не рекомендуется.",map:"https://yandex.ru/maps/?text=Красная%20площадь%20Москва"},
-{time:"11:30",title:"🧸 ЦДМ",note:"Сувенир перед поездом.",addr:"Театральный пр., 5/1",dest:"Центральный детский магазин, Театральный проезд 5, Москва",metro:"🚇 Охотный ряд → Лубянка (1 ост.).",walk:"🚶 ≈1,5 км от Красной площади, ≈20 мин.",map:"https://yandex.ru/maps/?text=Центральный%20детский%20магазин%20Лубянка"},
-{time:"11:45",title:"🍲 Кафе «Борго»",note:"Сокольники, забрать вещи и пообедать.",addr:"2-й Полевой переулок, 2",phone:"+7 495 728-08-82",dest:"Кафе Борго, 2-й Полевой переулок 2, Москва",menu:"https://borgocafe.ru/",metro:"🚇 Лубянка → Сокольники (красная, ≈4 ост.). ≈15 мин.",walk:"🚶 ≈9 км — не рекомендуется.",map:"https://yandex.ru/maps/?text=Борго%202-й%20Полевой%20переулок%202"},
-{time:"12:35",title:"🚇 Сокольники → Восточный вокзал",note:"Переезд к поезду.",dest:"Восточный вокзал, Окружной проезд 7с1, Москва",metroStops:[{n:"Сокольники",c:"#ef4444"},{n:"Черкизовская",c:"#ef4444"}],metro:"🚇 ≈15 мин: Сокольники (красная) → Черкизовская (2 ост.), далее пешком ≈700 м. Либо МЦК Сокольники → Локомотив (1 ост.) + ≈500 м.",walk:"🚶 ≈3,5 км, ≈45 мин.",map:"https://yandex.ru/maps/?rtext=Сокольники%20метро~Восточный%20вокзал%20Москва"},
+{time:"09:40",title:"❤️ Красная площадь",note:"Манежная → Красная площадь → ГУМ → Никольская.",dest:"Красная площадь, Москва",metro:"Сокольники → Охотный ряд (6 ост.), далее пешком. ≈20 мин.",walk:"≈10 км, ≈2 ч — не рекомендуется.",map:"https://yandex.ru/maps/?text=Красная%20площадь%20Москва"},
+{time:"11:30",title:"🧸 ЦДМ",note:"Сувенир перед поездом.",addr:"Театральный пр., 5/1",dest:"Центральный детский магазин, Театральный проезд 5, Москва",metro:"Охотный ряд → Лубянка (1 ост.). ≈5 мин.",walk:"≈1,5 км от Красной площади, ≈20 мин.",map:"https://yandex.ru/maps/?text=Центральный%20детский%20магазин%20Лубянка"},
+{time:"11:45",title:"🍲 Кафе «Борго»",note:"Сокольники, забрать вещи и пообедать.",addr:"2-й Полевой переулок, 2",phone:"+7 495 728-08-82",dest:"Кафе Борго, 2-й Полевой переулок 2, Москва",menu:"https://borgocafe.ru/",metro:"Лубянка → Сокольники (красная, 4 ост.). ≈15 мин.",walk:"≈9 км — не рекомендуется.",map:"https://yandex.ru/maps/?text=Борго%202-й%20Полевой%20переулок%202"},
+{time:"12:35",title:"🚇 Сокольники → Восточный вокзал",note:"Переезд к поезду.",dest:"Восточный вокзал, Окружной проезд 7с1, Москва",metroStops:[{n:"Сокольники",c:"#ef4444"},{n:"Черкизовская",c:"#ef4444"}],metro:"Сокольники → Черкизовская (2 ост.) + пешком ≈700 м. Или МЦК Сокольники → Локомотив (1 ост.) + ≈500 м. ≈15 мин.",walk:"≈3,5 км, ≈45 мин.",map:"https://yandex.ru/maps/?rtext=Сокольники%20метро~Восточный%20вокзал%20Москва"},
 {time:"13:45",title:"🚆 Отправление поезда №704",note:"Восточный вокзал → Нижний Новгород. Прибытие 17:46, Московский вокзал, площадь Революции, 2А.",addr:"Окружной проезд, 7с1",map:"https://yandex.ru/maps/?text=Восточный%20вокзал%20Москва%20Окружной%20проезд%207с1"}
 ]};
 
@@ -258,15 +255,6 @@ const store = {
 
 function routeUrl(to, mode){
   return "https://yandex.ru/maps/?rtext=" + "~" + encodeURIComponent(to) + "&rtt=" + (mode||"pd");
-}
-function routeUrlFrom(from, to, mode){
-  return "https://yandex.ru/maps/?rtext=" + encodeURIComponent(from) + "~" + encodeURIComponent(to) + "&rtt=" + (mode||"mt");
-}
-function prevDestFor(d,i){
-  for(let j=i-1; j>=0; j--){
-    if(D[d][j].dest) return D[d][j].dest;
-  }
-  return null;
 }
 
 const photos = {
@@ -453,32 +441,31 @@ function renderItem(d,i,x){
     metroScheme += '</div>';
   }
 
-  let metroBlock = "";
-  if(x.metro){
-    if(x.dest){
-      metroBlock = '<a class="route clickable" href="'+routeUrl(x.dest,'mt')+'" target="_blank" rel="noopener">'+esc(x.metro)+'<span class="route-hint">🚇 Нажми — маршрут на транспорте от меня →</span></a>';
-    } else {
-      metroBlock = '<div class="route">'+esc(x.metro)+'</div>';
+  // Блок маршрута: две кликабельные строки
+  let routeBox = "";
+  if(x.dest && (x.metro || x.walk)){
+    routeBox += '<div class="route-box">';
+    if(x.metro){
+      routeBox += '<a class="route-line" href="'+routeUrl(x.dest,'mt')+'" target="_blank" rel="noopener">' +
+        '<div class="head">🚇 На транспорте</div>' +
+        '<div class="text">'+esc(x.metro)+'</div>' +
+        '<span class="arrow">›</span>' +
+      '</a>';
     }
-  }
-
-  let walkBlock = "";
-  if(x.walk){
-    if(x.dest){
-      walkBlock = '<a class="route walk clickable" href="'+routeUrl(x.dest,'pd')+'" target="_blank" rel="noopener">'+esc(x.walk)+'<span class="route-hint">🚶 Нажми — пешком от меня →</span></a>';
-    } else {
-      walkBlock = '<div class="route walk">'+esc(x.walk)+'</div>';
+    if(x.walk){
+      routeBox += '<a class="route-line walk" href="'+routeUrl(x.dest,'pd')+'" target="_blank" rel="noopener">' +
+        '<div class="head">🚶 Пешком</div>' +
+        '<div class="text">'+esc(x.walk)+'</div>' +
+        '<span class="arrow">›</span>' +
+      '</a>';
     }
-  }
-
-  const prevDest = prevDestFor(d,i);
-  let routeButtons = "";
-  if(x.dest){
-    routeButtons = '<a class="btn walk-btn" target="_blank" rel="noopener" href="'+routeUrl(x.dest,'pd')+'">🚶 Пешком</a>';
-    routeButtons += '<a class="btn transit-btn" target="_blank" rel="noopener" href="'+routeUrl(x.dest,'mt')+'">🚇 Транспорт</a>';
-    if(prevDest){
-      routeButtons += '<a class="btn prev-btn" target="_blank" rel="noopener" href="'+routeUrlFrom(prevDest, x.dest, 'mt')+'">🧭 От пред. пункта</a>';
-    }
+    routeBox += '</div>';
+  } else if(x.metro || x.walk){
+    // Если нет dest — просто показываем текст без ссылок
+    routeBox = '<div class="route-box">';
+    if(x.metro) routeBox += '<div class="route-line"><div class="head">🚇 Транспорт</div><div class="text">'+esc(x.metro)+'</div></div>';
+    if(x.walk) routeBox += '<div class="route-line walk"><div class="head">🚶 Пешком</div><div class="text">'+esc(x.walk)+'</div></div>';
+    routeBox += '</div>';
   }
 
   let html = '<div class="item" id="i-'+k+'">';
@@ -488,15 +475,13 @@ function renderItem(d,i,x){
   html += '<div class="note">'+x.note+'</div>';
   if(x.addr) html += '<div class="addr">📍 '+esc(x.addr)+'</div>';
   if(booking) html += '<div class="booking">Бронь: '+esc(booking)+'</div>';
-  html += metroBlock;
-  html += walkBlock;
+  html += routeBox;
   html += metroScheme;
   if(note) html += '<div class="note-text" id="nt-'+k+'">📝 '+esc(note)+'</div>';
   html += '<div class="photos" id="ph-'+k+'"></div>';
   html += '<span class="status '+(done?'ok':'')+'" id="s-'+k+'">'+(done?'✓ выполнено':'запланировано')+'</span>';
   html += '<div class="actions">';
-  if(x.map) html += '<a class="btn map" target="_blank" rel="noopener" href="'+x.map+'">🗺️ Открыть</a>';
-  html += routeButtons;
+  if(x.map) html += '<a class="btn map" target="_blank" rel="noopener" href="'+x.map+'">🗺️ Открыть место</a>';
   if(x.buy) html += '<a class="btn buy" target="_blank" rel="noopener" href="'+x.buy+'">🎟️ Билеты</a>';
   if(x.menu) html += '<a class="btn menu-btn" target="_blank" rel="noopener" href="'+x.menu+'">📖 Меню</a>';
   if(x.phone) html += '<a class="btn call" href="tel:'+x.phone.replace(/\s/g,'')+'">📞 '+esc(x.phone)+'</a>';
@@ -752,7 +737,7 @@ function settings(){
       '<div><b>Сбросить всё</b><div class="muted">Заметки, фото, расходы, отметки</div></div>' +
       '<button class="btn" style="background:#fee2e2;color:#991b1b" onclick="if(confirm(\'Точно сбросить ВСЕ данные?\'))resetAll()">Сбросить</button>' +
     '</div>' +
-    '<p class="muted" style="margin-top:16px">Версия 2.6 · офлайн-режим включён</p>');
+    '<p class="muted" style="margin-top:16px">Версия 2.7 · офлайн-режим включён</p>');
 }
 function setTheme(v){ store.set("theme", v); applyTheme(); }
 async function refreshWeather(){
@@ -802,14 +787,14 @@ function checkNotifications(){
 
 function maps(){
   let html = '<h2>🗺️ Маршруты дня '+cur+'</h2>' +
-    '<p class="muted">Нажми — построить маршрут от своего местоположения. Или открой карточку места.</p>';
+    '<p class="muted">Нажми на пункт — построить маршрут от тебя.</p>';
   D[cur].filter(x=>x.dest).forEach(x=>{
     html += '<div style="margin:10px 0;padding:10px;background:var(--route-bg);border-radius:10px">' +
       '<div style="font-weight:700;margin-bottom:6px">'+x.time+' — '+esc(x.title)+'</div>' +
       '<div style="display:flex;gap:6px;flex-wrap:wrap">' +
-        '<a class="btn walk-btn" target="_blank" rel="noopener" href="'+routeUrl(x.dest,'pd')+'">🚶 Пешком от меня</a>' +
-        '<a class="btn transit-btn" target="_blank" rel="noopener" href="'+routeUrl(x.dest,'mt')+'">🚇 Транспорт от меня</a>' +
-        (x.map ? '<a class="btn map" target="_blank" rel="noopener" href="'+x.map+'">🗺️ Открыть место</a>' : '') +
+        '<a class="btn walk-btn" target="_blank" rel="noopener" href="'+routeUrl(x.dest,'pd')+'">🚶 Пешком</a>' +
+        '<a class="btn transit-btn" target="_blank" rel="noopener" href="'+routeUrl(x.dest,'mt')+'">🚇 Транспорт</a>' +
+        (x.map ? '<a class="btn map" target="_blank" rel="noopener" href="'+x.map+'">🗺️ Место</a>' : '') +
       '</div></div>';
   });
   open(html);
