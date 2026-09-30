@@ -212,7 +212,7 @@ input:checked+.slider:before{transform:translateX(20px)}
 
 <script>
 /* =========================================================
-   ДАННЫЕ МАРШРУТА — v2.9
+   ДАННЫЕ МАРШРУТА — v3.0
    ========================================================= */
 const D = {
 1:[
@@ -231,10 +231,10 @@ const D = {
 {time:"09:00",title:"🥐 Завтрак",note:"Включён в отеле."},
 {time:"10:15",title:"🚇 Переезд в Москва-Сити",note:"Сокольники → Деловой центр.",dest:"Москва-Сити, Пресненская набережная, Москва",metroStops:[{n:"Сокольники",c:"#ef4444"},{n:"Библиотека им. Ленина",c:"#ef4444"},{n:"Арбатская",c:"#1e40af",transfer:true},{n:"Выставочная",c:"#22c55e"},{n:"Деловой центр",c:"#22c55e"}],metro:"Сокольники → Библиотека им. Ленина (7 ост.) → Арбатская → Выставочная → Деловой центр. ≈40 мин.",walk:"≈11 км, ≈2 ч 20 мин — не рекомендуется."},
 {time:"11:00",title:"🌆 PANORAMA360",note:"89 этаж. Купить билет заранее.",addr:"Пресненская наб., 12",dest:"PANORAMA360, Пресненская набережная 12, Москва",menu:"https://pnr360.ru/",metro:"От Делового центра — пешком внутри Сити.",walk:"≈400 м внутри Сити, ≈5 мин.",map:"https://yandex.ru/maps/org/panorama360/8131993535",buy:"https://pnr360.ru/"},
-{time:"13:30",title:"🍽️ Афимолл Сити",note:"Обед.",dest:"Афимолл Сити, Пресненская набережная, Москва",metro:"Пешком внутри Сити.",walk:"≈200 м от PANORAMA360, ≈3 мин."},
-{time:"14:40",title:"🚇 Выставочная → Баррикадная",note:"Метро.",dest:"Московский Планетарий, Садовая-Кудринская 5с1, Москва",metro:"Выставочная → Киевская (Филевская, 2 ост.) → Краснопресненская (Кольцевая, 3 ост.) → пешком. ≈25 мин.",walk:"≈4 км, ≈55 мин.",map:"https://yandex.ru/maps/?rtext=Выставочная%20метро~Баррикадная%20метро"},
+{time:"13:30",title:"🍽️ Афимолл Сити",note:"Обед.",addr:"Пресненская наб., 2",dest:"Афимолл Сити, Пресненская набережная 2, Москва",metro:"Пешком внутри Сити.",walk:"≈200 м от PANORAMA360, ≈3 мин.",map:"https://yandex.ru/maps/org/afimoll/1053343558"},
+{time:"14:40",title:"🚇 Выставочная → Баррикадная",note:"Метро.",dest:"Московский Планетарий, Садовая-Кудринская 5с1, Москва",metro:"Выставочная → Киевская (Филевская, 2 ост.) → Краснопресненская (Кольцевая, 3 ост.) → пешком. ≈25 мин.",walk:"≈4 км, ≈55 мин."},
 {time:"15:00",title:"🌌 Московский Планетарий — Лунариум",note:"Интерактивный музей. Купить онлайн.",addr:"Садовая-Кудринская ул., 5, стр. 1",phone:"+7 495 221 76 90",dest:"Московский Планетарий, Садовая-Кудринская 5с1, Москва",metro:"От Баррикадной — пешком.",walk:"≈400 м от метро, ≈5 мин.",map:"https://yandex.ru/maps/org/moskovskiy_planetariy/1085926055",buy:"https://planetarium-moscow.ru/"},
-{time:"18:30",title:"🍽️ Хачапури и вино",note:"Ужин рядом с Планетарием. Альтернатива Bella Pasta.",addr:"Садовая-Кудринская ул., 8",dest:"Хачапури и вино, Садовая-Кудринская 8, Москва",menu:"https://yandex.ru/maps/?text=Хачапури%20и%20вино%20Садовая-Кудринская%208",metro:"Метро не нужно — пешком от Планетария.",walk:"≈500 м, ≈7 мин.",map:"https://yandex.ru/maps/?text=Хачапури%20и%20вино%20Садовая-Кудринская%208"},
+{time:"18:30",title:"🍽️ Osteria Mario",note:"Ужин рядом с Планетарием. Вместо Bella Pasta.",addr:"Баррикадная ул., 21/34с3",dest:"Osteria Mario, Баррикадная 21/34с3, Москва",menu:"https://yandex.ru/maps/org/osteria_mario/98278679666",metro:"Метро не нужно — пешком от Планетария.",walk:"≈600 м, ≈8 мин.",map:"https://yandex.ru/maps/org/osteria_mario/98278679666"},
 {time:"20:00",title:"🏊 Отель / бассейн",note:"Разгрузка после насыщенного дня.",dest:"Holiday Inn Сокольники, Русаковская 24, Москва",metro:"Баррикадная → Краснопресненская → Комсомольская → Сокольники. ≈30 мин.",walk:"≈12 км — не рекомендуется.",map:"https://yandex.ru/maps/org/holiday_inn_moscow_sokolniki/1747106447/"}
 ],
 3:[
@@ -253,7 +253,7 @@ const D = {
 {time:"09:40",title:"❤️ Красная площадь",note:"Манежная → Красная площадь → ГУМ → Никольская.",dest:"Красная площадь, Москва",metro:"Сокольники → Охотный ряд (6 ост.), далее пешком. ≈20 мин.",walk:"≈10 км, ≈2 ч — не рекомендуется.",map:"https://yandex.ru/maps/?text=Красная%20площадь%20Москва"},
 {time:"11:30",title:"🧸 ЦДМ",note:"Сувенир перед поездом.",addr:"Театральный пр., 5/1",dest:"Центральный детский магазин, Театральный проезд 5, Москва",metro:"Охотный ряд → Лубянка (1 ост.). ≈5 мин.",walk:"≈1,5 км от Красной площади, ≈20 мин.",map:"https://yandex.ru/maps/?text=Центральный%20детский%20магазин%20Лубянка"},
 {time:"11:45",title:"🍖 Ресторан-гриль «Борго»",note:"Сокольники, забрать вещи и пообедать.",addr:"2-й Полевой переулок, 2",phone:"+7 495 728-08-82",dest:"Ресторан-гриль Борго, 2-й Полевой переулок 2, Москва",menu:"https://borgocafe.ru/",metro:"Лубянка → Сокольники (красная, 4 ост.). ≈15 мин.",walk:"≈9 км — не рекомендуется.",map:"https://yandex.ru/maps/?text=Борго%202-й%20Полевой%20переулок%202"},
-{time:"12:35",title:"🚇 Сокольники → Восточный вокзал",note:"Переезд к поезду.",dest:"Восточный вокзал, Щёлковское ш., 1, стр. 5, Москва",metroStops:[{n:"Сокольники",c:"#ef4444"},{n:"Черкизовская",c:"#ef4444"}],metro:"Сокольники → Черкизовская (2 ост.) + пешком ≈700 м. Или МЦК Сокольники → Локомотив (1 ост.) + ≈500 м. ≈15 мин.",walk:"≈3,5 км, ≈45 мин.",map:"https://yandex.ru/maps/org/vostochny_vokzal_cherkizovo/84701147661"},
+{time:"12:35",title:"🚇 Сокольники → Восточный вокзал",note:"Переезд к поезду.",dest:"Восточный вокзал, Щёлковское ш., 1, стр. 5, Москва",metroStops:[{n:"Сокольники",c:"#ef4444"},{n:"Черкизовская",c:"#ef4444"}],metro:"Сокольники → Черкизовская (2 ост.) + пешком ≈700 м. Или МЦК Сокольники → Локомотив (1 ост.) + ≈500 м. ≈15 мин.",walk:"≈3,5 км, ≈45 мин."},
 {time:"13:45",title:"🚆 Отправление поезда №704",note:"Восточный вокзал → Нижний Новгород. Прибытие 17:46.",addr:"Щёлковское ш., 1, стр. 5",vehicle:{train:"704",from:"Москва Восточный",to:"Нижний Новгород"},map:"https://yandex.ru/maps/org/vostochny_vokzal_cherkizovo/84701147661"}
 ]};
 
@@ -265,7 +265,6 @@ const T=[
 {k:"ramen",name:"RA'MEN",when:"27.10 • около 18:15",url:"https://www.ramen.moscow/"}
 ];
 
-/* Список вещей для сбора */
 const PACKING_DEFAULT = [
   {cat:"Документы", items:["Паспорта всех членов семьи","Свидетельства о рождении (для ребёнка)","Полис ОМС","Распечатки билетов на поезд","Бронь отеля","Деньги / банковские карты","Страховка (если есть)"]},
   {cat:"Электроника", items:["Зарядки телефонов","Повербанк","Наушники","Кабель USB-C / Lightning","Фотоаппарат + карта памяти"]},
@@ -320,7 +319,6 @@ function applyTheme(){
 applyTheme();
 matchMedia("(prefers-color-scheme:dark)").addEventListener("change", applyTheme);
 
-/* ====== ПОГОДА ====== */
 const WCODE = {
   0:["☀️","Ясно"],1:["🌤","Преим. ясно"],2:["⛅","Переменно"],3:["☁️","Пасмурно"],
   45:["🌫","Туман"],48:["🌫","Изморозь"],
@@ -372,8 +370,7 @@ async function loadWeather(){
     const daysUntil = Math.ceil((new Date(2026,9,25) - new Date())/86400000);
     if(daysUntil > 16){
       try{ await loadClimate(); }catch(e){ normFallback(); }
-      loadHourly();
-      return;
+      loadHourly(); return;
     }
     try{
       const r = await fetch("https://api.open-meteo.com/v1/forecast?latitude=55.7558&longitude=37.6173&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=Europe/Moscow&start_date=2026-10-25&end_date=2026-10-28");
@@ -404,11 +401,7 @@ async function loadHourly(){
 }
 function paintWeather(){
   if(!WEATHER || !WEATHER.data || !WEATHER.data.daily){ weatherPlaceholder("Нет данных о погоде","🌡"); return; }
-  const label = WEATHER.kind==="forecast"
-    ? ""
-    : (WEATHER.kind==="climate"
-        ? ' <span style="opacity:.7;font-weight:400">· климат. норма</span>'
-        : ' <span style="opacity:.7;font-weight:400">· ориентировочно</span>');
+  const label = WEATHER.kind==="forecast" ? "" : (WEATHER.kind==="climate" ? ' <span style="opacity:.7;font-weight:400">· климат. норма</span>' : ' <span style="opacity:.7;font-weight:400">· ориентировочно</span>');
   for(let d=1; d<=4; d++){
     const el = document.getElementById("w-day-"+d);
     if(!el) continue;
@@ -444,17 +437,12 @@ function paintHours(){
       const w = WCODE[codes[idx]] || ["",""];
       const icon = w[0];
       const pp = rain[idx] || 0;
-      html += '<div class="h '+(pp>=40?'rainy':'')+'">' +
-        '<div class="t">'+h.toString().padStart(2,"0")+':00</div>' +
-        '<div class="deg">'+Math.round(temps[idx])+'°</div>' +
-        '<div class="pp">'+icon+' '+(pp?pp+'%':'')+'</div>' +
-      '</div>';
+      html += '<div class="h '+(pp>=40?'rainy':'')+'"><div class="t">'+h.toString().padStart(2,"0")+':00</div><div class="deg">'+Math.round(temps[idx])+'°</div><div class="pp">'+icon+' '+(pp?pp+'%':'')+'</div></div>';
     }
     el.innerHTML = html || '<span class="muted">Нет данных по часам</span>';
   }
 }
 
-/* ====== ОБРАТНЫЙ ОТСЧЁТ + ПЛАШКА ====== */
 function updateCountdown(){
   const el = document.getElementById("countdown");
   if(!el) return;
@@ -502,21 +490,13 @@ function updateBadge(){
   else navigator.clearAppBadge().catch(()=>{});
 }
 
-/* ====== РЕНДЕР ====== */
 function render(){
   let out = "";
   for(let d=1; d<=4; d++){
     let items = D[d].map((x,i)=>renderItem(d,i,x)).join("");
     const title = d===1?'🎂 День рождения':d===2?'🏙️ Москва-Сити + Планетарий':d===3?'⚛️ АТОМ + Бункер-42 + RA’MEN':'❤️ Красная площадь + ЦДМ';
     const sub = d===1?'Прибытие → отель → РГДБ → Парк Горького → ужин':d===2?'Высота → Лунариум → ужин → бассейн':d===3?'Наука → секретная миссия → аниме-ужин':'Москва → покупки → поезд';
-    out += '<section class="day' + (d===1?' active':'') + '" id="d'+d+'">' +
-      '<div class="summary">' +
-        '<h2>' + title + '</h2>' +
-        '<div class="muted">' + sub + '</div>' +
-        '<div class="weather" id="w-day-'+d+'"></div>' +
-        '<div class="hours" id="h-day-'+d+'"></div>' +
-        '<div class="progress"><i id="p'+d+'"></i></div>' +
-      '</div>' + items + '</section>';
+    out += '<section class="day' + (d===1?' active':'') + '" id="d'+d+'"><div class="summary"><h2>'+title+'</h2><div class="muted">'+sub+'</div><div class="weather" id="w-day-'+d+'"></div><div class="hours" id="h-day-'+d+'"></div><div class="progress"><i id="p'+d+'"></i></div></div>'+items+'</section>';
   }
   $("#days").innerHTML = out;
   if(!WEATHER || !WEATHER.data) weatherPlaceholder("Загрузка прогноза…");
@@ -547,18 +527,8 @@ function renderItem(d,i,x){
   let routeBox = "";
   if(x.dest && (x.metro || x.walk)){
     routeBox += '<div class="route-box">';
-    if(x.metro){
-      routeBox += '<a class="route-line" href="'+routeUrl(x.dest,'mt')+'" target="_blank" rel="noopener">' +
-        '<div class="head">🚇 На транспорте</div>' +
-        '<div class="text">'+esc(x.metro)+'</div>' +
-        '<span class="arrow">›</span></a>';
-    }
-    if(x.walk){
-      routeBox += '<a class="route-line walk" href="'+routeUrl(x.dest,'pd')+'" target="_blank" rel="noopener">' +
-        '<div class="head">🚶 Пешком</div>' +
-        '<div class="text">'+esc(x.walk)+'</div>' +
-        '<span class="arrow">›</span></a>';
-    }
+    if(x.metro) routeBox += '<a class="route-line" href="'+routeUrl(x.dest,'mt')+'" target="_blank" rel="noopener"><div class="head">🚇 На транспорте</div><div class="text">'+esc(x.metro)+'</div><span class="arrow">›</span></a>';
+    if(x.walk) routeBox += '<a class="route-line walk" href="'+routeUrl(x.dest,'pd')+'" target="_blank" rel="noopener"><div class="head">🚶 Пешком</div><div class="text">'+esc(x.walk)+'</div><span class="arrow">›</span></a>';
     routeBox += '</div>';
   } else if(x.metro || x.walk){
     routeBox = '<div class="route-box">';
@@ -611,16 +581,14 @@ function saveVehicle(k, field, v){
 }
 function showTrainTicket(vk, train, from, to, time){
   const data = JSON.parse(store.get(vk) || "{}");
-  open('<h2>🎫 Билет на поезд</h2>' +
-    '<div class="ticket-big">' +
+  open('<h2>🎫 Билет на поезд</h2><div class="ticket-big">' +
       '<div class="r"><span>Поезд</span><b>№'+esc(train)+'</b></div>' +
       '<div class="r"><span>Отправление</span><b>'+esc(time)+'</b></div>' +
       '<div class="r"><span>Откуда</span><b>'+esc(from)+'</b></div>' +
       '<div class="r"><span>Куда</span><b>'+esc(to)+'</b></div>' +
       '<div class="r"><span>Вагон</span><b>'+(esc(data.wagon)||"—")+'</b></div>' +
       '<div class="r"><span>Место</span><b>'+(esc(data.seat)||"—")+'</b></div>' +
-    '</div>' +
-    '<p class="muted" style="text-align:center;margin-top:12px">Покажите проводнику крупно.</p>');
+    '</div><p class="muted" style="text-align:center;margin-top:12px">Покажите проводнику крупно.</p>');
 }
 
 async function paintPhotos(){
@@ -662,12 +630,7 @@ function progress(){
 async function editNote(d,i){
   const k = key(d,i);
   const current = store.get("note-"+k) || "";
-  open('<h2>📝 Заметка</h2><p class="muted">'+esc(D[d][i].title)+'</p>' +
-    '<textarea id="noteArea" placeholder="Например: понравилось, купили магнитик...">'+esc(current)+'</textarea>' +
-    '<div class="actions" style="margin-top:12px">' +
-      '<button class="btn buy" onclick="saveNote('+d+','+i+')">Сохранить</button>' +
-      '<button class="btn" onclick="delNote('+d+','+i+')">Удалить</button>' +
-    '</div>');
+  open('<h2>📝 Заметка</h2><p class="muted">'+esc(D[d][i].title)+'</p><textarea id="noteArea" placeholder="Например: понравилось, купили магнитик...">'+esc(current)+'</textarea><div class="actions" style="margin-top:12px"><button class="btn buy" onclick="saveNote('+d+','+i+')">Сохранить</button><button class="btn" onclick="delNote('+d+','+i+')">Удалить</button></div>');
 }
 function saveNote(d,i){
   const k = key(d,i);
@@ -700,10 +663,7 @@ function removePhoto(d,i,id){
   closeM();
 }
 function openPhoto(url, onDelete){
-  open('<img src="'+url+'" style="width:100%;border-radius:12px">' +
-    '<div class="actions" style="margin-top:12px">' +
-      '<button class="btn" style="background:#fee2e2;color:#991b1b" id="delPhoto">🗑 Удалить</button>' +
-    '</div>');
+  open('<img src="'+url+'" style="width:100%;border-radius:12px"><div class="actions" style="margin-top:12px"><button class="btn" style="background:#fee2e2;color:#991b1b" id="delPhoto">🗑 Удалить</button></div>');
   document.getElementById("delPhoto").onclick = onDelete;
 }
 function resize(file, maxSide){
@@ -720,81 +680,52 @@ function resize(file, maxSide){
   });
 }
 
-/* ====== БИЛЕТЫ ====== */
 function tickets(){
-  let html = '<h2>🎟️ Билеты и брони</h2>' +
-    '<p class="muted">Отметьте галочкой, когда билет на руках, и впишите номер брони — он появится в QR-виде.</p>';
+  let html = '<h2>🎟️ Билеты и брони</h2><p class="muted">Отметьте галочкой, когда билет на руках, и впишите номер брони.</p>';
   T.forEach(t=>{
     const on = store.get("t-"+t.k) ? "checked" : "";
     const bk = store.get("booking-"+t.k) || "";
-    html += '<div class="ticket">' +
-      '<label style="flex:1">' +
-        '<input type="checkbox" '+on+' onchange="store.set(\'t-'+t.k+'\',this.checked?\'1\':\'\');ticketsInfo()">' +
-        '<b>'+t.name+'</b><br><span class="muted">'+t.when+'</span>' +
-      '</label>' +
-      '<a class="btn buy" target="_blank" rel="noopener" href="'+t.url+'">Открыть</a>' +
-    '</div>' +
-    '<div class="booking-row">' +
-      '<input type="text" placeholder="Номер брони / QR" value="'+esc(bk)+'" onchange="store.set(\'booking-'+t.k+'\',this.value);renderBookings()">' +
-      (bk ? '<button class="btn" onclick="showQR(\''+esc(bk)+'\',\''+esc(t.name)+'\')">🔳 QR</button>' : '') +
-    '</div>';
+    html += '<div class="ticket"><label style="flex:1"><input type="checkbox" '+on+' onchange="store.set(\'t-'+t.k+'\',this.checked?\'1\':\'\');ticketsInfo()"><b>'+t.name+'</b><br><span class="muted">'+t.when+'</span></label><a class="btn buy" target="_blank" rel="noopener" href="'+t.url+'">Открыть</a></div>' +
+      '<div class="booking-row"><input type="text" placeholder="Номер брони / QR" value="'+esc(bk)+'" onchange="store.set(\'booking-'+t.k+'\',this.value);renderBookings()">' +
+      (bk ? '<button class="btn" onclick="showQR(\''+esc(bk)+'\',\''+esc(t.name)+'\')">🔳 QR</button>' : '') + '</div>';
   });
   open(html);
 }
 function renderBookings(){ render(); paintPhotos(); tickets(); }
 function showQR(data, title){
   const url = "https://api.qrserver.com/v1/create-qr-code/?size=280x280&data="+encodeURIComponent(data);
-  open('<h2>🔳 '+esc(title)+'</h2>' +
-    '<p class="muted">Покажите QR на входе или назовите номер.</p>' +
-    '<div style="text-align:center;margin:14px 0"><img src="'+url+'" style="max-width:280px;width:100%;border-radius:12px;background:#fff;padding:10px"></div>' +
-    '<div style="text-align:center;font-family:monospace;font-size:16px;font-weight:700;word-break:break-all">'+esc(data)+'</div>' +
-    '<p class="muted" style="text-align:center;margin-top:10px">⚠ QR требует интернет. Номер — всегда виден.</p>');
+  open('<h2>🔳 '+esc(title)+'</h2><p class="muted">Покажите QR на входе.</p><div style="text-align:center;margin:14px 0"><img src="'+url+'" style="max-width:280px;width:100%;border-radius:12px;background:#fff;padding:10px"></div><div style="text-align:center;font-family:monospace;font-size:16px;font-weight:700;word-break:break-all">'+esc(data)+'</div>');
 }
 function ticketsInfo(){
   const n = T.filter(t=>store.get("t-"+t.k)).length;
   const el = document.getElementById("tc"); if(el) el.textContent = n+"/5";
 }
 
-/* ====== ВЕЩИ ====== */
 function getAllPacking(){
   const custom = JSON.parse(store.get("packing-custom") || "[]");
   const saved = JSON.parse(store.get("packing-state") || "{}");
   const cats = PACKING_DEFAULT.map(c=>({cat:c.cat, items:c.items.map(t=>({text:t, checked: !!saved["d-"+t]}))}));
-  if(custom.length){
-    cats.push({cat:"Своё", items: custom.map(t=>({text:t, checked: !!saved["c-"+t], custom:true}))});
-  }
+  if(custom.length) cats.push({cat:"Своё", items: custom.map(t=>({text:t, checked: !!saved["c-"+t], custom:true}))});
   return cats;
 }
 function packing(){
   const cats = getAllPacking();
-  let html = '<h2>🧳 Список вещей</h2>' +
-    '<p class="muted">Отмечайте собранное. Ваши пункты сохраняются.</p>';
+  let html = '<h2>🧳 Список вещей</h2><p class="muted">Отмечайте собранное.</p>';
   cats.forEach(c=>{
     html += '<div class="pack-cat">'+esc(c.cat)+'</div>';
     c.items.forEach(it=>{
       const key = (it.custom?'c-':'d-') + it.text;
-      html += '<label class="pack-item '+(it.checked?'done':'')+'">' +
-        '<input type="checkbox" '+(it.checked?'checked':'')+' onchange="togglePack(\''+esc(key).replace(/'/g,"\\'")+'\',this.checked,this)">' +
-        '<span>'+esc(it.text)+'</span>' +
-        (it.custom ? '<button class="x" onclick="delPack(\''+esc(it.text).replace(/'/g,"\\'")+'\');event.preventDefault();">✕</button>' : '') +
-      '</label>';
+      html += '<label class="pack-item '+(it.checked?'done':'')+'"><input type="checkbox" '+(it.checked?'checked':'')+' onchange="togglePack(\''+esc(key).replace(/'/g,"\\'")+'\',this.checked,this)"><span>'+esc(it.text)+'</span>' + (it.custom ? '<button class="x" onclick="delPack(\''+esc(it.text).replace(/'/g,"\\'")+'\');event.preventDefault();">✕</button>' : '') + '</label>';
     });
   });
-  html += '<div class="field" style="margin-top:16px"><label>Добавить свой пункт</label>' +
-    '<div style="display:flex;gap:6px">' +
-      '<input type="text" id="newPack" placeholder="Например: подушка для ребёнка">' +
-      '<button class="btn buy" onclick="addPack()" style="white-space:nowrap">➕</button>' +
-    '</div></div>';
+  html += '<div class="field" style="margin-top:16px"><label>Добавить свой пункт</label><div style="display:flex;gap:6px"><input type="text" id="newPack" placeholder="Например: подушка для ребёнка"><button class="btn buy" onclick="addPack()" style="white-space:nowrap">➕</button></div></div>';
   open(html);
 }
 function togglePack(k, val, el){
   const saved = JSON.parse(store.get("packing-state") || "{}");
   if(val) saved[k] = 1; else delete saved[k];
   store.set("packing-state", JSON.stringify(saved));
-  if(el){
-    const label = el.closest(".pack-item");
-    if(label) label.classList.toggle("done", val);
-  }
+  if(el){ const label = el.closest(".pack-item"); if(label) label.classList.toggle("done", val); }
   packingInfo();
 }
 function addPack(){
@@ -820,7 +751,6 @@ function packingInfo(){
   const el = document.getElementById("pk"); if(el) el.textContent = done+"/"+total;
 }
 
-/* ====== РАСХОДЫ ====== */
 function expenses(){
   const total = parseInt(store.get("budget")||"0",10) || 0;
   const list = JSON.parse(store.get("expenses")||"[]");
@@ -828,25 +758,9 @@ function expenses(){
   const left = total - spent;
   const pct = total>0 ? Math.min(100, spent/total*100) : 0;
   const cls = left<0 ? "over" : (pct>80 ? "warn" : "");
-  let html = '<h2>💰 Расходы</h2>' +
-    '<div class="field"><label>Общий бюджет, ₽</label>' +
-      '<input type="number" id="budgetInp" value="'+(total||"")+'" placeholder="например 35000" onchange="saveBudget(this.value)"></div>' +
-    '<div class="summary-box">Потрачено: <span style="color:var(--accent)">'+spent.toLocaleString("ru-RU")+' ₽</span><br>' +
-      'Осталось: <b>'+left.toLocaleString("ru-RU")+' ₽</b>' +
-      '<div class="bar"><i class="'+cls+'" style="width:'+pct+'%"></i></div></div>' +
-    '<div class="field"><label>Добавить расход</label>' +
-      '<input type="text" id="expName" placeholder="Название (такси, обед...)">' +
-      '<input type="number" id="expAmt" placeholder="Сумма, ₽" style="margin-top:6px">' +
-      '<button class="btn buy" style="margin-top:8px" onclick="addExpense()">➕ Добавить</button></div>' +
-    '<div style="margin-top:12px">';
-  if(list.length===0){ html += '<p class="muted">Пока пусто.</p>'; }
-  else {
-    list.forEach((x,i)=>{
-      html += '<div class="exp"><span>'+esc(x.name)+'</span>' +
-        '<span><b>'+Number(x.amount).toLocaleString("ru-RU")+' ₽</b>' +
-        '<button class="x" onclick="delExpense('+i+')">✕</button></span></div>';
-    });
-  }
+  let html = '<h2>💰 Расходы</h2><div class="field"><label>Общий бюджет, ₽</label><input type="number" id="budgetInp" value="'+(total||"")+'" placeholder="например 35000" onchange="saveBudget(this.value)"></div><div class="summary-box">Потрачено: <span style="color:var(--accent)">'+spent.toLocaleString("ru-RU")+' ₽</span><br>Осталось: <b>'+left.toLocaleString("ru-RU")+' ₽</b><div class="bar"><i class="'+cls+'" style="width:'+pct+'%"></i></div></div><div class="field"><label>Добавить расход</label><input type="text" id="expName" placeholder="Название (такси, обед...)"><input type="number" id="expAmt" placeholder="Сумма, ₽" style="margin-top:6px"><button class="btn buy" style="margin-top:8px" onclick="addExpense()">➕ Добавить</button></div><div style="margin-top:12px">';
+  if(list.length===0) html += '<p class="muted">Пока пусто.</p>';
+  else list.forEach((x,i)=>{ html += '<div class="exp"><span>'+esc(x.name)+'</span><span><b>'+Number(x.amount).toLocaleString("ru-RU")+' ₽</b><button class="x" onclick="delExpense('+i+')">✕</button></span></div>'; });
   html += '</div>';
   open(html);
 }
@@ -868,22 +782,15 @@ function delExpense(i){
 function expensesInfo(){
   const list = JSON.parse(store.get("expenses")||"[]");
   const spent = list.reduce((s,x)=>s+Number(x.amount||0),0);
-  const el = document.getElementById("exc");
-  if(el) el.textContent = spent ? spent.toLocaleString("ru-RU")+" ₽" : "0 ₽";
+  const el = document.getElementById("exc"); if(el) el.textContent = spent ? spent.toLocaleString("ru-RU")+" ₽" : "0 ₽";
 }
 
-/* ====== ДНЕВНИК ====== */
 function diary(d){
   const k = "diary-"+d;
   const data = JSON.parse(store.get(k)||'{"rating":0,"text":""}');
   let stars = "";
   for(let n=1;n<=5;n++) stars += '<span class="star '+(n<=data.rating?'on':'')+'" data-n="'+n+'">★</span>';
-  open('<h2>📔 Дневник дня '+d+'</h2>' +
-    '<p class="muted">Как прошёл день? Что запомнилось?</p>' +
-    '<div class="field"><label>Оценка дня</label><div class="stars" id="stars">'+stars+'</div></div>' +
-    '<div class="field"><label>Впечатления</label>' +
-      '<textarea id="diaryText" placeholder="Что понравилось? Что удивило?">'+esc(data.text)+'</textarea></div>' +
-    '<div class="actions"><button class="btn buy" onclick="saveDiary('+d+')">Сохранить</button></div>');
+  open('<h2>📔 Дневник дня '+d+'</h2><p class="muted">Как прошёл день?</p><div class="field"><label>Оценка дня</label><div class="stars" id="stars">'+stars+'</div></div><div class="field"><label>Впечатления</label><textarea id="diaryText" placeholder="Что понравилось?">'+esc(data.text)+'</textarea></div><div class="actions"><button class="btn buy" onclick="saveDiary('+d+')">Сохранить</button></div>');
   $$("#stars .star").forEach(s=>s.onclick=()=>{
     const n = +s.dataset.n;
     $$("#stars .star").forEach(x=>x.classList.toggle("on", +x.dataset.n <= n));
@@ -898,33 +805,15 @@ function saveDiary(d){
 }
 function diaryInfo(){
   const done = [1,2,3,4].filter(d=>{ const x = JSON.parse(store.get("diary-"+d)||"null"); return x && (x.rating||x.text); }).length;
-  const el = document.getElementById("di");
-  if(el) el.textContent = done ? "заполнено "+done+"/4" : "оценить день";
+  const el = document.getElementById("di"); if(el) el.textContent = done ? "заполнено "+done+"/4" : "оценить день";
 }
 
-/* ====== НАСТРОЙКИ ====== */
 function settings(){
   const theme = store.get("theme") || "auto";
   const bk = store.get("booking-hotel") || "";
   const notif = store.get("notif") === "1";
   const notifPerm = ("Notification" in window) ? Notification.permission : "unsupported";
-  open('<h2>⚙️ Настройки</h2>' +
-    '<div class="row"><div><b>Тёмная тема</b><div class="muted">Авто / светлая / тёмная</div></div>' +
-      '<select onchange="setTheme(this.value)" style="padding:8px;border-radius:8px;border:1px solid var(--input-border);background:var(--input-bg);color:var(--text)">' +
-        '<option value="auto" '+(theme==="auto"?"selected":"")+'>Авто</option>' +
-        '<option value="light" '+(theme==="light"?"selected":"")+'>Светлая</option>' +
-        '<option value="dark" '+(theme==="dark"?"selected":"")+'>Тёмная</option>' +
-      '</select></div>' +
-    '<div class="row"><div><b>Номер брони отеля</b><div class="muted">Holiday Inn Сокольники</div></div></div>' +
-    '<input type="text" value="'+esc(bk)+'" placeholder="например 12345678" onchange="store.set(\'booking-hotel\',this.value);renderBookings()">' +
-    '<div class="row" style="margin-top:14px">' +
-      '<div><b>Уведомления</b><div class="muted">'+(notifPerm==="denied"?"Отклонено":notifPerm==="unsupported"?"Не поддерживается":"За 20 минут до события")+'</div></div>' +
-      '<label class="switch"><input type="checkbox" '+(notif?"checked":"")+' onchange="toggleNotif(this.checked)"><span class="slider"></span></label></div>' +
-    '<div class="row"><div><b>Погода</b><div class="muted">Раз в 3 часа</div></div>' +
-      '<button class="btn" onclick="refreshWeather()">🔄 Обновить</button></div>' +
-    '<div class="row"><div><b>Сбросить всё</b><div class="muted">Заметки, фото, расходы, отметки</div></div>' +
-      '<button class="btn" style="background:#fee2e2;color:#991b1b" onclick="if(confirm(\'Точно сбросить ВСЕ данные?\'))resetAll()">Сбросить</button></div>' +
-    '<p class="muted" style="margin-top:16px">Версия 2.9 · офлайн-режим включён</p>');
+  open('<h2>⚙️ Настройки</h2><div class="row"><div><b>Тёмная тема</b></div><select onchange="setTheme(this.value)" style="padding:8px;border-radius:8px;border:1px solid var(--input-border);background:var(--input-bg);color:var(--text)"><option value="auto" '+(theme==="auto"?"selected":"")+'>Авто</option><option value="light" '+(theme==="light"?"selected":"")+'>Светлая</option><option value="dark" '+(theme==="dark"?"selected":"")+'>Тёмная</option></select></div><div class="row"><div><b>Номер брони отеля</b><div class="muted">Holiday Inn Сокольники</div></div></div><input type="text" value="'+esc(bk)+'" placeholder="например 12345678" onchange="store.set(\'booking-hotel\',this.value);renderBookings()"><div class="row" style="margin-top:14px"><div><b>Уведомления</b><div class="muted">'+(notifPerm==="denied"?"Отклонено":notifPerm==="unsupported"?"Не поддерживается":"За 20 минут до события")+'</div></div><label class="switch"><input type="checkbox" '+(notif?"checked":"")+' onchange="toggleNotif(this.checked)"><span class="slider"></span></label></div><div class="row"><div><b>Погода</b></div><button class="btn" onclick="refreshWeather()">🔄 Обновить</button></div><div class="row"><div><b>Сбросить всё</b></div><button class="btn" style="background:#fee2e2;color:#991b1b" onclick="if(confirm(\'Точно сбросить?\'))resetAll()">Сбросить</button></div><p class="muted" style="margin-top:16px">Версия 3.0 · офлайн-режим включён</p>');
 }
 function setTheme(v){ store.set("theme", v); applyTheme(); }
 async function refreshWeather(){
@@ -939,7 +828,6 @@ function resetAll(){
   location.reload();
 }
 
-/* ====== УВЕДОМЛЕНИЯ ====== */
 function toggleNotif(on){
   if(on && !("Notification" in window)){ alert("Уведомления не поддерживаются"); return; }
   if(on){
@@ -962,15 +850,11 @@ function checkNotifications(){
     const diff = t - now;
     const k = "notified-"+dayN+"-"+i;
     if(diff > 0 && diff <= 20*60*1000 && !store.get(k)){
-      try{
-        new Notification("Скоро: "+item.title, { body: item.time+" — пора выезжать", tag: k });
-        store.set(k, "1");
-      }catch(e){}
+      try{ new Notification("Скоро: "+item.title, { body: item.time+" — пора выезжать", tag: k }); store.set(k, "1"); }catch(e){}
     }
   });
 }
 
-/* ====== МЕТРО ОФЛАЙН ====== */
 const METRO_LINES = [
   {name:"Сокольническая (1)", color:"#ef4444", badge:"1", stations:["Черкизовская","Сокольники","Комсомольская","Красносельская","Лубянка","Охотный ряд","Библиотека им. Ленина","Кропоткинская","Парк Культуры"]},
   {name:"Кольцевая (5)", color:"#a16207", badge:"5", stations:["Комсомольская","Курская","Таганская","Павелецкая","Добрынинская","Октябрьская","Парк Культуры","Киевская","Краснопресненская","Белорусская","Новослободская","Проспект Мира"]},
@@ -981,38 +865,24 @@ const METRO_LINES = [
   {name:"МЦК", color:"#ef4444", badge:"МЦК", stations:["Локомотив","Сокольники","Черкизовская"]}
 ];
 function metroOffline(){
-  let html = '<h2>🚇 Схема метро</h2>' +
-    '<p class="muted">Только линии и станции из нашего маршрута. Работает офлайн.</p>';
+  let html = '<h2>🚇 Схема метро</h2><p class="muted">Только линии и станции из нашего маршрута. Работает офлайн.</p>';
   METRO_LINES.forEach(l=>{
-    html += '<div class="metro-card">' +
-      '<div class="ttl"><span class="badge" style="background:'+l.color+'">'+l.badge+'</span>'+l.name+'</div>' +
-      l.stations.map(s=>'<div class="st"><span class="dot" style="background:'+l.color+'"></span><b>'+esc(s)+'</b></div>').join("") +
-    '</div>';
+    html += '<div class="metro-card"><div class="ttl"><span class="badge" style="background:'+l.color+'">'+l.badge+'</span>'+l.name+'</div>' + l.stations.map(s=>'<div class="st"><span class="dot" style="background:'+l.color+'"></span><b>'+esc(s)+'</b></div>').join("") + '</div>';
   });
   open(html);
 }
 
-/* ====== КАРТЫ ДНЯ ====== */
 function maps(){
-  let html = '<h2>🗺️ Маршруты дня '+cur+'</h2>' +
-    '<p class="muted">Нажми — построить маршрут от тебя.</p>';
+  let html = '<h2>🗺️ Маршруты дня '+cur+'</h2><p class="muted">Нажми — построить маршрут от тебя.</p>';
   D[cur].filter(x=>x.dest).forEach(x=>{
-    html += '<div style="margin:10px 0;padding:10px;background:var(--route-bg);border-radius:10px">' +
-      '<div style="font-weight:700;margin-bottom:6px">'+x.time+' — '+esc(x.title)+'</div>' +
-      '<div style="display:flex;gap:6px;flex-wrap:wrap">' +
-        '<a class="btn walk-btn" target="_blank" rel="noopener" href="'+routeUrl(x.dest,'pd')+'">🚶 Пешком</a>' +
-        '<a class="btn transit-btn" target="_blank" rel="noopener" href="'+routeUrl(x.dest,'mt')+'">🚇 Транспорт</a>' +
-        (x.map ? '<a class="btn map" target="_blank" rel="noopener" href="'+x.map+'">🗺️ Место</a>' : '') +
-      '</div></div>';
+    html += '<div style="margin:10px 0;padding:10px;background:var(--route-bg);border-radius:10px"><div style="font-weight:700;margin-bottom:6px">'+x.time+' — '+esc(x.title)+'</div><div style="display:flex;gap:6px;flex-wrap:wrap"><a class="btn walk-btn" target="_blank" rel="noopener" href="'+routeUrl(x.dest,'pd')+'">🚶 Пешком</a><a class="btn transit-btn" target="_blank" rel="noopener" href="'+routeUrl(x.dest,'mt')+'">🚇 Транспорт</a>' + (x.map ? '<a class="btn map" target="_blank" rel="noopener" href="'+x.map+'">🗺️ Место</a>' : '') + '</div></div>';
   });
   open(html);
 }
 
-/* ====== МОДАЛКА ====== */
 function open(s){ document.getElementById("mb").innerHTML = s; document.getElementById("modal").classList.add("show"); }
 function closeM(){ document.getElementById("modal").classList.remove("show"); }
 
-/* ====== ДНИ / СЕЙЧАС / ЧАСЫ ====== */
 function day(n){
   cur = n;
   $$(".day").forEach(x=>x.classList.remove("active"));
@@ -1048,7 +918,6 @@ function tick(){
   nextLabel(); updateCountdown();
 }
 
-/* ====== PWA ====== */
 if("serviceWorker" in navigator) navigator.serviceWorker.register("sw.js");
 window.addEventListener("beforeinstallprompt", e=>{
   e.preventDefault(); deferredInstall = e;
@@ -1058,7 +927,6 @@ document.getElementById("installBtn").onclick = async ()=>{
   if(deferredInstall){ deferredInstall.prompt(); deferredInstall = null; }
 };
 
-/* ====== СТАРТ ====== */
 render();
 (function initWeather(){
   const c = JSON.parse(store.get("weather")||"null");
