@@ -5,75 +5,145 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>КХЛ Плей-офф: Сетка</title>
     
-    <!-- PWA Настройки -->
-    <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#3b82f6">
+    <!-- PWA Настройки (исправлено на .webmanifest) -->
+    <link rel="manifest" href="manifest.webmanifest">
+    <meta name="theme-color" content="#121212">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
     <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
     
     <style>
+        /* ТЕМНАЯ ТЕМА */
         :root {
-            --bg-color: #f3f4f6; --text-color: #1f2937; --border-color: #d1d5db;
-            --winner-bg: #10b981; --winner-text: white;
+            --bg-color: #121212;         
+            --text-color: #e5e7eb;       
+            --border-color: #374151;     
+            --winner-bg: #10b981;        
+            --winner-text: white;
+            --card-bg: #1f2937;          
         }
+        
         body {
             font-family: 'Segoe UI', Tahoma, sans-serif;
-            background-color: var(--bg-color); color: var(--text-color);
-            margin: 0; padding: 10px; display: flex; flex-direction: column; align-items: center;
+            background-color: var(--bg-color); 
+            color: var(--text-color);
+            margin: 0; padding: 10px; 
+            display: flex; flex-direction: column; align-items: center;
         }
+
+        /* Блок с инструкцией */
+        .instruction-section {
+            background: var(--card-bg); 
+            padding: 15px; border-radius: 12px;
+            margin-bottom: 15px; width: 100%; max-width: 600px; box-sizing: border-box;
+            border: 1px solid var(--border-color); text-align: center;
+        }
+        
+        .instruction-section h3 { margin-top: 0; font-size: 16px; color: #3b82f6; }
+        .instruction-section p { font-size: 13px; color: #9ca3af; margin-bottom: 10px; line-height: 1.4; }
+        
+        /* Место для GIF */
+        .gif-container img {
+            width: 100%; max-width: 300px; border-radius: 8px; 
+            border: 1px solid var(--border-color); margin-bottom: 10px;
+            display: inline-block;
+        }
+
         .upload-section {
-            background: white; padding: 15px; border-radius: 12px;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); margin-bottom: 15px;
+            background: var(--card-bg); padding: 15px; border-radius: 12px;
+            margin-bottom: 15px; border: 1px solid var(--border-color);
             text-align: center; width: 100%; max-width: 600px; box-sizing: border-box;
         }
+        
         .upload-section input[type="file"] {
-            margin-bottom: 10px; padding: 10px; border: 1px dashed #ccc;
+            margin-bottom: 10px; padding: 10px; border: 1px dashed var(--border-color);
             width: 100%; border-radius: 6px; box-sizing: border-box;
+            color: var(--text-color); background-color: #111827;
         }
+        
         .status { font-weight: bold; color: #3b82f6; margin-top: 10px; font-size: 14px; white-space: pre-wrap;}
+        
         .debug-box { 
-            display: none; background: #1e1e1e; color: #00ff00; padding: 10px; 
+            display: none; background: #000; color: #00ff00; padding: 10px; 
             font-family: monospace; font-size: 10px; max-height: 200px; overflow-y: auto;
             width: 100%; box-sizing: border-box; margin-bottom: 15px; border-radius: 6px;
+            border: 1px solid #333;
         }
+        
         .bracket-container {
             display: flex; gap: 30px; overflow-x: auto; padding: 15px;
-            background: white; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+            background: var(--card-bg); border-radius: 12px; 
+            border: 1px solid var(--border-color);
             width: 100%; box-sizing: border-box; min-height: 500px;
         }
+        
         .round {
             display: flex; flex-direction: column; justify-content: space-around;
             width: 160px; position: relative; min-height: 700px; flex-shrink: 0;
         }
+        
         .round-title {
             text-align: center; font-weight: bold; margin-bottom: 10px;
-            text-transform: uppercase; font-size: 0.7rem; color: #6b7280;
+            text-transform: uppercase; font-size: 0.7rem; color: #9ca3af;
             position: absolute; top: 0; width: 100%;
         }
+        
         .match {
             display: flex; flex-direction: column; border: 1px solid var(--border-color);
-            border-radius: 6px; overflow: hidden; margin: 5px 0; background: white;
+            border-radius: 6px; overflow: hidden; margin: 5px 0; background: #111827;
             position: relative; z-index: 2;
         }
+        
         .team {
             padding: 8px 10px; cursor: pointer; border: none; background: none;
             text-align: left; font-size: 11px; font-weight: 500; transition: all 0.2s;
             white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+            color: var(--text-color);
         }
+        
         .team:first-child { border-bottom: 1px solid var(--border-color); }
-        .team.winner { background-color: var(--winner-bg); color: var(--winner-text); font-weight: bold; }
-        .team.empty { color: #9ca3af; cursor: default; font-style: italic; background-color: #f9fafb; }
+        .team:hover { background-color: #374151; }
+        
+        .team.winner { 
+            background-color: var(--winner-bg); 
+            color: var(--winner-text); 
+            font-weight: bold; 
+        }
+        .team.winner:hover { background-color: #059669; }
+        
+        .team.empty { color: #6b7280; cursor: default; font-style: italic; background-color: #1f2937; }
+        .team.empty:hover { background-color: #1f2937; }
         
         #r1 .match { margin: 15px 0; }
         #r2 .match { margin: 55px 0; }
         #r3 .match { margin: 135px 0; }
         #r4 .match { margin: 0; margin-top: 230px; }
-        button.reset-btn { padding: 10px 20px; background-color: #ef4444; color: white; border: none; border-radius: 6px; cursor: pointer; display: none; }
+        
+        button.reset-btn { 
+            padding: 10px 20px; background-color: #ef4444; color: white; 
+            border: none; border-radius: 6px; cursor: pointer; display: none; 
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
+
+    <!-- БЛОК С ИНСТРУКЦИЕЙ (ВАША ГИФКА) -->
+    <div class="instruction-section" id="instructionSection">
+        <h3>Как это работает?</h3>
+        
+        <!-- Здесь мы прописали имя вашего файла -->
+        <div class="gif-container">
+            <img src="IMG_8446.gif" alt="Инструкция">
+        </div>
+
+        <p>
+            1. Сделайте скриншот таблицы в приложении КХЛ.<br>
+            2. Нажмите кнопку ниже и выберите этот скриншот.<br>
+            3. Дождитесь распознавания и просто кликайте по командам, которые проходят дальше!
+        </p>
+    </div>
 
     <div class="upload-section" id="uploadSection">
         <h2 style="font-size: 18px; margin-top:0;">Загрузите скриншот</h2>
@@ -90,7 +160,6 @@
     <div class="bracket-container" id="bracket"></div>
 
     <script>
-        // Регистрация Service Worker для PWA
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
                 navigator.serviceWorker.register('./sw.js')
@@ -106,6 +175,7 @@
         const debugBox = document.getElementById('debugBox');
         const imageInput = document.getElementById('imageInput');
         const resetBtn = document.getElementById('resetBtn');
+        const instructionSection = document.getElementById('instructionSection');
 
         function preprocessImage(file) {
             return new Promise((resolve) => {
@@ -144,6 +214,7 @@
             if (!file) return;
 
             statusDiv.innerText = "Обработка изображения...";
+            statusDiv.style.color = "#3b82f6";
             debugBox.style.display = 'none';
             document.getElementById('bracket').innerHTML = '';
 
@@ -162,7 +233,8 @@
                 parseStandings(text);
 
             } catch (error) {
-                statusDiv.innerText = "Ошибка распознавания.";
+                statusDiv.innerText = "Ошибка распознавания. Попробуйте еще раз.";
+                statusDiv.style.color = "#ef4444";
             }
         });
 
@@ -202,12 +274,13 @@
 
             if (bracketData.west.length < 8 || bracketData.east.length < 8) {
                 statusDiv.innerText = `Найдено: Запад - ${bracketData.west.length}, Восток - ${bracketData.east.length}.\nЗагрузите картинку, где видны ОБЕ таблицы.`;
-                statusDiv.style.color = "red";
+                statusDiv.style.color = "#ef4444";
                 debugBox.style.display = 'block';
             } else {
                 statusDiv.innerText = "Успешно! Сетка построена.";
-                statusDiv.style.color = "green";
+                statusDiv.style.color = "#10b981";
                 debugBox.style.display = 'none';
+                instructionSection.style.display = 'none'; // Скрываем инструкцию
             }
 
             resetBtn.style.display = 'inline-block';
@@ -219,10 +292,10 @@
             const createPairs = (confTeams) => {
                 const getT = (idx) => confTeams[idx] || null;
                 return [
-                    { t1: getT(0), t2: getT(7), w: null }, // 1-8
-                    { t1: getT(1), t2: getT(6), w: null }, // 2-7
-                    { t1: getT(2), t2: getT(5), w: null }, // 3-6
-                    { t1: getT(3), t2: getT(4), w: null }  // 4-5
+                    { t1: getT(0), t2: getT(7), w: null },
+                    { t1: getT(1), t2: getT(6), w: null },
+                    { t1: getT(2), t2: getT(5), w: null },
+                    { t1: getT(3), t2: getT(4), w: null }
                 ];
             };
 
@@ -338,6 +411,7 @@
         }
 
         function resetBracket() {
+            document.getElementById('instructionSection').style.display = 'block'; 
             document.getElementById('uploadSection').style.display = 'block';
             document.getElementById('bracket').innerHTML = '';
             imageInput.value = '';
