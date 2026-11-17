@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>КХЛ Плей-офф: Сетка</title>
     
-    <!-- PWA Настройки (исправлено на .webmanifest) -->
+    <!-- PWA Настройки -->
     <link rel="manifest" href="manifest.webmanifest">
     <meta name="theme-color" content="#121212">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -41,10 +41,10 @@
         }
         
         .instruction-section h3 { margin-top: 0; font-size: 16px; color: #3b82f6; }
-        .instruction-section p { font-size: 13px; color: #9ca3af; margin-bottom: 10px; line-height: 1.4; }
+        .instruction-section p { font-size: 13px; color: #9ca3af; margin-bottom: 0; line-height: 1.4; }
         
-        /* Место для GIF */
-        .gif-container img {
+        /* Место для Видео */
+        .gif-container video {
             width: 100%; max-width: 300px; border-radius: 8px; 
             border: 1px solid var(--border-color); margin-bottom: 10px;
             display: inline-block;
@@ -129,19 +129,19 @@
 </head>
 <body>
 
-    <!-- БЛОК С ИНСТРУКЦИЕЙ (ВАША ГИФКА) -->
+    <!-- БЛОК С ИНСТРУКЦИЕЙ (ВИДЕО) -->
     <div class="instruction-section" id="instructionSection">
         <h3>Как это работает?</h3>
         
-        <!-- Здесь мы прописали имя вашего файла -->
         <div class="gif-container">
-            <img src="IMG_8446.gif" alt="Инструкция">
+            <!-- Используем тег video для MP4 -->
+            <video src="instruction.mp4" autoplay loop muted playsinline></video>
         </div>
 
         <p>
             1. Сделайте скриншот таблицы в приложении КХЛ.<br>
             2. Нажмите кнопку ниже и выберите этот скриншот.<br>
-            3. Дождитесь распознавания и просто кликайте по командам, которые проходят дальше!
+            3. Дождитесь распознавания и кликайте по победителям!
         </p>
     </div>
 
